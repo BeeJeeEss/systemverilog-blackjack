@@ -71,7 +71,7 @@ always_comb begin : bg_comb_blk
     end else begin                              // Active region:
         if (vcount_in == 0)                     // - top edge:
             rgb_nxt = 12'hf_f_0;                // - - make a yellow line.
-        else if (vcount_in == VER_PIXELS - 1)   // - bottom edge:
+        else if (vcount_in == VER_PIXELS)   // - bottom edge:
             rgb_nxt = 12'hf_0_0;                // - - make a red line.
         else if (hcount_in == 0)                // - left edge:
             rgb_nxt = 12'h0_f_0;                // - - make a green line.
