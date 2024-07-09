@@ -65,25 +65,14 @@ vga_timing u_vga_timing (
     .hblnk  (hblnk_tim)
 );
 
-draw_bg u_draw_bg (
-    .clk,
-    .rst,
-
-    .vcount_in  (vcount_tim),
-    .vsync_in   (vsync_tim),
-    .vblnk_in   (vblnk_tim),
-    .hcount_in  (hcount_tim),
-    .hsync_in   (hsync_tim),
-    .hblnk_in   (hblnk_tim),
-
-    .vcount_out (vcount_bg),
-    .vsync_out  (vsync_bg),
-    .vblnk_out  (vblnk_bg),
-    .hcount_out (hcount_bg),
-    .hsync_out  (hsync_bg),
-    .hblnk_out  (hblnk_bg),
-
-    .rgb_out    (rgb_bg)
+background_display u_background_display (
+    .clk(clk),
+    .rst(rst),
+    .hcount_in(hcount_tim),
+    .vcount_in(vcount_tim),
+    .xpos(11'd0), // Załóżmy, że obrazek zaczyna się od (0,0)
+    .ypos(11'd0),
+    .pixel_out(pixel_out)
 );
 
 endmodule
