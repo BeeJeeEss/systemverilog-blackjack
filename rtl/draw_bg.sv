@@ -1,56 +1,88 @@
-module background_display (
-        input logic clk,
-        input logic rst,
-        input logic [10:0] hcount_in, // szerokość liczników (np. z generatora synchronizacji)
-        input logic [10:0] vcount_in, // wysokość liczników (np. z generatora synchronizacji)
-        input logic [10:0] xpos, // pozycja x początku obrazka
-        input logic [10:0] ypos, // pozycja y początku obrazka
-        output logic [7:0] pixel_out
-    );
+/**
+ * Copyright (C) 2023  AGH University of Science and Technology
+ * MTM UEC2
+ * Author: Piotr Kaczmarczyk
+ *
+ * Description:
+ * Draw background.
+ */
 
-    // Parametry
-    parameter IMG_WIDTH  = 640;
-    parameter IMG_HEIGHT = 480;
-    parameter FILE_PATH = "bg.dat"; // Zaktualizowana ścieżka do pliku
 
-    // Rejestry
-    logic [7:0] memory [0:IMG_WIDTH*IMG_HEIGHT-1];
-    logic [19:0] pixel_index, pixel_index_nxt;
-    logic [10:0] imag_x, imag_x_nxt;
-    logic [10:0] imag_y, imag_y_nxt;
+`timescale 1 ns / 1 ps
 
-    // Procedura inicjalizacyjna ładowania danych z pliku
-    initial begin
-        $readmemh(FILE_PATH, memory);
+module draw_bg (
+    input  logic clk,
+    input  logic rst,
+
+    input  logic [10:0] vcount_in,
+    input  logic        vsync_in,
+    input  logic        vblnk_in,
+    input  logic [10:0] hcount_in,
+    input  logic        hsync_in,
+    input  logic        hblnk_in,
+
+    output logic [10:0] vcount_out,
+    output logic        vsync_out,
+    output logic        vblnk_out,
+    output logic [10:0] hcount_out,
+    output logic        hsync_out,
+    output logic        hblnk_out,
+
+    output logic [11:0] rgb_out
+);
+
+import vga_pkg::*;
+
+
+/**
+ * Local variables and signals
+ */
+
+logic [11:0] rgb_nxt;
+
+
+/**
+ * Internal logic
+ */
+
+always_ff @(posedge clk) begin : bg_ff_blk
+    if (rst) begin
+        vcount_out <= '0;
+        vsync_out  <= '0;
+        vblnk_out  <= '0;
+        hcount_out <= '0;
+        hsync_out  <= '0;
+        hblnk_out  <= '0;
+        rgb_out    <= '0;
+    end else begin
+        vcount_out <= vcount_in;
+        vsync_out  <= vsync_in;
+        vblnk_out  <= vblnk_in;
+        hcount_out <= hcount_in;
+        hsync_out  <= hsync_in;
+        hblnk_out  <= hblnk_in;
+        rgb_out    <= rgb_nxt;
     end
+end
 
-    // Generowanie wartości następnych
-    always_comb begin
-        imag_y_nxt = vcount_in - ypos;
-        imag_x_nxt = hcount_in - xpos;
-        pixel_index_nxt = imag_y_nxt * IMG_WIDTH + imag_x_nxt;
-    end
+always_comb begin : bg_comb_blk
+    if (vblnk_in || hblnk_in) begin             // Blanking region:
+        rgb_nxt = 12'h0_0_0;                    // - make it it black.
+    end else begin                              // Active region:
+        if (vcount_in == 0)                     // - top edge:
+            rgb_nxt = 12'hf_f_0;                // - - make a yellow line.
+        else if (vcount_in == VER_PIXELS)   // - bottom edge:
+            rgb_nxt = 12'hf_0_0;                // - - make a red line.
+        else if (hcount_in == 0)                // - left edge:
+            rgb_nxt = 12'h0_f_0;                // - - make a green line.
+        else if (hcount_in == HOR_PIXELS - 1)   // - right edge:
+            rgb_nxt = 12'h0_0_f;                // - - make a blue line.
 
-    // Aktualizacja wartości rejestrów na sygnał zegara
-    always_ff @(posedge clk or posedge rst) begin
-        if (rst) begin
-            imag_y <= 0;
-            imag_x <= 0;
-            pixel_index <= 0;
-        end else begin
-            imag_y <= imag_y_nxt;
-            imag_x <= imag_x_nxt;
-            pixel_index <= pixel_index_nxt;
-        end
-    end
+        // Add your code here.
 
-    // Wyjście piksela
-    always_comb begin
-        if (imag_x < IMG_WIDTH && imag_y < IMG_HEIGHT) begin
-            pixel_out = memory[pixel_index];
-        end else begin
-            pixel_out = 8'h04; // wyświetlanie czerni poza obrazkiem
-        end
+        else                                    // The rest of active display pixels:
+            rgb_nxt = 12'h8_8_8;                // - fill with gray.
     end
+end
 
 endmodule
