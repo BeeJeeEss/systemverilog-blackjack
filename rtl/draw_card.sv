@@ -5,12 +5,12 @@
  Author:        Konrad Sawina
  */
 //////////////////////////////////////////////////////////////////////////////
- module draw_card
+module draw_card
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
         input  wire  [11:0] rgb_pixel,
-        input  wire  card_symbol, 
+        input  wire  card_symbol,
         input  wire  card_colour,
 
         input  logic [10:0] vcount_in,
@@ -29,10 +29,10 @@
         output logic [10:0] hcount_out,
         output logic        hsync_out,
         output logic        hblnk_out,
-    
+
         output logic [11:0] rgb_out
     );
-    
+
     //------------------------------------------------------------------------------
     // local parameters
     //------------------------------------------------------------------------------
@@ -40,14 +40,14 @@
     localparam CARD_YPOS = 30;
     localparam CARD_HEIGHT = 79;
     localparam CARD_WIDTH = 55;
-    
+
     //------------------------------------------------------------------------------
     // local variables
     //------------------------------------------------------------------------------
     logic [11:0] rgb_nxt;
     logic [11:0] pixel_addr_nxt;
 
-    
+
     //------------------------------------------------------------------------------
     // output register with sync reset
     //------------------------------------------------------------------------------
@@ -82,7 +82,7 @@
         end else begin
             if (hcount_in >= CARD_XPOS  && hcount_in  <= CARD_XPOS+CARD_WIDTH && vcount_in  >= CARD_YPOS && vcount_in <= CARD_YPOS+CARD_HEIGHT) begin
                 rgb_nxt = rgb_pixel;
-               // pixel_addr_nxt = {6'(vcount_in - CARD_YPOS), 6'(hcount_in - CARD_XPOS)};
+                // pixel_addr_nxt = {6'(vcount_in - CARD_YPOS), 6'(hcount_in - CARD_XPOS)};
                 pixel_addr_nxt = (vcount_in - CARD_YPOS)*CARD_WIDTH + hcount_in - CARD_XPOS;
             end
             else begin
@@ -92,5 +92,5 @@
 
         end
     end
-    
-    endmodule
+
+endmodule
