@@ -32,7 +32,7 @@ reg [11:0] rom [0:4095];
  */
 
 /* Relative path from the simulation or synthesis working directory */
-initial $readmemh("../../rtl/image_rom.data", rom);
+initial $readmemh("../../rtl/card_data/AS_trefl.dat", rom);
 
 
 /**
