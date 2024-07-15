@@ -30,30 +30,19 @@ module top_vga (
      */
 
 // VGA signals from timing
-    wire [10:0] vcount_tim, hcount_tim;
-    wire vsync_tim, hsync_tim;
-    wire vblnk_tim, hblnk_tim;
+     vga_if wire_tim();
+     vga_if wire_bg();
+     vga_if wire_card();
 
-// VGA signals from background
-    wire [10:0] vcount_bg, hcount_bg;
-    wire vsync_bg, hsync_bg;
-    wire vblnk_bg, hblnk_bg;
-    wire [11:0] rgb_bg;
-
-// VGA signals from draw_card
-    wire [10:0] vcount_card, hcount_card;
-    wire vsync_card, hsync_card;
-    wire vblnk_card, hblnk_card;
-    wire [11:0] rgb_card;
-
+  
 
     /**
      * Signals assignments
      */
 
-    assign vs = vsync_card;
-    assign hs = hsync_card;
-    assign {r,g,b} = rgb_card;
+    assign vs = wire_card.vsync;
+    assign hs = wire_card.hsync;
+    assign {r,g,b} = wire_card.rgb;
 
 
     /**
@@ -63,69 +52,43 @@ module top_vga (
     vga_timing u_vga_timing (
         .clk,
         .rst,
-        .vcount (vcount_tim),
-        .vsync  (vsync_tim),
-        .vblnk  (vblnk_tim),
-        .hcount (hcount_tim),
-        .hsync  (hsync_tim),
-        .hblnk  (hblnk_tim)
+        .vga_tim(wire_tim)
     );
 
     draw_bg u_draw_bg (
         .clk,
         .rst,
 
-        .vcount_in  (vcount_tim),
-        .vsync_in   (vsync_tim),
-        .vblnk_in   (vblnk_tim),
-        .hcount_in  (hcount_tim),
-        .hsync_in   (hsync_tim),
-        .hblnk_in   (hblnk_tim),
-
-        .vcount_out (vcount_bg),
-        .vsync_out  (vsync_bg),
-        .vblnk_out  (vblnk_bg),
-        .hcount_out (hcount_bg),
-        .hsync_out  (hsync_bg),
-        .hblnk_out  (hblnk_bg),
-
-        .rgb_out    (rgb_bg)
+        .vga_bg_in(wire_tim),
+        .vga_bg_out(wire_bg)
     );
 
     wire [11:0] rgb_wire;
-    wire [11:0] address_wire;
+    wire [12:0] address_wire;
+    wire [6:0] card_number;
+    wire [3:0] card_symbol;
 
     draw_card u_draw_card(
         .clk,
         .rst,
+       
+        .vga_card_in(wire_bg),
+        .vga_card_out(wire_card),
 
-        .vcount_in  (vcount_bg),
-        .vsync_in   (vsync_bg),
-        .vblnk_in   (vblnk_bg),
-        .hcount_in  (hcount_bg),
-        .hsync_in   (hsync_bg),
-        .hblnk_in   (hblnk_bg),
-        .rgb_pixel  (rgb_wire),
-
-        .rgb_in     (rgb_bg),
-
-        .vcount_out (vcount_card),
-        .vsync_out  (vsync_card),
-        .vblnk_out  (vblnk_card),
-        .hcount_out (hcount_card),
-        .hsync_out  (hsync_card),
-        .hblnk_out  (hblnk_card),
         .pixel_addr (address_wire),
+        .rgb_pixel(rgb_wire),
+        .card_number(card_number),
+        .card_symbol(card_symbol)
 
-        .rgb_out    (rgb_card)
     );
 
 
     image_rom_card u_image_rom_card(
         .clk,
-
-        .address(address_wire),
-        .rgb(rgb_wire)
+        .card_number(card_number),
+        .card_symbol(card_symbol),
+        .addrA(address_wire),
+        .dout(rgb_wire)
 
     );
 
