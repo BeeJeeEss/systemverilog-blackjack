@@ -60,3 +60,23 @@
 
 endmodule
 
+<<<<<<< HEAD
+=======
+
+/**
+ * Memory initialization from a file
+ */
+
+/* Relative path from the simulation or synthesis working directory */
+initial $readmemh("../../rtl/card_data/AS_trefl.dat", rom);
+
+
+/**
+ * Internal logic
+ */
+
+always @(posedge clk)
+    rgb <= rom[address];
+
+endmodule
+>>>>>>> 33ee601b071837783309a9b37af4d85df3d1ed26
