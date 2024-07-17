@@ -37,6 +37,9 @@ set sv_files {
     ../rtl/draw_card.sv 
     ../rtl/image_rom_card.sv 
     ../rtl/top_vga.sv
+    ../rtl/delay.sv
+    ../rtl/vga_if.sv
+    ../rtl/card.sv
     rtl/top_vga_basys3.sv
 }
 

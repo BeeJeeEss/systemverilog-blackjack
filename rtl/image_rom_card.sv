@@ -1,45 +1,62 @@
-/**
- * Copyright (C) 2023  AGH University of Science and Technology
- * MTM UEC2
- * Author: Robert Szczygiel
- * Modified: Piotr Kaczmarczyk
- *
- * Description:
- * This is the ROM for the 'AGH48x64.png' image.
- * The image size is 48 x 64 pixels.
- * The input 'address' is a 12-bit number, composed of the concatenated
- * 6-bit y and 6-bit x pixel coordinates.
- * The output 'rgb' is 12-bit number with concatenated
- * red, green and blue color values (4-bit each)
+//////////////////////////////////////////////////////////////////////////////
+/*
+ Module name:   template_rom
+ Author:        Robert Szczygiel
+ Version:       1.0
+ Last modified: 2017-04-03
+ Coding style: Xilinx recommended + ANSI ports
+ Description:  Template for ROM module as recommended by Xilinx
+
+ ** This example shows the use of the Vivado rom_style attribute
+ **
+ ** Acceptable values are:
+ ** block : Instructs the tool to infer RAMB type components.
+ ** distributed : Instructs the tool to infer LUT ROMs.
+ **
  */
+//////////////////////////////////////////////////////////////////////////////
+ module image_rom_card 
+	#(parameter
+		ADDR_WIDTH = 13,
+		DATA_WIDTH = 12,
+		CARD_SYMBOL = 0,
+		CARD_NUMBER = 5
+	)
+	(
+		input wire clk, // posedge active clock
+		input wire [ADDR_WIDTH - 1 : 0 ] addrA,
+		output logic [DATA_WIDTH - 1 : 0 ] dout
+	);
 
- module image_rom_card (
-    input  logic clk ,
-    input  logic [11:0] address,  // address = {addry[5:0], addrx[5:0]}
-    output logic [11:0] rgb
-);
+	(* rom_style = "block" *) // block || distributed
+
+	logic [DATA_WIDTH-1:0] rom [2**ADDR_WIDTH-1:0]; // rom memory
+	
+	string data_path_serce;
+	string data_path_pik;
+	string data_path_romb;
+	string data_path_trefl;
+
+	always_ff @(posedge clk) begin : rom_read_blk
+			dout <= rom[addrA];
+	end
 
 
-/**
- * Local variables and signals
- */
-
-reg [11:0] rom [0:4095];
-
-
-/**
- * Memory initialization from a file
- */
-
-/* Relative path from the simulation or synthesis working directory */
-initial $readmemh("../../rtl/image_rom.data", rom);
-
-
-/**
- * Internal logic
- */
-
-always @(posedge clk)
-    rgb <= rom[address];
+	initial begin
+		if (CARD_SYMBOL == 0) begin
+			data_path_serce = $sformatf("../../rtl/card_data/%0d_serce.dat", CARD_NUMBER);
+    		$readmemh(data_path_serce, rom);
+		end if (CARD_SYMBOL == 1) begin
+			data_path_pik = $sformatf("../../rtl/card_data/%0d_pik.dat", CARD_NUMBER);
+    		$readmemh(data_path_pik, rom);
+		end if (CARD_SYMBOL == 2) begin
+			data_path_romb = $sformatf("../../rtl/card_data/%0d_romb.dat", CARD_NUMBER);
+    		$readmemh(data_path_romb, rom);
+		end if (CARD_SYMBOL == 3) begin
+			data_path_trefl = $sformatf("../../rtl/card_data/%0d_trefl.dat", CARD_NUMBER);
+    		$readmemh(data_path_trefl, rom);
+		end 		
+	end
 
 endmodule
+
