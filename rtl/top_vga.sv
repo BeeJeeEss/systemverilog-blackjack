@@ -17,11 +17,14 @@
 module top_vga (
         input  logic clk,
         input  logic rst,
+        input  logic clk100Mhz,
         output logic vs,
         output logic hs,
         output logic [3:0] r,
         output logic [3:0] g,
-        output logic [3:0] b
+        output logic [3:0] b,
+        inout  logic PS2Clk,
+        inout  logic PS2Data
     );
 
 
@@ -32,7 +35,7 @@ module top_vga (
 // VGA signals from timing
      vga_if wire_tim();
      vga_if wire_bg();
-     vga_if wire_card();
+     vga_if wire_mouse();
 
   
 
@@ -40,9 +43,9 @@ module top_vga (
      * Signals assignments
      */
 
-    assign vs = wire_bg.vsync;
-    assign hs = wire_bg.hsync;
-    assign {r,g,b} = wire_bg.rgb;
+    assign vs = wire_mouse.vsync;
+    assign hs = wire_mouse.hsync;
+    assign {r,g,b} = wire_mouse.rgb;
 
 
     /**
@@ -63,6 +66,30 @@ module top_vga (
         .vga_bg_out(wire_bg)
     );
 
+    wire [11:0] xpos;
+    wire [11:0] ypos;
+
+    MouseCtl u_MouseCtl (
+        .clk(clk100Mhz),
+        .rst,
+       
+        .ps2_data(PS2Data),
+        .ps2_clk(PS2Clk),
+
+        .xpos(xpos),
+        .ypos(ypos)
+    );
+
+    draw_mouse u_draw_mouse (
+        .clk,
+        .rst,
+
+        .vga_mouse_in(wire_bg),
+        .vga_mouse_out(wire_mouse),
+
+        .xpos(xpos),
+        .ypos(ypos)
+    );
 
 
 

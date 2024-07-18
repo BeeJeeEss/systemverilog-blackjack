@@ -19,5 +19,11 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/delay.sv \
         ../../rtl/vga_if.sv \
         ../../rtl/card.sv \
+        ../../rtl/mouse/draw_mouse.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv
+
+
+vhdl work ../../rtl/mouse/MouseCtl.vhd \
+        ../../rtl/mouse/Ps2Interface.vhd \
+        ../../rtl/mouse/MouseDisplay.vhd 
