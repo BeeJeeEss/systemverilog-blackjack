@@ -31,7 +31,6 @@ module image_rom_card
 	(* rom_style = "block" *) // block || distributed
 
 	logic [DATA_WIDTH-1:0] rom [2**ADDR_WIDTH-1:0]; // rom memory
-
 	string data_path_serce;
 	string data_path_pik;
 	string data_path_romb;

@@ -7,14 +7,14 @@
 //////////////////////////////////////////////////////////////////////////////
 module draw_card
     #( parameter
-    CARD_XPOS = 20,
-    CARD_YPOS = 30
-    )   
+        CARD_XPOS = 20,
+        CARD_YPOS = 30
+    )
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
         input  wire  [11:0] rgb_pixel,
-        
+
         vga_if.out vga_card_out,
         vga_if.in vga_card_in,
 
@@ -32,7 +32,7 @@ module draw_card
     //------------------------------------------------------------------------------
     logic [11:0] rgb_nxt;
     logic [12:0] pixel_addr_nxt;
-    
+
     wire [11:0] delayed_rgb;
     vga_if wire_cd();
 
@@ -90,14 +90,14 @@ module draw_card
     // logic
     //------------------------------------------------------------------------------
     always_comb begin : card_comb_blk
-            if (vga_card_in.hcount - 1 >= CARD_XPOS  && vga_card_in.hcount - 1 <= CARD_XPOS+CARD_WIDTH && vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount + 1 <= CARD_YPOS+CARD_HEIGHT) begin
-                rgb_nxt = rgb_pixel;
-                pixel_addr_nxt = (vga_card_in.vcount - CARD_YPOS )*CARD_WIDTH + vga_card_in.hcount - CARD_XPOS;
-            end
-            else begin
-                pixel_addr_nxt = 0;
-                rgb_nxt = delayed_rgb;
-            end
+        if (vga_card_in.hcount - 1 >= CARD_XPOS  && vga_card_in.hcount - 1 <= CARD_XPOS+CARD_WIDTH && vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount + 1 <= CARD_YPOS+CARD_HEIGHT) begin
+            rgb_nxt = rgb_pixel;
+            pixel_addr_nxt = (vga_card_in.vcount - CARD_YPOS )*CARD_WIDTH + vga_card_in.hcount - CARD_XPOS;
+        end
+        else begin
+            pixel_addr_nxt = 0;
+            rgb_nxt = delayed_rgb;
+        end
 
     end
 

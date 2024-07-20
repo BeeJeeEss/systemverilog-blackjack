@@ -38,9 +38,13 @@ set sv_files {
     ../rtl/image_rom_card.sv 
     ../rtl/top_vga.sv
     ../rtl/delay.sv
+<<<<<<< HEAD
+    ../rtl/vga_if.sv
+=======
     ../rtl/mouse/draw_mouse.sv
     ../rtl/vga_if.sv
     ../rtl/card.sv
+>>>>>>> main
     rtl/top_vga_basys3.sv
 }
 

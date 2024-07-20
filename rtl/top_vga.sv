@@ -33,11 +33,11 @@ module top_vga (
      */
 
 // VGA signals from timing
-     vga_if wire_tim();
-     vga_if wire_bg();
-     vga_if wire_mouse();
+    vga_if wire_tim();
+    vga_if wire_bg();
+    vga_if wire_mouse();
 
-  
+
 
     /**
      * Signals assignments
@@ -72,7 +72,7 @@ module top_vga (
     MouseCtl u_MouseCtl (
         .clk(clk100Mhz),
         .rst,
-       
+
         .ps2_data(PS2Data),
         .ps2_clk(PS2Clk),
 
@@ -83,6 +83,9 @@ module top_vga (
     draw_mouse u_draw_mouse (
         .clk,
         .rst,
+
+        .vga_card_in(wire_bg),
+        .vga_card_out(wire_card),
 
         .vga_mouse_in(wire_bg),
         .vga_mouse_out(wire_mouse),
