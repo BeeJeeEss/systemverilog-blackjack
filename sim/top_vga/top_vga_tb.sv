@@ -28,7 +28,7 @@ module top_vga_tb;
 /**
  *  Local parameters
  */
-
+localparam CLK_PERIOD100= 10;
 localparam CLK_PERIOD = 25;     // 40 MHz
 
 
@@ -36,7 +36,7 @@ localparam CLK_PERIOD = 25;     // 40 MHz
  * Local variables and signals
  */
 
-logic clk, rst;
+logic clk, rst, clk100, PS2;
 wire vs, hs;
 wire [3:0] r, g, b;
 
@@ -45,9 +45,13 @@ wire [3:0] r, g, b;
  * Clock generation
  */
 
-initial begin
+ initial begin
     clk = 1'b0;
     forever #(CLK_PERIOD/2) clk = ~clk;
+end
+initial begin
+    clk100 = 1'b0;
+    forever #(CLK_PERIOD100/2) clk100 = ~clk100;
 end
 
 
@@ -55,8 +59,9 @@ end
  * Submodules instances
  */
 
-top_vga dut (
+ top_vga dut (
     .clk(clk),
+    .clk100Mhz(clk100),
     .rst(rst),
     .vs(vs),
     .hs(hs),

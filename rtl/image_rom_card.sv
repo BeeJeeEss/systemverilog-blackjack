@@ -15,14 +15,14 @@
  **
  */
 //////////////////////////////////////////////////////////////////////////////
- module image_rom_card 
+module image_rom_card
 	#(parameter
 		ADDR_WIDTH = 13,
-		DATA_WIDTH = 12
+		DATA_WIDTH = 12,
+		CARD_SYMBOL = 0,
+		CARD_NUMBER = 5
 	)
 	(
-		input wire [3:0] card_symbol,
-		input wire [6:0] card_number,
 		input wire clk, // posedge active clock
 		input wire [ADDR_WIDTH - 1 : 0 ] addrA,
 		output logic [DATA_WIDTH - 1 : 0 ] dout
@@ -31,31 +31,30 @@
 	(* rom_style = "block" *) // block || distributed
 
 	logic [DATA_WIDTH-1:0] rom [2**ADDR_WIDTH-1:0]; // rom memory
-	
 	string data_path_serce;
 	string data_path_pik;
 	string data_path_romb;
 	string data_path_trefl;
 
 	always_ff @(posedge clk) begin : rom_read_blk
-			dout <= rom[addrA];
+		dout <= rom[addrA];
 	end
 
 
-	always_comb begin
-		if (card_symbol == 0) begin
-			data_path_serce = $sformatf("../../rtl/card_data/%0d_serce.dat", card_number);
-    		$readmemh(data_path_serce, rom);
-		end if (card_symbol == 1) begin
-			data_path_pik = $sformatf("../../rtl/card_data/%0d_pik.dat", card_number);
-    		$readmemh(data_path_pik, rom);
-		end if (card_symbol == 2) begin
-			data_path_romb = $sformatf("../../rtl/card_data/%0d_romb.dat", card_number);
-    		$readmemh(data_path_romb, rom);
-		end if (card_symbol == 3) begin
-			data_path_trefl = $sformatf("../../rtl/card_data/%0d_trefl.dat", card_number);
-    		$readmemh(data_path_trefl, rom);
-		end 		
+	initial begin
+		if (CARD_SYMBOL == 0) begin
+			data_path_serce = $sformatf("../../rtl/card_data/%0d_serce.dat", CARD_NUMBER);
+			$readmemh(data_path_serce, rom);
+		end if (CARD_SYMBOL == 1) begin
+			data_path_pik = $sformatf("../../rtl/card_data/%0d_pik.dat", CARD_NUMBER);
+			$readmemh(data_path_pik, rom);
+		end if (CARD_SYMBOL == 2) begin
+			data_path_romb = $sformatf("../../rtl/card_data/%0d_romb.dat", CARD_NUMBER);
+			$readmemh(data_path_romb, rom);
+		end if (CARD_SYMBOL == 3) begin
+			data_path_trefl = $sformatf("../../rtl/card_data/%0d_trefl.dat", CARD_NUMBER);
+			$readmemh(data_path_trefl, rom);
+		end
 	end
 
 endmodule
