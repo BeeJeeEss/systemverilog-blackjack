@@ -84,9 +84,6 @@ module top_vga (
         .clk,
         .rst,
 
-        .vga_card_in(wire_bg),
-        .vga_card_out(wire_card),
-
         .vga_mouse_in(wire_bg),
         .vga_mouse_out(wire_mouse),
 
