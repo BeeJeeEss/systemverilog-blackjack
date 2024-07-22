@@ -15,7 +15,6 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/top_vga.sv \
         ../../rtl/draw_card.sv \
         ../../rtl/image_rom_card.sv \
-        ../../rtl/draw_bg_rom.sv \
         ../../rtl/delay.sv \
         ../../rtl/vga_if.sv \
         ../../rtl/card.sv \
