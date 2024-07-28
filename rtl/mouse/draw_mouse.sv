@@ -38,10 +38,15 @@ module draw_mouse (
       always_ff @(posedge clk) begin : bg_ff_blk
           if (rst) begin    
               vga_mouse_out.vsync  <= '0;  
-              vga_mouse_out.hsync  <= '0;     
+              vga_mouse_out.hsync  <= '0;    
+              vga_mouse_out.vcount  <= '0;  
+              vga_mouse_out.hcount  <= '0;     
+              
           end else begin   
               vga_mouse_out.vsync  <= vga_mouse_in.vsync;     
-              vga_mouse_out.hsync  <= vga_mouse_in.hsync;          
+              vga_mouse_out.hsync  <= vga_mouse_in.hsync;
+              vga_mouse_out.vcount <= vga_mouse_in.hcount;  
+              vga_mouse_out.hcount <= vga_mouse_in.vcount;               
           end
       end
   

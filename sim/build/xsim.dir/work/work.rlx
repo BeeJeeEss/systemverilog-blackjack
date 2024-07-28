@@ -1,0 +1,20 @@
+0.7
+2020.2
+Oct 19 2021
+02:56:52
+/home/student/ksawina/Desktop/blackjack1/fpga/rtl/clk_wiz_0.v,1721807415,verilog,,,,clk_wiz_0,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/fpga/rtl/clk_wiz_0_clk_wiz.v,1721808334,verilog,,/home/student/ksawina/Desktop/blackjack1/fpga/rtl/clk_wiz_0.v,,clk_wiz_0_clk_wiz,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/card.sv,1722093851,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/test.sv,,card,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/draw_bg.sv,1721813480,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/top_vga.sv,,draw_bg,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/mouse/MouseCtl.vhd,1721480889,vhdl,,,,mousectl,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/mouse/MouseDisplay.vhd,1721480889,vhdl,,,,mousedisplay,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/mouse/Ps2Interface.vhd,1721480889,vhdl,,,,ps2interface,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/mouse/draw_mouse.sv,1721814969,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/mouse/hold_mouse.sv,,draw_mouse,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/mouse/hold_mouse.sv,1721641587,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/card.sv,,hold_mouse,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/test.sv,1722093670,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/sim/common/tiff_writer.sv,,test,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/top_vga.sv,1722091109,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/vga_if.sv,,top_vga,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/vga_if.sv,1721759104,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/mouse/draw_mouse.sv,,vga_if,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/vga_pkg.sv,1721811041,systemVerilog,/home/student/ksawina/Desktop/blackjack1/rtl/draw_bg.sv;/home/student/ksawina/Desktop/blackjack1/rtl/vga_timing.sv,/home/student/ksawina/Desktop/blackjack1/rtl/vga_timing.sv,,vga_pkg,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/rtl/vga_timing.sv,1721808902,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/rtl/draw_bg.sv,,vga_timing,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/sim/common/tiff_writer.sv,1721811460,systemVerilog,,/home/student/ksawina/Desktop/blackjack1/sim/top_vga/top_vga_tb.sv,,tiff_writer,,unisims_ver,,,,,,
+/home/student/ksawina/Desktop/blackjack1/sim/top_vga/top_vga_tb.sv,1721815434,systemVerilog,,,,top_vga_tb,,unisims_ver,,,,,,

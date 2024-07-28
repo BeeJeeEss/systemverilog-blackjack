@@ -34,17 +34,12 @@ set sv_files {
     ../rtl/vga_pkg.sv
     ../rtl/vga_timing.sv
     ../rtl/draw_bg.sv
-    ../rtl/draw_card.sv 
-    ../rtl/image_rom_card.sv 
     ../rtl/top_vga.sv
-    ../rtl/delay.sv
-<<<<<<< HEAD
     ../rtl/vga_if.sv
-=======
     ../rtl/mouse/draw_mouse.sv
-    ../rtl/vga_if.sv
-    ../rtl/card.sv
->>>>>>> main
+    ../rtl/mouse/hold_mouse.sv
+    ../rtl/card.sv 
+    ../rtl/test.sv 
     rtl/top_vga_basys3.sv
 }
 
