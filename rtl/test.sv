@@ -24,24 +24,10 @@
     //------------------------------------------------------------------------------
    
 
+    vga_if wire_cd [8:0] ();
 
+   
   
-
-
-    vga_if wire_cd [14:0] ();
-
-   
-
-   
-
-
-
-
-
-    
-   
-
-    
     //------------------------------------------------------------------------------
     // state sequential with synchronous reset
     //------------------------------------------------------------------------------
@@ -70,27 +56,13 @@
             vga_blackjack_out.hcount <=  vga_blackjack_in.hcount;
             vga_blackjack_out.hsync  <=  vga_blackjack_in.hsync;
             vga_blackjack_out.hblnk  <=  vga_blackjack_in.hblnk;
-            vga_blackjack_out.rgb    <=  wire_cd[14].rgb;
+            vga_blackjack_out.rgb    <=  wire_cd[8].rgb;
         end
     end
 
-    // card #(
-    //         .CARD_XPOS(150), // Ustaw pozycję x dla każdej karty
-    //         .CARD_YPOS(50)
-    //     ) u_card1 (
-    //         .clk(clk),
-    //         .rst(rst),
-    
-    //         .card_number(1),
-    //         .card_symbol(0),
-    //         .card_in(vga_blackjack_in),
-    //         .card_out(wire_cd[1])
-    //     );
 
 
-
-
-    for (genvar i = 0; i <= 14; i++) begin : player_cards
+    for (genvar i = 0; i <= 8; i++) begin : player_cards
         if (i == 0) begin
         card #(
             .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
@@ -99,12 +71,12 @@
             .clk(clk),
             .rst(rst),
     
-            .card_number(i - 1),
+            .card_number(i + 1),
             .card_symbol(i % 4),
-            .vga_card_in(vga_blackjack_in),
-            .vga_card_out(wire_cd[i])
+            .card_in(vga_blackjack_in),
+            .card_out(wire_cd[i])
         );
-        end else if (i >= 1 && i <= 14) begin
+        end else if (i >= 1 && i <= 8) begin
             card #(
                 .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
                 .CARD_YPOS(50)
@@ -112,10 +84,10 @@
                 .clk(clk),
                 .rst(rst),
         
-                .card_number(i - 1),
+                .card_number(i + 1),
                 .card_symbol(i % 4),
-                .vga_card_in(wire_cd[i-1]),
-                .vga_card_out(wire_cd[i])
+                .card_in(wire_cd[i-1]),
+                .card_out(wire_cd[i])
             );
         end
     end

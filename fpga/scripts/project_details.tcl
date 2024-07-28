@@ -38,8 +38,12 @@ set sv_files {
     ../rtl/vga_if.sv
     ../rtl/mouse/draw_mouse.sv
     ../rtl/mouse/hold_mouse.sv
-    ../rtl/card.sv 
     ../rtl/test.sv 
+    ../rtl/card/card.sv 
+    ../rtl/card/card.sv \
+    ../rtl/card/draw_card.sv \
+    ../rtl/card/image_rom_card.sv \
+    ../rtl/delay/delay.sv \
     rtl/top_vga_basys3.sv
 }
 
@@ -56,6 +60,9 @@ set vhdl_files {
 }
 
 # Specify files for a memory initialization     -- EDIT
-# set mem_files {
-#    path/to/file.data
-# }
+set mem_files {
+   rtl/card/card_data/trefl.dat
+   rtl/card/card_data/serce.dat
+   rtl/card/card_data/pik.dat
+   rtl/card/card_data/romb.dat
+}

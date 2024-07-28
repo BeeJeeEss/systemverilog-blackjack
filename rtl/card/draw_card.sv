@@ -5,7 +5,7 @@
  Author:        Konrad Sawina
  */
 //////////////////////////////////////////////////////////////////////////////
- module card
+ module draw_card
     #( parameter
         CARD_XPOS = 20,
         CARD_YPOS = 30
@@ -28,6 +28,8 @@
     //------------------------------------------------------------------------------
     localparam CARD_HEIGHT = 80;
     localparam CARD_WIDTH = 56;
+    localparam CARD_TYPE_HEIGHT = 40;
+    localparam CARD_TYPE_WIDTH = 40;
 
     //------------------------------------------------------------------------------
     // local variables
@@ -40,28 +42,28 @@
 
     vga_if wire_cd();
 
-    // delay #(
-    //     .WIDTH(12),
-    //     .CLK_DEL(2)
-    // )
-    // u_rgb_delay(
-    //     .din(vga_card_in.rgb),
-    //     .clk,
-    //     .rst,
-    //     .dout(delayed_rgb)
-    // );
+    delay #(
+        .WIDTH(12),
+        .CLK_DEL(2)
+    )
+    u_rgb_delay(
+        .din(vga_card_in.rgb),
+        .clk,
+        .rst,
+        .dout(delayed_rgb)
+    );
 
 
-    // delay #(
-    //     .WIDTH(26),
-    //     .CLK_DEL(2)
-    // )
-    // u_char_delay(
-    //     .din({vga_card_in.hcount, vga_card_in.vcount, vga_card_in.hsync, vga_card_in.vsync, vga_card_in.hblnk, vga_card_in.vblnk}),
-    //     .clk,
-    //     .rst,
-    //     .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hblnk, wire_cd.hsync, wire_cd.vblnk, wire_cd.vsync})
-    // );
+    delay #(
+        .WIDTH(26),
+        .CLK_DEL(2)
+    )
+    u_char_delay(
+        .din({vga_card_in.hcount, vga_card_in.vcount, vga_card_in.hsync, vga_card_in.vsync, vga_card_in.hblnk, vga_card_in.vblnk}),
+        .clk,
+        .rst,
+        .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hblnk, wire_cd.hsync, wire_cd.vblnk, wire_cd.vsync})
+    );
 
 
 
@@ -93,25 +95,14 @@
     //------------------------------------------------------------------------------
     // logic
     //------------------------------------------------------------------------------
-    // always_comb begin : card_comb_blk
-    //     if (card_number == 0) begin
-    //         rgb_nxt = delayed_rgb;
-    //     end else if (vga_card_in.hcount - 1 >= CARD_XPOS  && vga_card_in.hcount - 1 <= CARD_XPOS+CARD_WIDTH && vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount + 1 <= CARD_YPOS+CARD_HEIGHT) begin
-    //         rgb_nxt = rgb_pixel;
-    //         pixel_addr_nxt = (vga_card_in.vcount - CARD_YPOS )*CARD_WIDTH + vga_card_in.hcount - CARD_XPOS;
-    //     end
-    //     else begin
-    //         pixel_addr_nxt = 0;
-    //         rgb_nxt = delayed_rgb;
-    //     end
-    // end
 
-    always_comb begin : card_comb_blk
+
+    always_comb begin : card_comb_blk2
         case(card_symbol) 
-            0: color = 12'h0_0_0;
-            1: color = 12'h0_0_0;
-            2: color = 12'hf_0_0;
-            3: color = 12'hf_0_0;
+            2'b00: color = 12'h0_0_0;
+            2'b01: color = 12'h0_0_0;
+            2'b10: color = 12'hf_0_0;
+            2'b11: color = 12'hf_0_0;
             default: color = 12'hF_F_F;
         endcase
         if (vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount <= CARD_YPOS + CARD_HEIGHT && 
@@ -125,7 +116,10 @@
                 // Kolor czarny
                 rgb_nxt = 12'h0_0_0;
                  end case (card_number)
-                 1: begin
+                 4'b0000: begin
+                    rgb_nxt = delayed_rgb;
+                 end
+                 4'b0001: begin
                     if (
                         // Warunki na rysowanie litery "A"
                         (vga_card_in.hcount == CARD_XPOS + 5 && vga_card_in.vcount >= CARD_YPOS + 5 && vga_card_in.vcount <= CARD_YPOS + 13) ||
@@ -136,7 +130,7 @@
                         // Kolor czarny dla litery "A"
                         rgb_nxt = color;
                 end
-                2: begin
+                4'b0010: begin
                     if (
                             // Warunki na rysowanie cyfry "2"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 9) ||
@@ -149,7 +143,7 @@
                             // Kolor czarny dla "2"
                         rgb_nxt = color;
                 end
-                3: begin
+                4'b0011: begin
                     if (
                     (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 10) ||
                     (vga_card_in.vcount == CARD_YPOS + 9 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 10) ||
@@ -160,7 +154,7 @@
                     ) 
                     rgb_nxt = color;
                 end
-                4: begin
+                4'b0100: begin
                     if (
                         // Warunki na rysowanie cyfry "4"
                         (vga_card_in.vcount >= CARD_YPOS + 5 && vga_card_in.vcount <= CARD_YPOS + 8 && vga_card_in.hcount == CARD_XPOS + 6) ||
@@ -170,7 +164,7 @@
                         // Kolor czarny dla "4"
                         rgb_nxt = color;
                 end
-                5: begin
+                4'b0101: begin
                     if (
                             // Warunki na rysowanie cyfry "5"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 10) ||
@@ -182,7 +176,7 @@
                             // Kolor czarny dla "5"
                             rgb_nxt = color;
                 end
-                6: begin
+                4'b0110: begin
                     if (
                             // Warunki na rysowanie cyfry "6"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 10) ||
@@ -194,7 +188,7 @@
                             // Kolor czarny dla "6"
                             rgb_nxt = color;
                 end
-                7: begin 
+                4'b0111: begin 
                     if (
                         // Warunki na rysowanie cyfry "7"
                         (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 12) ||
@@ -206,7 +200,7 @@
                         // Kolor czarny dla "7"
                             rgb_nxt = color;
                 end
-                8: begin
+                4'b1000: begin
                     if (
                             // Warunki na rysowanie cyfry "8"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 11) ||
@@ -220,7 +214,7 @@
                             // Kolor czarny dla "8"
                             rgb_nxt = color;
                 end
-                9:  begin 
+                4'b1001:  begin 
                     if (
                             // Warunki na rysowanie cyfry "9"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 11) ||
@@ -233,7 +227,7 @@
                             // Kolor czarny dla "9"
                             rgb_nxt = color;    
                 end
-                10: begin
+                4'b1010: begin
                     if (
                             // Warunki na rysowanie cyfry "1"
                             (vga_card_in.hcount == CARD_XPOS + 5 &&  vga_card_in.vcount >= CARD_YPOS + 5 && vga_card_in.vcount <= CARD_YPOS + 13) |
@@ -253,7 +247,7 @@
                             // Kolor czarny dla "0"
                             rgb_nxt = color;
                 end
-                11: begin 
+                4'b1011: begin 
                     if (
                             // Warunki na rysowanie litery "J"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 10) ||
@@ -264,7 +258,7 @@
                             // Kolor czarny dla litery "J"
                             rgb_nxt = color;
                 end
-                12: begin 
+                4'b1100: begin 
                     if (
                             // Warunki na rysowanie cyfry "0"
                             (vga_card_in.vcount == CARD_YPOS + 5 && vga_card_in.hcount >= CARD_XPOS + 5 && vga_card_in.hcount <= CARD_XPOS + 11) ||
@@ -276,7 +270,7 @@
                             // Kolor czarny dla "0"
                             rgb_nxt = color;
                 end
-                13: begin
+                4'b1101: begin
                     if (
                             // Warunki na rysowanie litery "K"
                             // Pionowa linia dla "K"
@@ -292,12 +286,20 @@
                             rgb_nxt = color;
                 end
                 default: 
-                     rgb_nxt = vga_card_in.rgb ;
+                     rgb_nxt = delayed_rgb ;
 
                 endcase
             end else begin
-            rgb_nxt = vga_card_in.rgb;
+            rgb_nxt = delayed_rgb;
+        end
+        if (vga_card_in.hcount - 1 >= (CARD_XPOS + 7)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 7)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 20) && vga_card_in.vcount + 1 <= (CARD_YPOS + 20)+CARD_TYPE_HEIGHT) begin
+            rgb_nxt = rgb_pixel;
+            pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 20) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 7);
+        end
+        else begin
+            pixel_addr_nxt = 0;
         end
     end
+    
 
 endmodule
