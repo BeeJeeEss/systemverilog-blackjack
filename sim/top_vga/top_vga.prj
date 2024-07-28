@@ -13,15 +13,17 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/vga_timing.sv \
         ../../rtl/draw_bg.sv \
         ../../rtl/top_vga.sv \
-        ../../rtl/draw_card.sv \
-        ../../rtl/image_rom_card.sv \
-        ../../rtl/delay.sv \
         ../../rtl/vga_if.sv \
-        ../../rtl/card.sv \
         ../../rtl/mouse/draw_mouse.sv \
+        ../../rtl/mouse/hold_mouse.sv \
+        ../../rtl/card.sv \
+        ../../rtl/test.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv
 
+
+verilog work ../../fpga/rtl/clk_wiz_0_clk_wiz.v \
+             ../../fpga/rtl/clk_wiz_0.v
 
 vhdl work ../../rtl/mouse/MouseCtl.vhd \
         ../../rtl/mouse/Ps2Interface.vhd \

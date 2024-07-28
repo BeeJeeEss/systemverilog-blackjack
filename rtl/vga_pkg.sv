@@ -2,27 +2,25 @@
  * Copyright (C) 2023  AGH University of Science and Technology
  * MTM UEC2
  * Author: Piotr Kaczmarczyk
- *
+ * Modified by: Konrad Sawina
  * Description:
- * Package with vga related constants.
+ * Package with vga related constants adjusted to 1024X768 resolution.
  */
 
  package vga_pkg;
 
-    // Parameters for VGA Display 800 x 600 @ 60fps using a 40 MHz clock;
-    localparam HOR_PIXELS = 800;
-    localparam VER_PIXELS = 600;
-    localparam HOR_BLANK_START = 800;
-    localparam VER_BLANK_START = 600;
-    localparam HOR_SYNC_START = 840;
-    localparam VER_SYNC_START = 601;
-    localparam VER_SYNC_STOP = 605;
-    localparam H_MAX = 1056;
-    localparam V_MAX = 628;
-    localparam HOR_SYNC_STOP = 968;
-    localparam xpos = 20;
-    localparam ypos = 30;
-    
-    // Add VGA timing parameters here and refer to them in other modules.
-    
-    endpackage
+   // Parameters for VGA Display 1024 x 768 @ 60fps using a 65 MHz clock;
+   localparam  HOR_PIXELS = 1024;
+   localparam  VER_PIXELS = 768;
+   localparam  HBLANK_START = 1024;
+   localparam  HBLANK_STOP = 1344;
+   localparam  HSYNC_START = 1048;
+   localparam  HSYNC_STOP = 1184;
+   localparam  VBLANK_START = 768;
+   localparam  VBLANK_STOP = 806;
+   localparam  VSYNC_START = 771;
+   localparam  VSYNC_STOP = 777;
+   
+   // Add VGA timing parameters here and refer to them in other modules.
+   
+   endpackage
