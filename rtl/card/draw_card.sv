@@ -292,7 +292,7 @@
             end else begin
             rgb_nxt = delayed_rgb;
         end
-        if (vga_card_in.hcount - 1 >= (CARD_XPOS + 7)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 7)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 20) && vga_card_in.vcount + 1 <= (CARD_YPOS + 20)+CARD_TYPE_HEIGHT) begin
+        if (vga_card_in.hcount - 1 >= ((CARD_XPOS + 7)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 7)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 20) && vga_card_in.vcount + 1 <= (CARD_YPOS + 20)+CARD_TYPE_HEIGHT) && (card_number != 0)) begin
             rgb_nxt = rgb_pixel;
             pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 20) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 7);
         end
