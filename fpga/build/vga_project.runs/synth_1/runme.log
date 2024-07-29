@@ -1,0 +1,948 @@
+
+*** Running vivado
+    with args -log top_vga_basys3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_vga_basys3.tcl
+
+
+****** Vivado v2021.2 (64-bit)
+  **** SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+  **** IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+    ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+source top_vga_basys3.tcl -notrace
+Command: synth_design -top top_vga_basys3 -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 17060
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2715.816 ; gain = 0.000 ; free physical = 4061 ; free virtual = 10559
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_vga_basys3' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/rtl/top_vga_basys3.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'ODDR' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:74749]
+INFO: [Synth 8-6155] done synthesizing module 'ODDR' (1#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:74749]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0_clk_wiz' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/rtl/clk_wiz_0_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (2#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:55204]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 9.750000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 15 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (3#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:63510]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (4#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6157] synthesizing module 'BUFGCE' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1093]
+INFO: [Synth 8-6155] done synthesizing module 'BUFGCE' (5#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1093]
+INFO: [Synth 8-6157] synthesizing module 'BUFH' [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1319]
+INFO: [Synth 8-6155] done synthesizing module 'BUFH' (6#1) [/home_local/Xilinx/Vivado/2021.2/scripts/rt/data/unisim_comp.v:1319]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0_clk_wiz' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/rtl/clk_wiz_0_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'top_vga' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:17]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (7#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_timing' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_timing.sv:3]
+WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_timing.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'vga_timing' (8#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_timing.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_bg' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/draw_bg.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'draw_bg' (9#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/draw_bg.sv:13]
+INFO: [Synth 8-638] synthesizing module 'MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:207]
+INFO: [Synth 8-3491] module 'Ps2Interface' declared at '/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/Ps2Interface.vhd:152' bound to instance 'Inst_Ps2Interface' of component 'Ps2Interface' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:369]
+INFO: [Synth 8-638] synthesizing module 'Ps2Interface' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/Ps2Interface.vhd:180]
+INFO: [Synth 8-256] done synthesizing module 'Ps2Interface' (10#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/Ps2Interface.vhd:180]
+WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:450]
+WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:456]
+WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:514]
+WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:520]
+INFO: [Synth 8-256] done synthesizing module 'MouseCtl' (11#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:207]
+WARNING: [Synth 8-7071] port 'zpos' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'middle' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'new_event' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'value' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setx' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'sety' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setmax_x' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setmax_y' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+WARNING: [Synth 8-7023] instance 'u_MouseCtl' of module 'MouseCtl' has 16 connections declared, but only 8 given [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:81]
+INFO: [Synth 8-6157] synthesizing module 'hold_mouse' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/hold_mouse.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'hold_mouse' (12#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/hold_mouse.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'draw_mouse' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:13]
+INFO: [Synth 8-638] synthesizing module 'MouseDisplay' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseDisplay.vhd:119]
+INFO: [Synth 8-256] done synthesizing module 'MouseDisplay' (13#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/MouseDisplay.vhd:119]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'draw_mouse' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'test' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:11]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 150 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 150 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (14#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'delay' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+	Parameter WIDTH bound to: 12 - type: integer 
+	Parameter CLK_DEL bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'delay' (15#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'delay__parameterized0' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+	Parameter WIDTH bound to: 26 - type: integer 
+	Parameter CLK_DEL bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'delay__parameterized0' (15#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card' (16#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6157] synthesizing module 'image_rom_card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:18]
+INFO: [Synth 8-3876] $readmem data file '../../rtl/card/card_data/trefl.dat' is read successfully [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:47]
+INFO: [Synth 8-3876] $readmem data file '../../rtl/card/card_data/pik.dat' is read successfully [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:48]
+INFO: [Synth 8-3876] $readmem data file '../../rtl/card/card_data/serce.dat' is read successfully [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:49]
+INFO: [Synth 8-3876] $readmem data file '../../rtl/card/card_data/romb.dat' is read successfully [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:50]
+WARNING: [Synth 8-3848] Net rom[3][8191] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8191] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8191] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8191] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8190] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8190] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8190] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8190] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8189] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8189] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8189] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8189] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8188] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8188] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8188] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8188] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8187] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8187] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8187] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8187] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8186] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8186] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8186] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8186] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8185] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8185] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8185] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8185] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8184] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8184] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8184] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8184] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8183] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8183] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8183] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8183] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8182] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8182] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8182] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8182] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8181] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8181] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8181] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8181] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8180] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8180] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8180] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8180] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8179] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8179] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8179] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8179] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8178] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8178] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8178] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8178] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8177] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8177] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8177] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8177] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8176] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8176] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8176] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8176] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8175] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8175] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8175] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8175] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8174] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8174] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8174] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8174] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8173] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8173] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8173] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8173] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8172] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8172] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8172] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8172] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8171] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8171] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8171] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8171] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8170] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8170] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8170] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8170] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8169] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8169] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8169] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8169] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8168] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8168] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8168] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8168] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8167] in module/entity image_rom_card does not have driver. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:33]
+INFO: [Common 17-14] Message 'Synth 8-3848' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'image_rom_card' (17#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/image_rom_card.sv:18]
+INFO: [Synth 8-6155] done synthesizing module 'card' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:74]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:75]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized0' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 180 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized0' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 180 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized0' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized0' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized1' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 210 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized1' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 210 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized1' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized1' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized2' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 240 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized2' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 240 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized2' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized2' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized3' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 270 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized3' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 270 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized3' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized3' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized4' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 300 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized4' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 300 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized4' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized4' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized5' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 330 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized5' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 330 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized5' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized5' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized6' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 360 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized6' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 360 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized6' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized6' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'card__parameterized7' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+	Parameter CARD_XPOS bound to: 390 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'draw_card__parameterized7' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+	Parameter CARD_XPOS bound to: 390 - type: integer 
+	Parameter CARD_YPOS bound to: 50 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-226] default block is never used [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:101]
+INFO: [Synth 8-6155] done synthesizing module 'draw_card__parameterized7' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/draw_card.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'card__parameterized7' (18#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/card/card.sv:11]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:88]
+INFO: [Synth 8-6155] done synthesizing module 'test' (19#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/test.sv:11]
+INFO: [Synth 8-6157] synthesizing module 'font_rom' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/font_rom.sv:9]
+INFO: [Synth 8-6155] done synthesizing module 'font_rom' (20#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/font_rom.sv:9]
+INFO: [Synth 8-6157] synthesizing module 'draw_rect_char' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/draw_rect_char.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (20#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'vga_if' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'vga_if' (20#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'delay__parameterized1' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+	Parameter WIDTH bound to: 38 - type: integer 
+	Parameter CLK_DEL bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'delay__parameterized1' (20#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/delay/delay.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'draw_rect_char' (21#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/draw_rect_char.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'char_16x16' [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:1]
+WARNING: [Synth 8-151] case item 4'b1100 is unreachable [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:28]
+INFO: [Synth 8-6155] done synthesizing module 'char_16x16' (22#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'top_vga' (23#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv:17]
+INFO: [Synth 8-6155] done synthesizing module 'top_vga_basys3' (24#1) [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/rtl/top_vga_basys3.sv:17]
+WARNING: [Synth 8-7129] Port left_mouse in module test is either unconnected or has no load
+WARNING: [Synth 8-7129] Port right_mouse in module test is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_mouse_out\.hblnk in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_mouse_out\.vblnk in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[11] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[10] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[9] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[8] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[7] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[6] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[5] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[4] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[3] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[2] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[1] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[0] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[11] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[10] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[9] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[8] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[7] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[6] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[5] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[4] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[3] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[2] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[1] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[0] in module vga_timing is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:35 ; elapsed = 00:00:46 . Memory (MB): peak = 2780.363 ; gain = 64.547 ; free physical = 4772 ; free virtual = 11281
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:54 . Memory (MB): peak = 2795.199 ; gain = 79.383 ; free physical = 4865 ; free virtual = 11371
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:40 ; elapsed = 00:00:54 . Memory (MB): peak = 2795.199 ; gain = 79.383 ; free physical = 4865 ; free virtual = 11371
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2849.254 ; gain = 1.000 ; free physical = 4553 ; free virtual = 11058
+WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout1_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
+WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout2_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
+INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/constraints/top_vga_basys3.xdc]
+Finished Parsing XDC File [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/constraints/top_vga_basys3.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/constraints/top_vga_basys3.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_vga_basys3_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_vga_basys3_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3564.508 ; gain = 0.000 ; free physical = 4001 ; free virtual = 10508
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  BUFGCE => BUFGCTRL: 2 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.18 ; elapsed = 00:00:00.18 . Memory (MB): peak = 3564.508 ; gain = 0.000 ; free physical = 3986 ; free virtual = 10493
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:22 ; elapsed = 00:01:28 . Memory (MB): peak = 3564.508 ; gain = 848.691 ; free physical = 4828 ; free virtual = 11335
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Ps2Interface'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'MouseCtl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                00000000000000001 |                            00000
+            rx_down_edge |                00000000000000010 |                            00011
+                rx_clk_l |                00000000000000100 |                            00010
+                rx_clk_h |                00000000000001000 |                            00001
+         rx_error_parity |                00000000000010000 |                            00100
+           rx_data_ready |                00000000000100000 |                            00101
+          tx_force_clk_l |                00000000001000000 |                            00110
+      tx_bring_data_down |                00000000010000000 |                            00111
+          tx_release_clk |                00000000100000000 |                            01000
+ tx_first_wait_down_edge |                00000001000000000 |                            01001
+                tx_clk_l |                00000010000000000 |                            01010
+         tx_wait_up_edge |                00000100000000000 |                            01011
+tx_wait_up_edge_before_ack |                00001000000000000 |                            01101
+             tx_wait_ack |                00010000000000000 |                            01110
+         tx_received_ack |                00100000000000000 |                            01111
+         tx_error_no_ack |                01000000000000000 |                            10000
+                tx_clk_h |                10000000000000000 |                            01100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Ps2Interface'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   reset | 0000000000000000000000000000000000001 |                           000000
+          reset_wait_ack | 0000000000000000000000000000000000010 |                           000001
+reset_wait_bat_completion | 0000000000000000000000000000000000100 |                           000010
+           reset_wait_id | 0000000000000000000000000000000001000 |                           000011
+reset_set_sample_rate_200 | 0000000000000000000000000000000010000 |                           000100
+reset_set_sample_rate_200_wait_ack | 0000000000000000000000000000000100000 |                           000101
+reset_send_sample_rate_200 | 0000000000000000000000000000001000000 |                           000110
+reset_send_sample_rate_200_wait_ack | 0000000000000000000000000000010000000 |                           000111
+reset_set_sample_rate_100 | 0000000000000000000000000000100000000 |                           001000
+reset_set_sample_rate_100_wait_ack | 0000000000000000000000000001000000000 |                           001001
+reset_send_sample_rate_100 | 0000000000000000000000000010000000000 |                           001010
+reset_send_sample_rate_100_wait_ack | 0000000000000000000000000100000000000 |                           001011
+reset_set_sample_rate_80 | 0000000000000000000000001000000000000 |                           001100
+reset_set_sample_rate_80_wait_ack | 0000000000000000000000010000000000000 |                           001101
+reset_send_sample_rate_80 | 0000000000000000000000100000000000000 |                           001110
+reset_send_sample_rate_80_wait_ack | 0000000000000000000001000000000000000 |                           001111
+           reset_read_id | 0000000000000000000010000000000000000 |                           010000
+  reset_read_id_wait_ack | 0000000000000000000100000000000000000 |                           010001
+   reset_read_id_wait_id | 0000000000000000001000000000000000000 |                           010010
+    reset_set_resolution | 0000000000000000010000000000000000000 |                           010011
+reset_set_resolution_wait_ack | 0000000000000000100000000000000000000 |                           010100
+   reset_send_resolution | 0000000000000001000000000000000000000 |                           010101
+reset_send_resolution_wait_ack | 0000000000000010000000000000000000000 |                           010110
+reset_set_sample_rate_40 | 0000000000000100000000000000000000000 |                           010111
+reset_set_sample_rate_40_wait_ack | 0000000000001000000000000000000000000 |                           011000
+reset_send_sample_rate_40 | 0000000000010000000000000000000000000 |                           011001
+reset_send_sample_rate_40_wait_ack | 0000000000100000000000000000000000000 |                           011010
+  reset_enable_reporting | 0000000001000000000000000000000000000 |                           011011
+reset_enable_reporting_wait_ack | 0000000010000000000000000000000000000 |                           011100
+             read_byte_1 | 0000000100000000000000000000000000000 |                           011101
+             read_byte_2 | 0000001000000000000000000000000000000 |                           011110
+             read_byte_3 | 0000010000000000000000000000000000000 |                           011111
+             read_byte_4 | 0000100000000000000000000000000000000 |                           100000
+          mark_new_event | 0001000000000000000000000000000000000 |                           100100
+           check_read_id | 0010000000000000000000000000000000000 |                           100001
+  check_read_id_wait_ack | 0100000000000000000000000000000000000 |                           100010
+   check_read_id_wait_id | 1000000000000000000000000000000000000 |                           100011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'MouseCtl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:12 ; elapsed = 00:02:46 . Memory (MB): peak = 5059.215 ; gain = 2343.398 ; free physical = 206 ; free virtual = 5579
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 45    
+	   2 Input   26 Bit       Adders := 1     
+	   2 Input   24 Bit       Adders := 1     
+	   3 Input   13 Bit       Adders := 2     
+	   2 Input   12 Bit       Adders := 24    
+	   2 Input   11 Bit       Adders := 3     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 3     
+	   3 Input    4 Bit       Adders := 2     
++---Registers : 
+	               38 Bit    Registers := 2     
+	               26 Bit    Registers := 19    
+	               24 Bit    Registers := 1     
+	               13 Bit    Registers := 9     
+	               12 Bit    Registers := 58    
+	               11 Bit    Registers := 50    
+	                8 Bit    Registers := 23    
+	                7 Bit    Registers := 2     
+	                4 Bit    Registers := 4     
+	                1 Bit    Registers := 131   
++---ROMs : 
+	                    ROMs := 1     
++---Muxes : 
+	  37 Input   37 Bit        Muxes := 1     
+	   2 Input   37 Bit        Muxes := 69    
+	   2 Input   26 Bit        Muxes := 1     
+	   2 Input   24 Bit        Muxes := 1     
+	  17 Input   17 Bit        Muxes := 1     
+	   2 Input   17 Bit        Muxes := 18    
+	   4 Input   12 Bit        Muxes := 42111 
+	   2 Input   12 Bit        Muxes := 159   
+	   3 Input   12 Bit        Muxes := 3     
+	   4 Input   11 Bit        Muxes := 1260  
+	   2 Input   11 Bit        Muxes := 4     
+	   4 Input   10 Bit        Muxes := 612   
+	   4 Input    9 Bit        Muxes := 108   
+	   2 Input    9 Bit        Muxes := 2     
+	  37 Input    8 Bit        Muxes := 3     
+	  16 Input    8 Bit        Muxes := 7     
+	  37 Input    4 Bit        Muxes := 1     
+	   3 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 15    
+	  17 Input    1 Bit        Muxes := 4     
+	  37 Input    1 Bit        Muxes := 20    
+	  16 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xffffffffff63).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xffffffffff45).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xffffffffff27).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xffffffffff09).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xfffffffffeeb).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xfffffffffecd).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xfffffffffeaf).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xfffffffffe91).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: Generating DSP u_draw_card/pixel_addr2, operation Mode is: (D+(A:0x3fffffba))*(B:0x28).
+DSP Report: operator u_draw_card/pixel_addr2 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: operator u_draw_card/pixel_addr3 is absorbed into DSP u_draw_card/pixel_addr2.
+DSP Report: Generating DSP u_draw_card/pixel_addr_reg, operation Mode is: PCIN+(A:0x0):B+(C:0xfffffffffe73).
+DSP Report: register u_draw_card/pixel_addr_reg is absorbed into DSP u_draw_card/pixel_addr_reg.
+DSP Report: operator u_draw_card/pixel_addr0 is absorbed into DSP u_draw_card/pixel_addr_reg.
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[15]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[8]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[4]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[3]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[2]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[1]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[0]' and it is trimmed from '8' to '7' bits. [/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv:29]
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rom" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:52 ; elapsed = 00:03:49 . Memory (MB): peak = 5119.949 ; gain = 2404.133 ; free physical = 267 ; free virtual = 5312
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++---------------+---------------------------------+---------------+----------------+
+|Module Name    | RTL Object                      | Depth x Width | Implemented As | 
++---------------+---------------------------------+---------------+----------------+
+|MouseDisplay   | mouserom[0]                     | 256x2         | LUT            | 
+|draw_mouse     | inst/mouserom[0]                | 256x2         | LUT            | 
+|top_vga_basys3 | u_font_rom/char_line_pixels_reg | 2048x8        | Block RAM      | 
++---------------+---------------------------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+-----------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping                       | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-----------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xffffffffff63) | 30     | 11     | 9      | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xffffffffff45) | 30     | 11     | 9      | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xffffffffff27) | 30     | 11     | 9      | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xffffffffff09) | 30     | 11     | 9      | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xfffffffffeeb) | 30     | 11     | 10     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xfffffffffecd) | 30     | 11     | 10     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xfffffffffeaf) | 30     | 11     | 10     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xfffffffffe91) | 30     | 11     | 10     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|draw_card   | (D+(A:0x3fffffba))*(B:0x28)       | 13     | 6      | -      | 11     | 19     | 0    | 0    | -    | 0    | 0     | 0    | 0    | 
+|draw_card   | PCIN+(A:0x0):B+(C:0xfffffffffe73) | 30     | 11     | 10     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
++------------+-----------------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:04 ; elapsed = 00:04:14 . Memory (MB): peak = 5167.020 ; gain = 2451.203 ; free physical = 169 ; free virtual = 5154
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:03:19 ; elapsed = 00:04:30 . Memory (MB): peak = 5301.715 ; gain = 2585.898 ; free physical = 174 ; free virtual = 4991
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-7052] The timing for the instance u_top_vga/u_font_rom/char_line_pixels_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:03:34 ; elapsed = 00:04:48 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 336 ; free virtual = 5092
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:03:38 ; elapsed = 00:04:52 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 343 ; free virtual = 5104
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:38 ; elapsed = 00:04:52 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 343 ; free virtual = 5104
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:40 ; elapsed = 00:04:54 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 341 ; free virtual = 5103
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:40 ; elapsed = 00:04:54 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 341 ; free virtual = 5103
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:43 ; elapsed = 00:04:58 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 337 ; free virtual = 5102
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:43 ; elapsed = 00:04:58 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 337 ; free virtual = 5102
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++---------------+----------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name    | RTL Name                                                                                           | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++---------------+----------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|top_vga_basys3 | u_top_vga/u_test/player_cards[1].u_card1/u_draw_card/u_rgb_delay/delay_stage[1].del_mem_reg[1][11] | 4      | 96    | YES          | NO                 | YES               | 96     | 0       | 
+|top_vga_basys3 | u_top_vga/u_draw_rect_char/u_delay/delay_stage[1].del_mem_reg[1][37]                               | 4      | 13    | YES          | NO                 | YES               | 13     | 0       | 
+|top_vga_basys3 | u_top_vga/u_draw_rect_char/u_delay/delay_stage[1].del_mem_reg[1][26]                               | 5      | 2     | YES          | NO                 | YES               | 2      | 0       | 
++---------------+----------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFG       |     1|
+|2     |BUFGCE     |     2|
+|3     |BUFH       |     2|
+|4     |CARRY4     |    52|
+|5     |DSP48E1    |    18|
+|8     |LUT1       |    22|
+|9     |LUT2       |   720|
+|10    |LUT3       |   624|
+|11    |LUT4       |   684|
+|12    |LUT5       |  3353|
+|13    |LUT6       |  9977|
+|14    |MMCME2_ADV |     1|
+|15    |MUXF7      |  2423|
+|16    |MUXF8      |   371|
+|17    |ODDR       |     1|
+|18    |RAMB18E1   |     1|
+|19    |SRL16E     |   111|
+|20    |FDCE       |    75|
+|21    |FDPE       |     4|
+|22    |FDRE       |  1201|
+|23    |FDSE       |    18|
+|24    |IBUF       |     2|
+|25    |IOBUF      |     2|
+|26    |OBUF       |    15|
++------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:43 ; elapsed = 00:04:59 . Memory (MB): peak = 5332.395 ; gain = 2616.578 ; free physical = 335 ; free virtual = 5101
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:12 ; elapsed = 00:04:49 . Memory (MB): peak = 5336.297 ; gain = 1851.172 ; free physical = 3959 ; free virtual = 8939
+Synthesis Optimization Complete : Time (s): cpu = 00:03:49 ; elapsed = 00:05:14 . Memory (MB): peak = 5336.297 ; gain = 2620.480 ; free physical = 3981 ; free virtual = 8934
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 5336.297 ; gain = 0.000 ; free physical = 3969 ; free virtual = 8927
+WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout1_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
+WARNING: [Netlist 29-345] The value of SIM_DEVICE on instance 'u_clk_wiz_0_clk_wiz/clkout2_buf' of type 'BUFGCE' is 'ULTRASCALE'; it is being changed to match the current FPGA architecture, '7SERIES'. For functional simulation to match hardware behavior, the value of SIM_DEVICE should be changed in the source netlist. 
+INFO: [Netlist 29-17] Analyzing 2871 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 5380.414 ; gain = 0.000 ; free physical = 3876 ; free virtual = 8867
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  BUFGCE => BUFGCTRL: 2 instances
+  IOBUF => IOBUF (IBUF, OBUFT): 2 instances
+
+Synth Design complete, checksum: a101861f
+INFO: [Common 17-83] Releasing license: Synthesis
+301 Infos, 172 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:03:55 ; elapsed = 00:05:24 . Memory (MB): peak = 5380.414 ; gain = 2664.719 ; free physical = 4136 ; free virtual = 9139
+INFO: [Common 17-1381] The checkpoint '/home/student/bstrzebonski/Desktop/systemverilog-blackjack/fpga/build/vga_project.runs/synth_1/top_vga_basys3.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_vga_basys3_utilization_synth.rpt -pb top_vga_basys3_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 29 19:30:06 2024...

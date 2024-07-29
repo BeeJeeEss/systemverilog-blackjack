@@ -147,8 +147,8 @@ module top_vga (
     draw_rect_char u_draw_rect_char (
         .clk,
         .rst,
-        .cifi(wire_bg),
-        .cifo(wire_char),
+        .vga_in(wire_bg),
+        .vga_out(wire_char),
         .char_line,
         .char_xy,
         .char_pixels(char_pxl)

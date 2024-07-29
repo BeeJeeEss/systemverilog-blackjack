@@ -1,92 +1,104 @@
-`timescale 1ns / 1ps
+`timescale 1 ns / 1 ps
 
-module draw_rect_char(
-        input logic clk,
-        input logic rst,
-        vga_if.in cifi,
-        vga_if.out cifo,
-        input logic [0:7] char_pixels,
+module draw_rect_char (
+
+        input  logic clk,
+        input  logic rst,
+        input  logic [7:0] char_pixels,
         output logic [7:0] char_xy,
-        output logic [3:0] char_line
+        output logic [3:0] char_line,
+
+
+        vga_if.in vga_in,
+        vga_if.out vga_out
+
     );
 
-    import vga_pkg ::*;
-    vga_if wire_cd();
-    wire [11:0] delayed_rgb;
-    wire [3:0] delayed_char_line;
-    logic [7:0] char_xy_nxt;
-    logic [3:0] char_line_nxt;
     logic [11:0] rgb_nxt;
-    logic [10:0] hcount_var;
+    logic [10:0] charx;
+    logic [10:0] chary;
+
+    import vga_pkg::*;
+
+    vga_if inner();
+    vga_if inner2();
+
+
+    always_ff @(posedge clk) begin
+
+        if(rst) begin
+            inner.vcount <= '0;
+            inner.vsync  <= '0;
+            inner.vblnk  <= '0;
+            inner.hcount <= '0;
+            inner.hsync  <= '0;
+            inner.hblnk  <= '0;
+            inner.rgb    <= '0;
+        end
+
+        else begin
+            inner.vcount <= vga_in.vcount;
+            inner.vsync  <= vga_in.vsync;
+            inner.vblnk  <= vga_in.vblnk;
+            inner.hcount <= vga_in.hcount;
+            inner.hsync  <= vga_in.hsync;
+            inner.hblnk  <= vga_in.hblnk;
+            inner.rgb    <= vga_in.rgb;
+        end
+
+    end
 
     delay #(
-        .WIDTH(12),
-        .CLK_DEL(3)
-    )
-    u_rgb_delay(
-        .din(cifi.rgb),
-        .clk,
-        .rst,
-        .dout(delayed_rgb)
-    );
-
-    delay #(
-        .WIDTH(4),
-        .CLK_DEL(1)
-    )
-    u_char_line_delay(
-        .din(char_line_nxt),
-        .clk,
-        .rst,
-        .dout(delayed_char_line)
-    );
-
-    delay #(
-        .WIDTH(26),
-        .CLK_DEL(3)
-    )
-    u_char_delay(
-        .din({cifi.hcount, cifi.vcount, cifi.hsync, cifi.vsync, cifi.hblnk, cifi.vblnk}),
+        .WIDTH(38),
+        .CLK_DEL(2)
+    ) u_delay(
         .clk(clk),
-        .rst,
-        .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hblnk, wire_cd.hsync, wire_cd.vblnk, wire_cd.vsync})
+        .rst(rst),
+        .din({inner.vcount, inner.vsync, inner.vblnk, inner.hcount, inner.hsync, inner.hblnk, inner.rgb}),
+        .dout({inner2.vcount, inner2.vsync, inner2.vblnk, inner2.hcount, inner2.hsync, inner2.hblnk, inner2.rgb})
     );
 
     always_ff @(posedge clk) begin
-        if (rst) begin
-            cifo.hsync <= '0;
-            cifo.vsync <= '0;
-            cifo.hblnk <= '0;
-            cifo.vblnk <= '0;
-            cifo.hcount <= '0;
-            cifo.vcount <= '0;
-            cifo.rgb <= '0;
-            char_xy <= '0;
-            char_line <= '0;
-        end
-        else begin
-            cifo.hsync <= wire_cd.hsync;
-            cifo.vsync <= wire_cd.vsync;
-            cifo.hblnk <= wire_cd.hblnk;
-            cifo.vblnk <= wire_cd.vblnk;
-            cifo.hcount <= wire_cd.hcount;
-            cifo.vcount <= wire_cd.vcount;
-            cifo.rgb <= rgb_nxt;
-            char_xy <= char_xy_nxt;
-            char_line <= delayed_char_line;
-        end
+
+        vga_out.vcount <= inner2.vcount;
+        vga_out.vsync  <= inner2.vsync;
+        vga_out.vblnk  <= inner2.vblnk;
+        vga_out.hcount <= inner2.hcount;
+        vga_out.hsync  <= inner2.hsync;
+        vga_out.hblnk  <= inner2.hblnk;
+        vga_out.rgb    <= rgb_nxt;
+
     end
 
+
     always_comb begin
-        hcount_var = cifi.hcount - CHAR_XPOS;
-        if((char_pixels[3'(wire_cd.hcount-CHAR_XPOS)] == 1'b1) && (wire_cd.hcount<128+CHAR_XPOS) && (wire_cd.vcount<256+CHAR_YPOS) && (wire_cd.hcount>=CHAR_XPOS) && (wire_cd.vcount>=CHAR_YPOS)) begin
-            rgb_nxt = 12'h0_0_0;
-        end
-        else begin
-            rgb_nxt = delayed_rgb;
-        end
-        char_xy_nxt = {4'((cifi.vcount-CHAR_YPOS)/16),hcount_var[6:3]};
-        char_line_nxt = 4'(cifi.vcount-CHAR_YPOS);
+
+        chary = vga_in.vcount - Y_CHAR;
+        charx = vga_in.hcount - X_CHAR;
+        char_xy = charx[9:3] + 16*chary[9:4];
+        char_line = inner2.vcount[3:0] - Y_CHAR[3:0];
+
     end
+
+
+    always_comb begin
+
+        if((inner2.vcount >= Y_CHAR) & (inner2.hcount >= X_CHAR) & (inner2.vcount <= Y_CHAR + HEIGHT_CHAR) & (inner2.hcount < X_CHAR + LENGTH_CHAR)) begin
+
+            if(char_pixels[7 - (inner2.hcount - X_CHAR)%8] == 0) begin
+                rgb_nxt = vga_in.rgb;
+            end
+
+            else begin
+                rgb_nxt = 12'h0_0_0;
+            end
+        end
+
+        else begin
+            rgb_nxt = inner2.rgb;
+        end
+
+    end
+
 
 endmodule

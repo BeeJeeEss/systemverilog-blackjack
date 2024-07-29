@@ -1,0 +1,176 @@
+Warnings, critical warnings and errors from synthesis and implementation
+
+Created: 2024-07-29 19:33:37
+
+----SYNTHESIS----
+WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:6]
+WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:450]
+WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:456]
+WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:514]
+WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:520]
+WARNING: [Synth 8-7071] port 'zpos' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'middle' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'new_event' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'value' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setx' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'sety' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setmax_x' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7071] port 'setmax_y' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:81]
+WARNING: [Synth 8-7023] instance 'u_MouseCtl' of module 'MouseCtl' has 16 connections declared, but only 8 given [rtl/top_vga.sv:81]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-3848] Net rom[3][8191] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8191] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8191] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8191] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8190] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8190] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8190] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8190] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8189] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8189] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8189] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8189] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8188] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8188] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8188] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8188] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8187] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8187] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8187] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8187] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8186] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8186] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8186] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8186] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8185] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8185] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8185] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8185] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8184] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8184] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8184] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8184] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8183] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8183] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8183] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8183] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8182] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8182] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8182] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8182] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8181] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8181] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8181] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8181] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8180] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8180] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8180] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8180] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8179] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8179] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8179] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8179] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8178] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8178] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8178] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8178] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8177] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8177] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8177] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8177] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8176] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8176] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8176] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8176] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8175] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8175] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8175] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8175] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8174] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8174] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8174] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8174] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8173] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8173] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8173] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8173] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8172] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8172] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8172] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8172] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8171] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8171] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8171] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8171] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8170] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8170] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8170] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8170] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8169] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8169] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8169] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8169] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8168] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[2][8168] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[1][8168] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[0][8168] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-3848] Net rom[3][8167] in module/entity image_rom_card does not have driver. [rtl/card/image_rom_card.sv:33]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:74]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:75]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-689] width (32) of port connection 'card_number' does not match port width (4) of module 'card' [rtl/test.sv:87]
+WARNING: [Synth 8-689] width (32) of port connection 'card_symbol' does not match port width (2) of module 'card' [rtl/test.sv:88]
+WARNING: [Synth 8-151] case item 4'b1100 is unreachable [rtl/char_16x16.sv:28]
+WARNING: [Synth 8-7129] Port left_mouse in module test is either unconnected or has no load
+WARNING: [Synth 8-7129] Port right_mouse in module test is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_mouse_out\.hblnk in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_mouse_out\.vblnk in module draw_mouse is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[11] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[10] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[9] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[8] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[7] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[6] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[5] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[4] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[3] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[2] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[1] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_bg_in\.rgb[0] in module draw_bg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[11] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[10] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[9] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[8] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[7] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[6] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[5] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[4] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[3] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[2] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[1] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-7129] Port vga_tim\.rgb[0] in module vga_timing is either unconnected or has no load
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[15]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[8]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[4]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[3]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[2]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[1]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-3936] Found unconnected internal register 'selected_line_reg[0]' and it is trimmed from '8' to '7' bits. [rtl/char_16x16.sv:29]
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+
+----IMPLEMENTATION----
+CLEAR :)
