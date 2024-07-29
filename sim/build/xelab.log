@@ -99,9 +99,7 @@ Compiling module work.draw_card(CARD_XPOS=390,CARD_YPO...
 Compiling module work.card(CARD_XPOS=390,CARD_YPOS=50)
 Compiling module work.test_default
 Compiling module work.font_rom
-Compiling module work.delay(WIDTH=12,CLK_DEL=3)
-Compiling module work.delay(WIDTH=4)
-Compiling module work.delay(WIDTH=26,CLK_DEL=3)
+Compiling module work.delay(WIDTH=38,CLK_DEL=2)
 Compiling module work.draw_rect_char
 Compiling module work.char_16x16
 Compiling module work.top_vga

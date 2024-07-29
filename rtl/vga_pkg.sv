@@ -22,8 +22,8 @@ package vga_pkg;
   localparam  VSYNC_STOP = 777;
 
   // Add VGA timing parameters here and refer to them in other modules.
-  localparam RECT_HEIGHT = 64;
-  localparam RECT_WIDTH = 48;
-  localparam CHAR_XPOS = 500;
-  localparam CHAR_YPOS = 150;
+  localparam X_CHAR = 10;
+  localparam Y_CHAR = 40;
+  localparam HEIGHT_CHAR = 256;
+  localparam LENGTH_CHAR = 128;
 endpackage

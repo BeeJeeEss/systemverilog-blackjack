@@ -1,0 +1,102 @@
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
+| Date         : Mon Jul 29 19:31:54 2024
+| Host         : cadence26 running 64-bit CentOS Linux release 7.9.2009 (Core)
+| Command      : report_control_sets -verbose -file top_vga_basys3_control_sets_placed.rpt
+| Design       : top_vga_basys3
+| Device       : xc7a35t
+-------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    24 |
+|    Minimum number of control sets                        |    24 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    62 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    24 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     6 |
+| >= 10 to < 12      |     3 |
+| >= 12 to < 14      |     2 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     7 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             322 |          139 |
+| No           | No                    | Yes                    |              59 |           19 |
+| No           | Yes                   | No                     |             708 |          246 |
+| Yes          | No                    | No                     |             153 |           45 |
+| Yes          | No                    | Yes                    |              20 |            6 |
+| Yes          | Yes                   | No                     |              36 |           12 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+--------------+
+|                   Clock Signal                  |                            Enable Signal                            |                            Set/Reset Signal                            | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+--------------+
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/read_data_reg_0              | btnC_IBUF                                                              |                1 |              4 |         4.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/shift_frame                  | u_top_vga/u_MouseCtl/Inst_Ps2Interface/reset_bit_count                 |                1 |              4 |         4.00 |
+|  u_clk_wiz_0_clk_wiz/clk65MHz                   |                                                                     | u_top_vga/u_draw_rect_char/u_delay/delay_stage[1].del_mem_reg[1][16]_0 |                2 |              6 |         3.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/btnC                         |                                                                        |                3 |              7 |         2.33 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/delay_63clk_count[6]_i_2_n_0 | u_top_vga/u_MouseCtl/Inst_Ps2Interface/delay_63clk_count[6]_i_1_n_0    |                3 |              7 |         2.33 |
+|  u_clk_wiz_0_clk_wiz/clk975Mhz_clk_wiz_0_en_clk |                                                                     |                                                                        |                1 |              8 |         8.00 |
+|  u_clk_wiz_0_clk_wiz/clk65Mhz_clk_wiz_0_en_clk  |                                                                     |                                                                        |                1 |              8 |         8.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/load_rx_data                 |                                                                        |                1 |              8 |         8.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/E[0]                         | btnC_IBUF                                                              |                2 |              8 |         4.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/FSM_onehot_state_reg[31][0]  | btnC_IBUF                                                              |                3 |              8 |         2.67 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/tx_data0                                       |                                                                        |                2 |              8 |         4.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/frame[9]_i_1_n_0             |                                                                        |                2 |             10 |         5.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/delay_20us_count[10]_i_2_n_0 | u_top_vga/u_MouseCtl/Inst_Ps2Interface/delay_20us_count[10]_i_1_n_0    |                4 |             11 |         2.75 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/y_new_reg_n_0                                  |                                                                        |                4 |             11 |         2.75 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/x_new_reg_n_0                                  |                                                                        |                4 |             12 |         3.00 |
+|  u_clk_wiz_0_clk_wiz/clk65MHz                   |                                                                     | u_top_vga/u_test/SS[0]                                                 |                4 |             12 |         3.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        | u_top_vga/u_MouseCtl/Inst_Ps2Interface/delay_100us_count[0]_i_2_n_0 | u_top_vga/u_MouseCtl/Inst_Ps2Interface/clear                           |                4 |             14 |         3.50 |
+|  u_clk_wiz_0_clk_wiz/CLK                        |                                                                     | u_top_vga/u_MouseCtl/reset_timeout_cnt_reg_n_0                         |                6 |             24 |         4.00 |
+|  u_clk_wiz_0_clk_wiz/CLK                        |                                                                     | u_top_vga/u_MouseCtl/reset_periodic_check_cnt__0                       |                6 |             26 |         4.33 |
+|  u_clk_wiz_0_clk_wiz/CLK                        |                                                                     |                                                                        |               18 |             43 |         2.39 |
+|  u_clk_wiz_0_clk_wiz/CLK                        |                                                                     | btnC_IBUF                                                              |               19 |             59 |         3.11 |
+|  u_clk_wiz_0_clk_wiz/clk65MHz                   | u_top_vga/u_draw_bg/E[0]                                            |                                                                        |               29 |             97 |         3.34 |
+|  u_clk_wiz_0_clk_wiz/clk65MHz                   |                                                                     |                                                                        |              119 |            374 |         3.14 |
+|  u_clk_wiz_0_clk_wiz/clk65MHz                   |                                                                     | btnC_IBUF                                                              |              228 |            640 |         2.81 |
++-------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+--------------+
+
+
