@@ -39,8 +39,6 @@ module top_vga (
     vga_if wire_test();
     vga_if wire_delay_rect();
     vga_if wire_char();
-    vga_if before_wire_char_rgb();
-    vga_if after_wire_char_rgb();
 // VGA signals from timing
 
 // VGA signals from background
@@ -125,11 +123,13 @@ module top_vga (
         .ypos(ypos_nxt)
     );
 
-    test u_test (
+    blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
         .vga_blackjack_in(wire_char),
-        .vga_blackjack_out(wire_test)
+        .vga_blackjack_out(wire_test),
+        .left_mouse(left_nxt),
+        .right_mouse(right_nxt)
 
     );
 
