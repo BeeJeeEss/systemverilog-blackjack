@@ -44,6 +44,9 @@ set sv_files {
     ../rtl/card/draw_card.sv \
     ../rtl/card/image_rom_card.sv \
     ../rtl/delay/delay.sv \
+    ../rtl/draw_rect_char.sv \
+    ../rtl/font_rom.sv \
+    ../rtl/char_16x16.sv \
     rtl/top_vga_basys3.sv
 }
 

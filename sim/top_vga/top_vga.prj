@@ -14,7 +14,10 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/draw_bg.sv \
         ../../rtl/top_vga.sv \
         ../../rtl/vga_if.sv \
+        ../../rtl/draw_rect_char.sv \
         ../../rtl/mouse/draw_mouse.sv \
+        ../../rtl/font_rom.sv \
+        ../../rtl/char_16x16.sv \
         ../../rtl/mouse/hold_mouse.sv \
         ../../rtl/test.sv \
         ../../rtl/card/card.sv \
