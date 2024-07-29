@@ -11,13 +11,13 @@ INFO: [VRFC 10-311] analyzing module draw_bg
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/top_vga.sv" into library work
 INFO: [VRFC 10-311] analyzing module top_vga
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/vga_if.sv" into library work
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/draw_rect_char.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/fonts/draw_rect_char.sv" into library work
 INFO: [VRFC 10-311] analyzing module draw_rect_char
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/draw_mouse.sv" into library work
 INFO: [VRFC 10-311] analyzing module draw_mouse
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/font_rom.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/fonts/font_rom.sv" into library work
 INFO: [VRFC 10-311] analyzing module font_rom
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/char_16x16.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/fonts/char_16x16.sv" into library work
 INFO: [VRFC 10-311] analyzing module char_16x16
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/student/bstrzebonski/Desktop/systemverilog-blackjack/rtl/mouse/hold_mouse.sv" into library work
 INFO: [VRFC 10-311] analyzing module hold_mouse
