@@ -38,7 +38,7 @@ module top_vga (
     vga_if wire_mouse();
     vga_if wire_test();
     vga_if wire_delay_rect();
-    vga_if wire_char();
+    vga_if wire_btn();
 // VGA signals from timing
 
 // VGA signals from background
@@ -126,38 +126,18 @@ module top_vga (
     blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
-        .vga_blackjack_in(wire_char),
+        .vga_blackjack_in(wire_btn),
         .vga_blackjack_out(wire_test),
         .left_mouse(left_nxt),
         .right_mouse(right_nxt)
 
     );
 
-    wire [7:0] char_pxl;
-    wire [7:0] char_xy;
-    wire [3:0] char_line;
-    wire [6:0] char_coded;
-
-    font_rom u_font_rom(
-        .clk,
-        .addr({char_coded[6:0], char_line[3:0]}),
-        .char_line_pixels(char_pxl)
-    );
-
-    draw_rect_char u_draw_rect_char (
+    draw_buttons u_draw_buttons(
         .clk,
         .rst,
-        .vga_in(wire_bg),
-        .vga_out(wire_char),
-        .char_line,
-        .char_xy,
-        .char_pixels(char_pxl)
-    );
-
-    char_16x16 u_char_16x16 (
-        .clk,
-        .char_code(char_coded),
-        .char_xy
+        .vga_btn_in(wire_bg),
+        .vga_btn_out(wire_btn)
     );
 
 endmodule

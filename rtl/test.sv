@@ -8,7 +8,7 @@
  Description:  Template for modified Moore FSM for UEC2 project
  */
 //////////////////////////////////////////////////////////////////////////////
- module blackjack_FSM
+module blackjack_FSM
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
@@ -18,16 +18,16 @@
         vga_if.in vga_blackjack_in,
         vga_if.out vga_blackjack_out
     );
-    
+
     //------------------------------------------------------------------------------
     // local parameters
     //------------------------------------------------------------------------------
     localparam STATE_BITS = 3; // number of bits used for state register
-    
+
     //------------------------------------------------------------------------------
     // local variables
     //------------------------------------------------------------------------------
-    
+
     enum logic [STATE_BITS-1 :0] {
         IDLE = 3'b000, // idle state
         DEAL_CARDS = 3'b001,
@@ -53,46 +53,31 @@
 
 
     vga_if wire_cd [0:9] ();
-    vga_if wire_delay ();
-
-    delay #(
-        .WIDTH(26),
-        .CLK_DEL(36)
-    )
-    u_char_delay(
-        .din({vga_blackjack_in.hcount, vga_blackjack_in.vcount, vga_blackjack_in.hsync, vga_blackjack_in.vsync, vga_blackjack_in.hblnk, vga_blackjack_in.vblnk}),
-        .clk,
-        .rst,
-        .dout({wire_delay.hcount, wire_delay.vcount, wire_delay.hblnk, wire_delay.hsync, wire_delay.vblnk, wire_delay.vsync})
-    );
 
 
 
-   
-
-    
     //------------------------------------------------------------------------------
     // state sequential with synchronous reset
     //------------------------------------------------------------------------------
     always_ff @(posedge clk) begin : state_seq_blk
         if(vga_blackjack_in.hcount == 0 & vga_blackjack_in.vcount == 0) begin
-        if(rst)begin : state_seq_rst_blk
-            for (int i = 0; i <= 8; i++) begin
-            player_card_values[i] <= 0;
-            player_card_symbols[i] <= 0;
-            end
-            state <= IDLE;
+            if(rst)begin : state_seq_rst_blk
+                for (int i = 0; i <= 8; i++) begin
+                    player_card_values[i] <= 0;
+                    player_card_symbols[i] <= 0;
+                end
+                state <= IDLE;
             end
         end
         else begin : state_seq_run_blk
             for (int i = 0; i <= 8; i++) begin
                 player_card_values[i] <= player_card_values_nxt[i];
                 player_card_symbols[i] <= player_card_symbols_nxt[i];
-                end
+            end
             state <= state_nxt;
         end
     end
-    
+
     //------------------------------------------------------------------------------
     // next state logic
     //------------------------------------------------------------------------------
@@ -111,12 +96,12 @@
             vga_blackjack_out.hblnk    <= '0;
             vga_blackjack_out.rgb      <= '0;
         end else begin
-            vga_blackjack_out.vcount <=  wire_delay.vcount;
-            vga_blackjack_out.vsync  <=  wire_delay.vsync;
-            vga_blackjack_out.vblnk  <=  wire_delay.vblnk;
-            vga_blackjack_out.hcount <=  wire_delay.hcount;
-            vga_blackjack_out.hsync  <=  wire_delay.hsync;
-            vga_blackjack_out.hblnk  <=  wire_delay.hblnk;
+            vga_blackjack_out.vcount <=  vga_blackjack_in.vcount;
+            vga_blackjack_out.vsync  <=  vga_blackjack_in.vsync;
+            vga_blackjack_out.vblnk  <=  vga_blackjack_in.vblnk;
+            vga_blackjack_out.hcount <=  vga_blackjack_in.hcount;
+            vga_blackjack_out.hsync  <=  vga_blackjack_in.hsync;
+            vga_blackjack_out.hblnk  <=  vga_blackjack_in.hblnk;
             vga_blackjack_out.rgb    <=  wire_cd[8].rgb;
         end
     end
@@ -141,13 +126,13 @@
                 state_nxt = right_mouse ? PLAYER_TURN : DEAL_CARDS;
             end
             PLAYER_TURN: begin
-                if(left_mouse == 1) begin 
+                if(left_mouse == 1) begin
                     player_card_values_nxt[player_card_count] = player_card_count;
                     player_card_symbols_nxt[player_card_count] = 2;
                     player_card_count ++;
-                end 
+                end
                 state_nxt = right_mouse ? DEALER_TURN : PLAYER_TURN;
-                
+
             end
             DEALER_TURN: begin
                 // Tura dealera
@@ -170,18 +155,18 @@
 
     for (genvar i = 0; i <= 8; i++) begin : player_cards
         if (i == 0) begin
-        card #(
-            .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
-            .CARD_YPOS(50)
-        ) u_card1 (
-            .clk(clk),
-            .rst(rst),
-    
-            .card_number(player_card_values[i]),
-            .card_symbol(player_card_symbols[i]),
-            .card_in(vga_blackjack_in),
-            .card_out(wire_cd[i])
-        );
+            card #(
+                .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
+                .CARD_YPOS(50)
+            ) u_card1 (
+                .clk(clk),
+                .rst(rst),
+
+                .card_number(player_card_values[i]),
+                .card_symbol(player_card_symbols[i]),
+                .card_in(vga_blackjack_in),
+                .card_out(wire_cd[i])
+            );
         end else if (i >= 1 && i <= 8) begin
             card #(
                 .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
@@ -189,7 +174,7 @@
             ) u_card1 (
                 .clk(clk),
                 .rst(rst),
-        
+
                 .card_number(player_card_values[i]),
                 .card_symbol(player_card_symbols[i]),
                 .card_in(wire_cd[i-1]),
@@ -197,7 +182,7 @@
             );
         end
     end
-   
 
-    
-    endmodule
+
+
+endmodule

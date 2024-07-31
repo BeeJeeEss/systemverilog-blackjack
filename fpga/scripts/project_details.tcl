@@ -40,13 +40,12 @@ set sv_files {
     ../rtl/mouse/hold_mouse.sv
     ../rtl/test.sv 
     ../rtl/card/card.sv 
-    ../rtl/card/card.sv \
-    ../rtl/card/draw_card.sv \
-    ../rtl/card/image_rom_card.sv \
-    ../rtl/delay/delay.sv \
-    ../rtl/fonts/draw_rect_char.sv \
-    ../rtl/fonts/font_rom.sv \
-    ../rtl/fonts/char_16x16.sv \
+    ../rtl/card/card.sv
+    ../rtl/card/draw_card.sv
+    ../rtl/card/image_rom_card.sv
+    ../rtl/delay/delay.sv
+    ../rtl/buttons/buttons.sv
+    ../rtl/buttons/letters_bitmap.sv
     rtl/top_vga_basys3.sv
 }
 
