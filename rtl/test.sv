@@ -8,7 +8,7 @@
  Description:  Template for modified Moore FSM for UEC2 project
  */
 //////////////////////////////////////////////////////////////////////////////
-module blackjack_FSM
+ module blackjack_FSM
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
@@ -18,16 +18,16 @@ module blackjack_FSM
         vga_if.in vga_blackjack_in,
         vga_if.out vga_blackjack_out
     );
-
+    
     //------------------------------------------------------------------------------
     // local parameters
     //------------------------------------------------------------------------------
     localparam STATE_BITS = 3; // number of bits used for state register
-
+    
     //------------------------------------------------------------------------------
     // local variables
     //------------------------------------------------------------------------------
-
+    
     enum logic [STATE_BITS-1 :0] {
         IDLE = 3'b000, // idle state
         DEAL_CARDS = 3'b001,
@@ -43,7 +43,9 @@ module blackjack_FSM
     logic [3:0] dealer_card_values [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
     logic [1:0] dealer_card_symbols [8:0];
     logic [3:0] player_card_count; // Liczba kart gracza
+    logic [3:0] player_card_count_nxt;
     logic [3:0] dealer_card_count;
+    logic [3:0] dealer_card_count_nxt;
     logic [4:0] player_card_value;
     logic [4:0] dealer_card_value;
     logic [6:0] player_score; // Wartość punktowa kart gracza
@@ -52,32 +54,39 @@ module blackjack_FSM
 
 
 
-    vga_if wire_cd [0:9] ();
+    vga_if wire_cd [0:8] ();
 
 
 
+   
+
+    
     //------------------------------------------------------------------------------
     // state sequential with synchronous reset
     //------------------------------------------------------------------------------
     always_ff @(posedge clk) begin : state_seq_blk
         if(vga_blackjack_in.hcount == 0 & vga_blackjack_in.vcount == 0) begin
-            if(rst)begin : state_seq_rst_blk
-                for (int i = 0; i <= 8; i++) begin
-                    player_card_values[i] <= 0;
-                    player_card_symbols[i] <= 0;
-                end
-                state <= IDLE;
+        if(rst)begin : state_seq_rst_blk
+            for (int i = 0; i <= 8; i++) begin
+            player_card_values[i] <= 0;
+            player_card_symbols[i] <= 0;
+            end
+            player_card_count <= 0;
+            dealer_card_count <= 0;
+            state <= IDLE;
             end
         end
         else begin : state_seq_run_blk
             for (int i = 0; i <= 8; i++) begin
                 player_card_values[i] <= player_card_values_nxt[i];
                 player_card_symbols[i] <= player_card_symbols_nxt[i];
-            end
+                end
+            player_card_count <= player_card_count_nxt;
+            dealer_card_count <= dealer_card_count_nxt;
             state <= state_nxt;
         end
     end
-
+    
     //------------------------------------------------------------------------------
     // next state logic
     //------------------------------------------------------------------------------
@@ -108,16 +117,20 @@ module blackjack_FSM
 
 
     always_comb begin
+        state_nxt = state;
         case (state)
             IDLE: begin
                 for (int i = 0; i <= 8; i++) begin
                     player_card_values_nxt[i] = 0;
+                    player_card_symbols_nxt[i] = 0;
                 end
+                player_card_count_nxt = 0;
+                card_chosen = 0;
                 state_nxt = left_mouse ? DEAL_CARDS : IDLE;
             end
             DEAL_CARDS: begin
                 // Rozdanie kart graczowi i dealerowi
-                player_card_count = 2; // Gracz zaczyna z 2 kartami
+                player_card_count_nxt = 1; // Gracz zaczyna z 2 kartami
                 player_card_values_nxt[0] = 5;
                 player_card_symbols_nxt[0] = 3;
                 player_card_values_nxt[1] = 1;
@@ -126,21 +139,22 @@ module blackjack_FSM
                 state_nxt = right_mouse ? PLAYER_TURN : DEAL_CARDS;
             end
             PLAYER_TURN: begin
-                if(left_mouse == 1) begin
-                    player_card_values_nxt[player_card_count] = player_card_count;
-                    player_card_symbols_nxt[player_card_count] = 2;
-                    player_card_count ++;
-                end
-                state_nxt = right_mouse ? DEALER_TURN : PLAYER_TURN;
-
+                for (int i = 0; i <= 1; i++) begin
+                    player_card_values_nxt[i] = player_card_values[i];
+                    player_card_symbols_nxt[i] = player_card_symbols[i];
+                    end
+                if(left_mouse == 1 && card_chosen == 0) begin 
+                    player_card_values_nxt[player_card_count] = 6;
+                    player_card_symbols_nxt[player_card_count] = 1;
+                    player_card_count_nxt = player_card_count + 1;
+                    card_chosen = 1;
+                end else if  ( left_mouse == 0) begin
+                    card_chosen = 0;
+                end 
+                state_nxt = (right_mouse && left_mouse) ? DEALER_TURN : PLAYER_TURN;
+                
             end
             DEALER_TURN: begin
-                // Tura dealera
-                if (dealer_card_count < 10) begin
-                    dealer_card_values[dealer_card_count] = 5;
-                    dealer_card_symbols[dealer_card_count] = 3;
-                    dealer_card_count++;
-                end
                 state_nxt = left_mouse ? CHECK_WINNER : DEALER_TURN;
             end
             CHECK_WINNER: begin
@@ -155,18 +169,18 @@ module blackjack_FSM
 
     for (genvar i = 0; i <= 8; i++) begin : player_cards
         if (i == 0) begin
-            card #(
-                .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
-                .CARD_YPOS(50)
-            ) u_card1 (
-                .clk(clk),
-                .rst(rst),
-
-                .card_number(player_card_values[i]),
-                .card_symbol(player_card_symbols[i]),
-                .card_in(vga_blackjack_in),
-                .card_out(wire_cd[i])
-            );
+        card #(
+            .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
+            .CARD_YPOS(50)
+        ) u_card1 (
+            .clk(clk),
+            .rst(rst),
+    
+            .card_number(player_card_values[i]),
+            .card_symbol(player_card_symbols[i]),
+            .card_in(vga_blackjack_in),
+            .card_out(wire_cd[i])
+        );
         end else if (i >= 1 && i <= 8) begin
             card #(
                 .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
@@ -174,15 +188,15 @@ module blackjack_FSM
             ) u_card1 (
                 .clk(clk),
                 .rst(rst),
-
+        
                 .card_number(player_card_values[i]),
                 .card_symbol(player_card_symbols[i]),
                 .card_in(wire_cd[i-1]),
                 .card_out(wire_cd[i])
             );
-        end
+        end 
     end
+    
+      
+    endmodule
 
-
-
-endmodule

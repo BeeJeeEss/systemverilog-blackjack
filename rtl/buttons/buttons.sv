@@ -48,16 +48,10 @@ module draw_buttons (
     localparam text2_offset_x = (btn_width - text2_width) / 2;
     localparam text3_offset_x = (btn_width - text3_width) / 2;
 
-    /**
-     * Local variables and signals
-     */
-
     logic [11:0] rgb_nxt;
     logic state;
-
-    /**
-     * Internal logic
-     */
+    logic [6:0][4:0] current_char;
+    logic [2:0] char_index = (vga_btn_in.hcount - btn1_x - text1_offset_x) / (5 * scale_factor + letter_spacing);
 
     always_ff @(posedge clk) begin : bg_ff_blk
         if (rst) begin
@@ -84,21 +78,20 @@ module draw_buttons (
         if (vga_btn_in.vblnk || vga_btn_in.hblnk) begin
             rgb_nxt = 12'h0_0_0;
         end else begin
-            // Draw the buttons
             if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn_width) &&
                     (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn_height)&&(state != 0)) begin
                 // Draw Button 1: Red
                 // Draw letters DEAL
                 if ((vga_btn_in.hcount >= btn1_x + text1_offset_x) && (vga_btn_in.hcount < btn1_x + text1_offset_x + text1_width) &&
                         (vga_btn_in.vcount >= btn1_y + text_offset_y) && (vga_btn_in.vcount < btn1_y + text_offset_y + (7 * scale_factor))) begin
-                    automatic int char_index = (vga_btn_in.hcount - btn1_x - text1_offset_x) / (5 * scale_factor + letter_spacing);
-                    logic [6:0][4:0] current_char;
+                    char_index = (vga_btn_in.hcount - btn1_x - text1_offset_x) / (5 * scale_factor + letter_spacing);
+
                     case (char_index)
-                        0: current_char = letter_D;
-                        1: current_char = letter_E;
-                        2: current_char = letter_A;
-                        3: current_char = letter_L;
-                        default: current_char = letter_A; // Default to 'A' if out of range
+                        3'b000: current_char = letter_D;
+                        3'b001: current_char = letter_E;
+                        3'b010: current_char = letter_A;
+                        3'b011: current_char = letter_L;
+                        default: current_char = letter_A;
                     endcase
                     if (current_char[6 - (vga_btn_in.vcount - btn1_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn1_x - text1_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
                         rgb_nxt = 12'hF_F_F; // White text
@@ -112,13 +105,13 @@ module draw_buttons (
                 // Draw letters HIT
                 if ((vga_btn_in.hcount >= btn2_x + text2_offset_x) && (vga_btn_in.hcount < btn2_x + text2_offset_x + text2_width) &&
                         (vga_btn_in.vcount >= btn2_y + text_offset_y) && (vga_btn_in.vcount < btn2_y + text_offset_y + (7 * scale_factor))) begin
-                    automatic int char_index = (vga_btn_in.hcount - btn2_x - text2_offset_x) / (5 * scale_factor + letter_spacing);
-                    logic [6:0][4:0] current_char;
+                    char_index = (vga_btn_in.hcount - btn2_x - text2_offset_x) / (5 * scale_factor + letter_spacing);
+
                     case (char_index)
-                        0: current_char = letter_H;
-                        1: current_char = letter_I;
-                        2: current_char = letter_T;
-                        default: current_char = letter_H; // Default to 'H' if out of range
+                        3'b000: current_char = letter_H;
+                        3'b001: current_char = letter_I;
+                        3'b010: current_char = letter_T;
+                        default: current_char = letter_H;
                     endcase
                     if (current_char[6 - (vga_btn_in.vcount - btn2_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn2_x - text2_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
                         rgb_nxt = 12'hF_F_F; // White text
@@ -132,15 +125,14 @@ module draw_buttons (
                 // Draw letters STAND
                 if ((vga_btn_in.hcount >= btn3_x + text3_offset_x) && (vga_btn_in.hcount < btn3_x + text3_offset_x + text3_width) &&
                         (vga_btn_in.vcount >= btn3_y + text_offset_y) && (vga_btn_in.vcount < btn3_y + text_offset_y + (7 * scale_factor))) begin
-                    automatic int char_index = (vga_btn_in.hcount - btn3_x - text3_offset_x) / (5 * scale_factor + letter_spacing);
-                    logic [6:0][4:0] current_char;
+                    char_index = (vga_btn_in.hcount - btn3_x - text3_offset_x) / (5 * scale_factor + letter_spacing);
                     case (char_index)
-                        0: current_char = letter_S;
-                        1: current_char = letter_T;
-                        2: current_char = letter_A;
-                        3: current_char = letter_N;
-                        4: current_char = letter_D;
-                        default: current_char = letter_S; // Default to 'S' if out of range
+                        3'b000: current_char = letter_S;
+                        3'b001: current_char = letter_T;
+                        3'b010: current_char = letter_A;
+                        3'b011: current_char = letter_N;
+                        3'b100: current_char = letter_D;
+                        default: current_char = letter_S;
                     endcase
                     if (current_char[6 - (vga_btn_in.vcount - btn3_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn3_x - text3_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
                         rgb_nxt = 12'hF_F_F; // White text
@@ -149,7 +141,6 @@ module draw_buttons (
                 end else
                     rgb_nxt = 12'h0_F_0; // Green button background
             end else begin
-                // The rest of active display pixels:
                 rgb_nxt = vga_btn_in.rgb;
             end
         end

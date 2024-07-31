@@ -116,7 +116,7 @@ module top_vga (
         .clk,
         .rst,
 
-        .vga_mouse_in(wire_test),
+        .vga_mouse_in(wire_btn),
         .vga_mouse_out(wire_mouse),
 
         .xpos(xpos_nxt),
@@ -126,7 +126,7 @@ module top_vga (
     blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
-        .vga_blackjack_in(wire_btn),
+        .vga_blackjack_in(wire_bg),
         .vga_blackjack_out(wire_test),
         .left_mouse(left_nxt),
         .right_mouse(right_nxt)
@@ -136,7 +136,7 @@ module top_vga (
     draw_buttons u_draw_buttons(
         .clk,
         .rst,
-        .vga_btn_in(wire_bg),
+        .vga_btn_in(wire_test),
         .vga_btn_out(wire_btn)
     );
 
