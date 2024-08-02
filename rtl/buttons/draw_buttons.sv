@@ -12,6 +12,7 @@
 module draw_buttons (
         input  logic clk,
         input  logic rst,
+        input  logic [2:0] state,
 
         vga_if.out vga_btn_out,
         vga_if.in vga_btn_in
@@ -69,13 +70,13 @@ module draw_buttons (
     always_comb begin : bg_comb_blk
         // Draw the buttons
         if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn1_width) &&
-                (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)) begin
+                (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)&&(state == 0)) begin
             rgb_nxt = 12'hF_0_0; // Button 1: Red
         end else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
-                (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)) begin
+                (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)&&(state == 1)) begin
             rgb_nxt = 12'h0_0_F; // Button 2: Blue
         end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
-                (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)) begin
+                (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)&&(state == 1)) begin
             rgb_nxt = 12'h0_F_0; // Button 3: Green
         end else begin                              // The rest of active display pixels:
             rgb_nxt = vga_btn_in.rgb;                 // - fill with gray.

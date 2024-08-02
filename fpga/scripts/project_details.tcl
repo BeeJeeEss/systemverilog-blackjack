@@ -38,12 +38,12 @@ set sv_files {
     ../rtl/vga_if.sv
     ../rtl/mouse/draw_mouse.sv
     ../rtl/mouse/hold_mouse.sv
-    ../rtl/test.sv 
+    ../rtl/blackjack_fsm.sv 
     ../rtl/card/draw_card.sv
     ../rtl/card/image_rom_card.sv
     ../rtl/card.sv
     ../rtl/delay/delay.sv
-    ../rtl/buttons/buttons.sv
+    ../rtl/buttons/draw_buttons.sv
     ../rtl/buttons/letters_bitmap.sv
     ../rtl/buttons/buttons_click.sv
     ../rtl/SM_if.sv 
