@@ -19,6 +19,7 @@ module blackjack_FSM
         input  wire  hit,
         input  wire  stand,
 
+        output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
         SM_if.out SM_out
     );
@@ -49,6 +50,7 @@ module blackjack_FSM
     // logic [1:0] dealer_card_symbols [8:0];
     logic [3:0] player_card_count;
     logic [3:0] player_card_count_nxt;
+    logic [2:0] state_btn_nxt;
     // logic [3:0] dealer_card_count;
 
     logic card_chosen_finished;
@@ -91,6 +93,7 @@ module blackjack_FSM
                 player_card_count <= 0;
                 card_chosen_finished <= 0;
                 deal_card_finished <= 0;
+                state_btn <= 0;
                 state <= IDLE;
             end
             else begin : state_seq_run_blk
@@ -116,6 +119,7 @@ module blackjack_FSM
                 player_card_count <= player_card_count_nxt;
                 card_chosen_finished <= card_chosen_finished_nxt;
                 deal_card_finished <= deal_card_finished_nxt;
+                state_btn <= state_btn_nxt;
                 state <= state_nxt;
             end
         end
@@ -171,6 +175,7 @@ module blackjack_FSM
                 player_card_count_nxt = 0;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
+                state_btn_nxt = 0;
             end
             DEAL_CARDS: begin
                 player_card_values_nxt[0] = 5;
@@ -196,6 +201,7 @@ module blackjack_FSM
                 player_card_count_nxt = 1;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 1;
+                state_btn_nxt = 1;
             end
             PLAYER_TURN: begin
                 player_card_values_nxt[0] = SM_out.player_card_values[0];
@@ -219,6 +225,7 @@ module blackjack_FSM
                 player_card_count_nxt = player_card_count;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
+                state_btn_nxt = 1;
 
             end
             PLAYER_CARD_CHOOSE : begin
@@ -247,6 +254,7 @@ module blackjack_FSM
                 deal_card_finished_nxt = 0;
             end
             DEALER_TURN: begin
+                state_btn_nxt = 2;
             end
             CHECK_WINNER: begin
             end

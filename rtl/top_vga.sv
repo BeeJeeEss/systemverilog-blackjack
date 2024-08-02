@@ -130,6 +130,7 @@ module top_vga (
         .ypos(ypos_nxt)
     );
 
+    logic [2:0] fsm_state;
     blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
@@ -139,8 +140,8 @@ module top_vga (
         .SM_out(wire_SM),
         .deal(deal),
         .hit(hit),
-        .stand(stand)
-
+        .stand(stand),
+        .state_btn(fsm_state)
     );
 
     card u_card (
@@ -155,7 +156,8 @@ module top_vga (
         .clk,
         .rst,
         .vga_btn_in(wire_test),
-        .vga_btn_out(wire_btn)
+        .vga_btn_out(wire_btn),
+        .state(fsm_state)
     );
 
     buttons_click u_buttons_click(
