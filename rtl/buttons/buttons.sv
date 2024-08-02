@@ -1,11 +1,13 @@
-  /**
-   * Author: Borys Strzebonski
-   *
-   * Description:
-   * Draw buttons with texts DEAL, HIT, and STAND. Buttons depend on input 'state'.
-   */
+ /**
+  * Copyright (C) 2023  AGH University of Science and Technology
+  * MTM UEC2
+  * Author: Piotr Kaczmarczyk
+  *
+  * Description:
+  * Draw background with three rectangular buttons at the bottom of the screen.
+  */
 
-  `timescale 1 ns / 1 ps
+ `timescale 1 ns / 1 ps
 
 module draw_buttons (
         input  logic clk,
@@ -17,130 +19,32 @@ module draw_buttons (
 
     import vga_pkg::*;
 
-    // logic [6:0][4:0] letter_E = '{
-    //     5'b11111,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b11111,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b11111
-    // };
-    
-    // logic [6:0][4:0] letter_A = '{
-    //     5'b01110,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b11111,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001
-    // };
-    
-    // logic [6:0][4:0] letter_L = '{
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b11111
-    // };
-    
-    // logic [6:0][4:0] letter_H = '{
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b11111,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001
-    // };
-    
-    // logic [6:0][4:0] letter_I = '{
-    //     5'b11111,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b11111
-    // };
-    
-    // logic [6:0][4:0] letter_T = '{
-    //     5'b11111,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100,
-    //     5'b00100
-    // };
-    
-    // logic [6:0][4:0] letter_S = '{
-    //     5'b11110,
-    //     5'b00001,
-    //     5'b00001,
-    //     5'b11110,
-    //     5'b10000,
-    //     5'b10000,
-    //     5'b01111
-    // };
-    
-    // logic [6:0][4:0] letter_N = '{
-    //     5'b10001,
-    //     5'b10011,
-    //     5'b10101,
-    //     5'b11001,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001
-    // };
-    
-    // logic [6:0][4:0] letter_D = '{
-    //     5'b01111,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b10001,
-    //     5'b01111
-    // };
+    // Parameters for button positions and sizes
+    parameter int btn1_x = 100;
+    parameter int btn1_y = 400;
+    parameter int btn1_width = 100;
+    parameter int btn1_height = 50;
 
-    // // Parameters for button positions and sizes
-    // localparam btn1_x = 100;
-    // localparam btn1_y = 400;
+    parameter int btn2_x = 300;
+    parameter int btn2_y = 400;
+    parameter int btn2_width = 100;
+    parameter int btn2_height = 50;
 
-    // localparam btn2_x = 300;
-    // localparam btn2_y = 400;
+    // Adding third button parameters
+    parameter int btn3_x = 500;
+    parameter int btn3_y = 400;
+    parameter int btn3_width = 100;
+    parameter int btn3_height = 50;
 
-    // localparam btn3_x = 500;
-    // localparam btn3_y = 400;
+    /**
+     * Local variables and signals
+     */
 
-    // localparam btn_width = 100;
-    // localparam btn_height = 50;
+    logic [11:0] rgb_nxt;
 
-    // // Scaling factor for the letters
-    // localparam scale_factor = 3;
-    // localparam letter_spacing = 1;
-
-    // // Position of the text within the buttons
-    // localparam letter_width = 5 * scale_factor + letter_spacing;
-    // localparam text_offset_y = 15;
-
-    // // Calculate horizontal offset for centering text
-    // localparam text1_width = 4 * letter_width - letter_spacing; // Width of "DEAL"
-    // localparam text2_width = 3 * letter_width - letter_spacing; // Width of "HIT"
-    // localparam text3_width = 5 * letter_width - letter_spacing; // Width of "STAND"
-
-    // localparam text1_offset_x = (btn_width - text1_width) / 2;
-    // localparam text2_offset_x = (btn_width - text2_width) / 2;
-    // localparam text3_offset_x = (btn_width - text3_width) / 2;
-
-    // logic [11:0] rgb_nxt;
-    // logic state;
-    // logic [6:0][4:0] current_char;
-    // logic [2:0] char_index = (vga_btn_in.hcount - btn1_x - text1_offset_x) / (5 * scale_factor + letter_spacing);
+    /**
+     * Internal logic
+     */
 
     always_ff @(posedge clk) begin : bg_ff_blk
         if (rst) begin
@@ -158,81 +62,26 @@ module draw_buttons (
             vga_btn_out.hcount <=  vga_btn_in.hcount;
             vga_btn_out.hsync  <=  vga_btn_in.hsync;
             vga_btn_out.hblnk  <=  vga_btn_in.hblnk;
-            vga_btn_out.rgb    <=  vga_btn_in.rgb;
+            vga_btn_out.rgb    <=  rgb_nxt;
         end
     end
 
-//     always_comb begin : bg_comb_blk
-//         state = 1;
-//         if (vga_btn_in.vblnk || vga_btn_in.hblnk) begin
-//             rgb_nxt = 12'h0_0_0;
-//         end else begin
-//             if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn_width) &&
-//                     (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn_height)&&(state != 0)) begin
-//                 // Draw Button 1: Red
-//                 // Draw letters DEAL
-//                 if ((vga_btn_in.hcount >= btn1_x + text1_offset_x) && (vga_btn_in.hcount < btn1_x + text1_offset_x + text1_width) &&
-//                         (vga_btn_in.vcount >= btn1_y + text_offset_y) && (vga_btn_in.vcount < btn1_y + text_offset_y + (7 * scale_factor))) begin
-//                     char_index = (vga_btn_in.hcount - btn1_x - text1_offset_x) / (5 * scale_factor + letter_spacing);
+    always_comb begin : bg_comb_blk
+        // Draw the buttons
+        if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn1_width) &&
+                (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)) begin
+            rgb_nxt = 12'hF_0_0; // Button 1: Red
+        end else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
+                (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)) begin
+            rgb_nxt = 12'h0_0_F; // Button 2: Blue
+        end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
+                (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)) begin
+            rgb_nxt = 12'h0_F_0; // Button 3: Green
+        end else begin                              // The rest of active display pixels:
+            rgb_nxt = vga_btn_in.rgb;                 // - fill with gray.
+        end
+    end
 
-//                     case (char_index)
-//                         3'b000: current_char = letter_D;
-//                         3'b001: current_char = letter_E;
-//                         3'b010: current_char = letter_A;
-//                         3'b011: current_char = letter_L;
-//                         default: current_char = letter_A;
-//                     endcase
-//                     if (current_char[6 - (vga_btn_in.vcount - btn1_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn1_x - text1_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
-//                         rgb_nxt = 12'hF_F_F; // White text
-//                     else
-//                         rgb_nxt = 12'hF_0_0; // Red button background
-//                 end else
-//                     rgb_nxt = 12'hF_0_0; // Red button background
-//             end else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn_width) &&
-//                     (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn_height)&&(state == 1)) begin
-//                 // Draw Button 2: Blue
-//                 // Draw letters HIT
-//                 if ((vga_btn_in.hcount >= btn2_x + text2_offset_x) && (vga_btn_in.hcount < btn2_x + text2_offset_x + text2_width) &&
-//                         (vga_btn_in.vcount >= btn2_y + text_offset_y) && (vga_btn_in.vcount < btn2_y + text_offset_y + (7 * scale_factor))) begin
-//                     char_index = (vga_btn_in.hcount - btn2_x - text2_offset_x) / (5 * scale_factor + letter_spacing);
 
-//                     case (char_index)
-//                         3'b000: current_char = letter_H;
-//                         3'b001: current_char = letter_I;
-//                         3'b010: current_char = letter_T;
-//                         default: current_char = letter_H;
-//                     endcase
-//                     if (current_char[6 - (vga_btn_in.vcount - btn2_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn2_x - text2_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
-//                         rgb_nxt = 12'hF_F_F; // White text
-//                     else
-//                         rgb_nxt = 12'h0_0_F; // Blue button background
-//                 end else
-//                     rgb_nxt = 12'h0_0_F; // Blue button background
-//             end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn_width) &&
-//                     (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn_height)&&(state == 1)) begin
-//                 // Draw Button 3: Green
-//                 // Draw letters STAND
-//                 if ((vga_btn_in.hcount >= btn3_x + text3_offset_x) && (vga_btn_in.hcount < btn3_x + text3_offset_x + text3_width) &&
-//                         (vga_btn_in.vcount >= btn3_y + text_offset_y) && (vga_btn_in.vcount < btn3_y + text_offset_y + (7 * scale_factor))) begin
-//                     char_index = (vga_btn_in.hcount - btn3_x - text3_offset_x) / (5 * scale_factor + letter_spacing);
-//                     case (char_index)
-//                         3'b000: current_char = letter_S;
-//                         3'b001: current_char = letter_T;
-//                         3'b010: current_char = letter_A;
-//                         3'b011: current_char = letter_N;
-//                         3'b100: current_char = letter_D;
-//                         default: current_char = letter_S;
-//                     endcase
-//                     if (current_char[6 - (vga_btn_in.vcount - btn3_y - text_offset_y) / scale_factor][((vga_btn_in.hcount - btn3_x - text3_offset_x) % (5 * scale_factor + letter_spacing)) / scale_factor])
-//                         rgb_nxt = 12'hF_F_F; // White text
-//                     else
-//                         rgb_nxt = 12'h0_F_0; // Green button background
-//                 end else
-//                     rgb_nxt = 12'h0_F_0; // Green button background
-//             end else begin
-//                 rgb_nxt = vga_btn_in.rgb;
-//             end
-//         end
-//     end
 
 endmodule
