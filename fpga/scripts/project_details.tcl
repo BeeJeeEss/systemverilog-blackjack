@@ -45,6 +45,7 @@ set sv_files {
     ../rtl/delay/delay.sv
     ../rtl/buttons/buttons.sv
     ../rtl/buttons/letters_bitmap.sv
+    ../rtl/buttons/buttons_click.sv
     ../rtl/SM_if.sv 
     rtl/top_vga_basys3.sv
 }

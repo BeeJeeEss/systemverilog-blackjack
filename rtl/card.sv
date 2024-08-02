@@ -1,95 +1,95 @@
-/**
- * Konrad Sawina
- *
- * 
- */
+ /**
+  * Konrad Sawina
+  *
+  *
+  */
 
  `timescale 1 ns / 1 ps
 
- module card (
- 
-         input  logic clk,
-         input  logic rst,
-      
+module card (
+
+        input  logic clk,
+        input  logic rst,
+
         SM_if.in SM_in,
-        
+
         vga_if.in card_in,
         vga_if.out card_out
-     );
- 
- 
-     /**
-      * Local variables and signals
-      */
- 
-     vga_if wire_card [0:7]();
-     wire [11:0] rgb_wire [0:8];
-     wire [10:0] address_wire [0:8];
+    );
 
- 
- 
- 
-     /**
-      * Submodules instances
-      */
- 
- 
- 
-     draw_card #(
-         .CARD_XPOS(150),
-         .CARD_YPOS(80),
-         .MODULE_NUMBER(0)
-     ) u_draw_card0 (
-         .clk,
-         .rst,
- 
-         .vga_card_in(card_in),
-         .vga_card_out(wire_card[0]),
-         .pixel_addr (address_wire[0]),
-         .rgb_pixel(rgb_wire[0]),
- 
-         .SM_in(SM_in)
- 
-     );
- 
-     image_rom_card #(
-         .MODULE_NUMBER(0)
-     )  u_image_rom_card0(
-         .clk,
-         .addrA(address_wire[0]),
-         .dout(rgb_wire[0]),
-         .image_in(SM_in)
- 
-     );
- 
-     draw_card #(
-         .CARD_XPOS(180),
-         .CARD_YPOS(80),
-         .MODULE_NUMBER(1)
-     ) u_draw_card1 (
-         .clk,
-         .rst,
- 
-         .vga_card_in(wire_card[0]),
-         .vga_card_out(wire_card[1]),
-         .pixel_addr (address_wire[1]),
-         .rgb_pixel(rgb_wire[1]),
- 
-         .SM_in(SM_in)
- 
-     );
- 
-     image_rom_card #(
-         .MODULE_NUMBER(1)
-     )  u_image_rom_card1(
-         .clk,
-         .addrA(address_wire[1]),
-         .dout(rgb_wire[1]),
-         .image_in(SM_in)
- 
-     );
 
-     draw_card #(
+    /**
+     * Local variables and signals
+     */
+
+    vga_if wire_card [0:7]();
+    wire [11:0] rgb_wire [0:8];
+    wire [10:0] address_wire [0:8];
+
+
+
+
+    /**
+     * Submodules instances
+     */
+
+
+
+    draw_card #(
+        .CARD_XPOS(150),
+        .CARD_YPOS(80),
+        .MODULE_NUMBER(0)
+    ) u_draw_card0 (
+        .clk,
+        .rst,
+
+        .vga_card_in(card_in),
+        .vga_card_out(wire_card[0]),
+        .pixel_addr (address_wire[0]),
+        .rgb_pixel(rgb_wire[0]),
+
+        .SM_in(SM_in)
+
+    );
+
+    image_rom_card #(
+        .MODULE_NUMBER(0)
+    )  u_image_rom_card0(
+        .clk,
+        .addrA(address_wire[0]),
+        .dout(rgb_wire[0]),
+        .image_in(SM_in)
+
+    );
+
+    draw_card #(
+        .CARD_XPOS(180),
+        .CARD_YPOS(80),
+        .MODULE_NUMBER(1)
+    ) u_draw_card1 (
+        .clk,
+        .rst,
+
+        .vga_card_in(wire_card[0]),
+        .vga_card_out(wire_card[1]),
+        .pixel_addr (address_wire[1]),
+        .rgb_pixel(rgb_wire[1]),
+
+        .SM_in(SM_in)
+
+    );
+
+    image_rom_card #(
+        .MODULE_NUMBER(1)
+    )  u_image_rom_card1(
+        .clk,
+        .addrA(address_wire[1]),
+        .dout(rgb_wire[1]),
+        .image_in(SM_in)
+
+    );
+
+    draw_card #(
         .CARD_XPOS(210),
         .CARD_YPOS(80),
         .MODULE_NUMBER(2)
@@ -117,7 +117,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(230),
+        .CARD_XPOS(240),
         .CARD_YPOS(80),
         .MODULE_NUMBER(3)
     ) u_draw_card3 (
@@ -144,7 +144,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(260),
+        .CARD_XPOS(270),
         .CARD_YPOS(80),
         .MODULE_NUMBER(4)
     ) u_draw_card4 (
@@ -171,7 +171,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(290),
+        .CARD_XPOS(300),
         .CARD_YPOS(80),
         .MODULE_NUMBER(5)
     ) u_draw_card5 (
@@ -198,7 +198,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(320),
+        .CARD_XPOS(330),
         .CARD_YPOS(80),
         .MODULE_NUMBER(6)
     ) u_draw_card6 (
@@ -225,7 +225,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(350),
+        .CARD_XPOS(360),
         .CARD_YPOS(80),
         .MODULE_NUMBER(7)
     ) u_draw_card7 (
@@ -252,7 +252,7 @@
     );
 
     draw_card #(
-        .CARD_XPOS(380),
+        .CARD_XPOS(390),
         .CARD_YPOS(80),
         .MODULE_NUMBER(8)
     ) u_draw_card8 (
@@ -278,8 +278,7 @@
 
     );
 
-    
- 
- 
- endmodule
- 
+
+
+
+endmodule

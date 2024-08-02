@@ -99,6 +99,10 @@ module top_vga (
     wire left_nxt;
     wire right_nxt;
 
+    wire deal;
+    wire hit;
+    wire stand;
+
     hold_mouse u_hold_mouse(
         .clk,
         .rst,
@@ -132,7 +136,10 @@ module top_vga (
         .vga_blackjack_in(wire_bg),
         .left_mouse(left_nxt),
         .right_mouse(right_nxt),
-        .SM_out(wire_SM)
+        .SM_out(wire_SM),
+        .deal(deal),
+        .hit(hit),
+        .stand(stand)
 
     );
 
@@ -149,6 +156,17 @@ module top_vga (
         .rst,
         .vga_btn_in(wire_test),
         .vga_btn_out(wire_btn)
+    );
+
+    buttons_click u_buttons_click(
+        .clk,
+        .rst,
+        .mouse_x(xpos_nxt),
+        .mouse_y(ypos_nxt),
+        .left_mouse(left_nxt),
+        .deal(deal),
+        .hit(hit),
+        .stand(stand)
     );
 
 endmodule
