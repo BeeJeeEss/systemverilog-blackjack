@@ -30,14 +30,14 @@ module top_fpga_tb;
  */
 
 localparam CLK_PERIOD = 10;     // 100 MHz
+localparam CLK_PERIOD975 = 10.256;
 
 
 /**
  * Local variables and signals
  */
 
-logic clk, rst;
-wire pclk;
+logic clk, clk975, rst;
 wire vs, hs;
 wire [3:0] r, g, b;
 
@@ -51,12 +51,18 @@ initial begin
     forever #(CLK_PERIOD/2) clk = ~clk;
 end
 
+initial begin
+    clk975 = 1'b0;
+    forever #(CLK_PERIOD975/2) clk975 = ~clk975;
+end
+
 
 /**
  * Submodules instances
  */
 
 top_vga_basys3 dut (
+    
     .clk(clk),
     .btnC(rst),
     .Vsync(vs),
@@ -68,11 +74,11 @@ top_vga_basys3 dut (
 );
 
 tiff_writer #(
-    .XDIM(16'd1056),
-    .YDIM(16'd628),
+    .XDIM(16'd1344),
+    .YDIM(16'd806),
     .FILE_DIR("../../results")
 ) u_tiff_writer (
-    .clk(pclk),
+    .clk(clk),
     .r({r,r}), // fabricate an 8-bit value
     .g({g,g}), // fabricate an 8-bit value
     .b({b,b}), // fabricate an 8-bit value

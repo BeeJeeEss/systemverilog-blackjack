@@ -17,15 +17,15 @@
 //////////////////////////////////////////////////////////////////////////////
  module image_rom_card
 	#(parameter
-		ADDR_WIDTH = 13,
-		DATA_WIDTH = 12
+		ADDR_WIDTH = 11,
+		DATA_WIDTH = 12,
+		MODULE_NUMBER = 0
 	)
 	(
 		input wire clk, // posedge active clock
 		input wire [ADDR_WIDTH - 1 : 0 ] addrA,
-		input  logic [1:0] card_symbol,
-
-		output logic [DATA_WIDTH - 1 : 0 ] dout
+		output logic [DATA_WIDTH - 1 : 0 ] dout,
+		SM_if.in image_in
 	);
 
 	(* rom_style = "block" *) // block || distributed
@@ -36,7 +36,7 @@
 	
 
 	always_ff @(posedge clk) begin : rom_read_blk
-		dout <= rom[card_symbol][addrA];
+		dout <= rom[image_in.player_card_symbols[MODULE_NUMBER]][addrA];
 	end
 			
 				
