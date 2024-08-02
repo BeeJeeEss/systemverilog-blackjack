@@ -39,13 +39,13 @@ set sv_files {
     ../rtl/mouse/draw_mouse.sv
     ../rtl/mouse/hold_mouse.sv
     ../rtl/test.sv 
-    ../rtl/card/card.sv 
-    ../rtl/card/card.sv
     ../rtl/card/draw_card.sv
     ../rtl/card/image_rom_card.sv
+    ../rtl/card.sv
     ../rtl/delay/delay.sv
     ../rtl/buttons/buttons.sv
     ../rtl/buttons/letters_bitmap.sv
+    ../rtl/SM_if.sv 
     rtl/top_vga_basys3.sv
 }
 

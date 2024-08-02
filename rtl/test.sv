@@ -15,8 +15,9 @@
         input  wire  left_mouse,
         input  wire  right_mouse,
 
+
         vga_if.in vga_blackjack_in,
-        vga_if.out vga_blackjack_out
+        SM_if.out SM_out
     );
     
     //------------------------------------------------------------------------------
@@ -33,28 +34,27 @@
         DEAL_CARDS = 3'b001,
         PLAYER_TURN = 3'b011,
         DEALER_TURN = 3'b010,
-        CHECK_WINNER = 3'b110
+        CHECK_WINNER = 3'b110,
+        PLAYER_CARD_CHOOSE = 3'b100,
+        DEALER_CARD_CHOOSE = 3'b101
     } state, state_nxt;
 
-    logic [3:0] player_card_values [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
-    logic [1:0] player_card_symbols [8:0];
+
     logic [3:0] player_card_values_nxt [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
     logic [1:0] player_card_symbols_nxt [8:0];
-    logic [3:0] dealer_card_values [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
-    logic [1:0] dealer_card_symbols [8:0];
-    logic [3:0] player_card_count; // Liczba kart gracza
+    // logic [3:0] dealer_card_values [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
+    // logic [1:0] dealer_card_symbols [8:0];
+    logic [3:0] player_card_count;
     logic [3:0] player_card_count_nxt;
-    logic [3:0] dealer_card_count;
-    logic [3:0] dealer_card_count_nxt;
-    logic [4:0] player_card_value;
-    logic [4:0] dealer_card_value;
-    logic [6:0] player_score; // Wartość punktowa kart gracza
-    logic [6:0] dealer_score; // Wartość punktowa kart dealera
-    logic card_chosen;
+    // logic [3:0] dealer_card_count;
+
+    logic card_chosen_finished;
+    logic card_chosen_finished_nxt;
+    logic deal_card_finished;
+    logic deal_card_finished_nxt;
 
 
 
-    vga_if wire_cd [0:8] ();
 
 
 
@@ -67,136 +67,191 @@
     always_ff @(posedge clk) begin : state_seq_blk
         if(vga_blackjack_in.hcount == 0 & vga_blackjack_in.vcount == 0) begin
         if(rst)begin : state_seq_rst_blk
-            for (int i = 0; i <= 8; i++) begin
-            player_card_values[i] <= 0;
-            player_card_symbols[i] <= 0;
-            end
+            SM_out.player_card_values[0] <= 0;
+            SM_out.player_card_symbols[0] <= 0;
+            SM_out.player_card_values[1] <= 0;
+            SM_out.player_card_symbols[1] <= 0;
+            SM_out.player_card_values[2] <= 0;
+            SM_out.player_card_symbols[2] <= 0;
+            SM_out.player_card_values[3] <= 0;
+            SM_out.player_card_symbols[3] <= 0;
+            SM_out.player_card_values[4] <= 0;
+            SM_out.player_card_symbols[4] <= 0;
+            SM_out.player_card_values[5] <= 0;
+            SM_out.player_card_symbols[5] <= 0;
+            SM_out.player_card_values[6] <= 0;
+            SM_out.player_card_symbols[6] <= 0;
+            SM_out.player_card_values[7] <= 0;
+            SM_out.player_card_symbols[7] <= 0;
+            SM_out.player_card_values[8] <= 0;
+            SM_out.player_card_symbols[8] <= 0;
             player_card_count <= 0;
-            dealer_card_count <= 0;
+            card_chosen_finished <= 0;
+            deal_card_finished <= 0;
             state <= IDLE;
-            end
         end
         else begin : state_seq_run_blk
-            for (int i = 0; i <= 8; i++) begin
-                player_card_values[i] <= player_card_values_nxt[i];
-                player_card_symbols[i] <= player_card_symbols_nxt[i];
-                end
+            SM_out.player_card_values[0] <= player_card_values_nxt[0];
+            SM_out.player_card_symbols[0] <= player_card_symbols_nxt[0];
+            SM_out.player_card_values[1] <= player_card_values_nxt[1];
+            SM_out.player_card_symbols[1] <= player_card_symbols_nxt[1];
+            SM_out.player_card_values[2] <= player_card_values_nxt[2];
+            SM_out.player_card_symbols[2] <= player_card_symbols_nxt[2];
+            SM_out.player_card_values[3] <= player_card_values_nxt[3];
+            SM_out.player_card_symbols[3] <= player_card_symbols_nxt[3];
+            SM_out.player_card_values[4] <= player_card_values_nxt[4];
+            SM_out.player_card_symbols[4] <= player_card_symbols_nxt[4];
+            SM_out.player_card_values[5] <= player_card_values_nxt[5];
+            SM_out.player_card_symbols[5] <= player_card_symbols_nxt[5];
+            SM_out.player_card_values[6] <= player_card_values_nxt[6];
+            SM_out.player_card_symbols[6] <= player_card_symbols_nxt[6];
+            SM_out.player_card_values[7] <= player_card_values_nxt[7];
+            SM_out.player_card_symbols[7] <= player_card_symbols_nxt[7];
+            SM_out.player_card_values[8] <= player_card_values_nxt[7];
+            SM_out.player_card_symbols[8] <= player_card_symbols_nxt[7];
+
             player_card_count <= player_card_count_nxt;
-            dealer_card_count <= dealer_card_count_nxt;
+            card_chosen_finished <= card_chosen_finished_nxt;
+            deal_card_finished <= deal_card_finished_nxt;
             state <= state_nxt;
         end
     end
+end
     
     //------------------------------------------------------------------------------
     // next state logic
     //------------------------------------------------------------------------------
 
 
+always_comb begin
+
+    case(state)
+
+        IDLE:               state_nxt = left_mouse ? DEAL_CARDS : IDLE;
+        DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
+        PLAYER_TURN:        state_nxt = right_mouse ? left_mouse ? DEALER_TURN : PLAYER_CARD_CHOOSE : PLAYER_TURN;
+        PLAYER_CARD_CHOOSE:  state_nxt = card_chosen_finished ? PLAYER_TURN : PLAYER_CARD_CHOOSE;
+        DEALER_TURN:        state_nxt = left_mouse ? IDLE : DEALER_TURN; 
+        default:    state_nxt = IDLE;
+
+    endcase  
+
+end
+
     //------------------------------------------------------------------------------
     // output register
-    //------------------------------------------------------------------------------
-    always_ff @(posedge clk) begin : out_reg_blk
-        if(rst) begin : out_reg_rst_blk
-            vga_blackjack_out.vcount   <= '0;
-            vga_blackjack_out.vsync    <= '0;
-            vga_blackjack_out.vblnk    <= '0;
-            vga_blackjack_out.hcount   <= '0;
-            vga_blackjack_out.hsync    <= '0;
-            vga_blackjack_out.hblnk    <= '0;
-            vga_blackjack_out.rgb      <= '0;
-        end else begin
-            vga_blackjack_out.vcount <=  vga_blackjack_in.vcount;
-            vga_blackjack_out.vsync  <=  vga_blackjack_in.vsync;
-            vga_blackjack_out.vblnk  <=  vga_blackjack_in.vblnk;
-            vga_blackjack_out.hcount <=  vga_blackjack_in.hcount;
-            vga_blackjack_out.hsync  <=  vga_blackjack_in.hsync;
-            vga_blackjack_out.hblnk  <=  vga_blackjack_in.hblnk;
-            vga_blackjack_out.rgb    <=  wire_cd[8].rgb;
-        end
-    end
+    //----------------------------------------------------------------------------
 
 
     always_comb begin
-        state_nxt = state;
         case (state)
             IDLE: begin
-                for (int i = 0; i <= 8; i++) begin
-                    player_card_values_nxt[i] = 0;
-                    player_card_symbols_nxt[i] = 0;
-                end
+                player_card_values_nxt[0] = 0;
+                player_card_symbols_nxt[0] = 0;
+                player_card_values_nxt[1] = 0;
+                player_card_symbols_nxt[1] = 0;
+                player_card_values_nxt[2] = 0;
+                player_card_symbols_nxt[2] = 0;
+                player_card_values_nxt[3] = 0;
+                player_card_symbols_nxt[3] = 0;
+                player_card_values_nxt[4] = 0;
+                player_card_symbols_nxt[4] = 0;
+                player_card_values_nxt[5] = 0;
+                player_card_symbols_nxt[5] = 0;
+                player_card_values_nxt[6] = 0;
+                player_card_symbols_nxt[6] = 0;
+                player_card_values_nxt[7] = 0;
+                player_card_symbols_nxt[7] = 0;
+                player_card_values_nxt[8] = 0;
+                player_card_symbols_nxt[8] = 0;
+
                 player_card_count_nxt = 0;
-                card_chosen = 0;
-                state_nxt = left_mouse ? DEAL_CARDS : IDLE;
+                card_chosen_finished_nxt = 0;
+                deal_card_finished_nxt = 0;
             end
             DEAL_CARDS: begin
-                // Rozdanie kart graczowi i dealerowi
-                player_card_count_nxt = 1; // Gracz zaczyna z 2 kartami
                 player_card_values_nxt[0] = 5;
                 player_card_symbols_nxt[0] = 3;
                 player_card_values_nxt[1] = 1;
                 player_card_symbols_nxt[1] = 0;
+                player_card_values_nxt[2] = 0;
+                player_card_symbols_nxt[2] = 0;
+                player_card_values_nxt[3] = 0;
+                player_card_symbols_nxt[3] = 0;
+                player_card_values_nxt[4] = 0;
+                player_card_symbols_nxt[4] = 0;
+                player_card_values_nxt[5] = 0;
+                player_card_symbols_nxt[5] = 0;
+                player_card_values_nxt[6] = 0;
+                player_card_symbols_nxt[6] = 0;
+                player_card_values_nxt[7] = 0;
+                player_card_symbols_nxt[7] = 0;
+                player_card_values_nxt[8] = 0;
+                player_card_symbols_nxt[8] = 0;
+                
 
-                state_nxt = right_mouse ? PLAYER_TURN : DEAL_CARDS;
+                player_card_count_nxt = 1; 
+                card_chosen_finished_nxt = 0;
+                deal_card_finished_nxt = 1;
             end
             PLAYER_TURN: begin
-                for (int i = 0; i <= 1; i++) begin
-                    player_card_values_nxt[i] = player_card_values[i];
-                    player_card_symbols_nxt[i] = player_card_symbols[i];
-                    end
-                if(left_mouse == 1 && card_chosen == 0) begin 
-                    player_card_values_nxt[player_card_count] = 6;
-                    player_card_symbols_nxt[player_card_count] = 1;
-                    player_card_count_nxt = player_card_count + 1;
-                    card_chosen = 1;
-                end else if  ( left_mouse == 0) begin
-                    card_chosen = 0;
-                end 
-                state_nxt = (right_mouse && left_mouse) ? DEALER_TURN : PLAYER_TURN;
+                player_card_values_nxt[0] = SM_out.player_card_values[0];
+                player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
+                player_card_values_nxt[1] = SM_out.player_card_values[1];
+                player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
+                player_card_values_nxt[2] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[3] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[3] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[4] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[4] = SM_out.player_card_symbols[3];
+                player_card_values_nxt[5] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[5] = SM_out.player_card_symbols[4];
+                player_card_values_nxt[6] = SM_out.player_card_values[6];
+                player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
+                player_card_values_nxt[7] = SM_out.player_card_values[7];
+                player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
+                player_card_values_nxt[8] = SM_out.player_card_values[8];
+                player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
+                player_card_count_nxt = player_card_count; 
+                card_chosen_finished_nxt = 0;
+                deal_card_finished_nxt = 0;
                 
             end
+            PLAYER_CARD_CHOOSE : begin
+                player_card_values_nxt[0] = SM_out.player_card_values[0];
+                player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
+                player_card_values_nxt[1] = SM_out.player_card_values[1];
+                player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
+                player_card_values_nxt[2] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[3] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[3] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[4] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[4] = SM_out.player_card_symbols[3];
+                player_card_values_nxt[5] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[5] = SM_out.player_card_symbols[4];
+                player_card_values_nxt[6] = SM_out.player_card_values[6];
+                player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
+                player_card_values_nxt[7] = SM_out.player_card_values[7];
+                player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
+                player_card_values_nxt[8] = SM_out.player_card_values[8];
+                player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
+                player_card_values_nxt[player_card_count] = 12;
+                player_card_symbols_nxt[player_card_count] = 0;
+                player_card_count_nxt = player_card_count + 1;
+                card_chosen_finished_nxt = 1;
+                deal_card_finished_nxt = 0;
+            end
             DEALER_TURN: begin
-                state_nxt = left_mouse ? CHECK_WINNER : DEALER_TURN;
             end
             CHECK_WINNER: begin
-                // Sprawdzenie, kto wygrał
-                state_nxt = left_mouse ? IDLE : CHECK_WINNER;
+            end
+            default: begin 
             end
         endcase
     end
 
-
-
-
-    for (genvar i = 0; i <= 8; i++) begin : player_cards
-        if (i == 0) begin
-        card #(
-            .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
-            .CARD_YPOS(50)
-        ) u_card1 (
-            .clk(clk),
-            .rst(rst),
-    
-            .card_number(player_card_values[i]),
-            .card_symbol(player_card_symbols[i]),
-            .card_in(vga_blackjack_in),
-            .card_out(wire_cd[i])
-        );
-        end else if (i >= 1 && i <= 8) begin
-            card #(
-                .CARD_XPOS(150 + 30*i), // Ustaw pozycję x dla każdej karty
-                .CARD_YPOS(50)
-            ) u_card1 (
-                .clk(clk),
-                .rst(rst),
-        
-                .card_number(player_card_values[i]),
-                .card_symbol(player_card_symbols[i]),
-                .card_in(wire_cd[i-1]),
-                .card_out(wire_cd[i])
-            );
-        end 
-    end
     
       
     endmodule
-

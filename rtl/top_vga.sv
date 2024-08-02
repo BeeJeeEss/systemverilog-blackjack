@@ -39,6 +39,9 @@ module top_vga (
     vga_if wire_test();
     vga_if wire_delay_rect();
     vga_if wire_btn();
+    vga_if wire_card0();
+
+    SM_if wire_SM();
 // VGA signals from timing
 
 // VGA signals from background
@@ -127,10 +130,18 @@ module top_vga (
         .clk,
         .rst,
         .vga_blackjack_in(wire_bg),
-        .vga_blackjack_out(wire_test),
         .left_mouse(left_nxt),
-        .right_mouse(right_nxt)
+        .right_mouse(right_nxt),
+        .SM_out(wire_SM)
 
+    );
+
+    card u_card (
+        .clk,
+        .rst,
+        .SM_in(wire_SM),
+        .card_in(wire_bg),
+        .card_out(wire_test)
     );
 
     draw_buttons u_draw_buttons(
