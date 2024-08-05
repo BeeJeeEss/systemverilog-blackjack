@@ -14,6 +14,7 @@ module blackjack_FSM
         input  wire  rst,  // high-level active synchronous reset
         input  wire  left_mouse,
         input  wire  right_mouse,
+        input  wire  [5:0] total_value,
 
         input  wire  deal,
         input  wire  hit,
@@ -40,7 +41,8 @@ module blackjack_FSM
         DEALER_TURN = 3'b010,
         CHECK_WINNER = 3'b110,
         PLAYER_CARD_CHOOSE = 3'b100,
-        DEALER_CARD_CHOOSE = 3'b101
+        DEALER_CARD_CHOOSE = 3'b101,
+        PLAYER_SCORE_CHECK = 3'b111
     } state, state_nxt;
 
 
@@ -57,7 +59,10 @@ module blackjack_FSM
     logic card_chosen_finished_nxt;
     logic deal_card_finished;
     logic deal_card_finished_nxt;
-
+    logic lose;
+    logic lose_nxt;
+    logic counter;
+    logic counter_nxt;
 
 
 
@@ -93,6 +98,8 @@ module blackjack_FSM
                 player_card_count <= 0;
                 card_chosen_finished <= 0;
                 deal_card_finished <= 0;
+                lose <= 0;
+                counter <= 0 ;
                 state_btn <= 0;
                 state <= IDLE;
             end
@@ -113,12 +120,14 @@ module blackjack_FSM
                 SM_out.player_card_symbols[6] <= player_card_symbols_nxt[6];
                 SM_out.player_card_values[7] <= player_card_values_nxt[7];
                 SM_out.player_card_symbols[7] <= player_card_symbols_nxt[7];
-                SM_out.player_card_values[8] <= player_card_values_nxt[7];
-                SM_out.player_card_symbols[8] <= player_card_symbols_nxt[7];
+                SM_out.player_card_values[8] <= player_card_values_nxt[8];
+                SM_out.player_card_symbols[8] <= player_card_symbols_nxt[8];
 
                 player_card_count <= player_card_count_nxt;
                 card_chosen_finished <= card_chosen_finished_nxt;
                 deal_card_finished <= deal_card_finished_nxt;
+                lose <= lose_nxt;
+                counter <= counter_nxt;
                 state_btn <= state_btn_nxt;
                 state <= state_nxt;
             end
@@ -134,10 +143,11 @@ module blackjack_FSM
 
         case(state)
 
-            IDLE:               state_nxt = deal ? DEAL_CARDS : IDLE; //deal l
+            IDLE:               state_nxt = deal ? DEAL_CARDS : IDLE;
             DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
-            PLAYER_TURN:        state_nxt = stand ? DEALER_TURN : (hit ? PLAYER_CARD_CHOOSE : PLAYER_TURN); //stand,hit lr
+            PLAYER_TURN:        state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? DEALER_TURN : PLAYER_TURN);
             PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? PLAYER_TURN : PLAYER_CARD_CHOOSE;
+            // PLAYER_SCORE_CHECK: state_nxt = lose ? DEALER_TURN : PLAYER_TURN;
             DEALER_TURN:        state_nxt = left_mouse ? IDLE : DEALER_TURN;
             default:            state_nxt = IDLE;
 
@@ -151,6 +161,24 @@ module blackjack_FSM
 
 
     always_comb begin
+        player_card_values_nxt[0] = SM_out.player_card_values[0];
+        player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
+        player_card_values_nxt[1] = SM_out.player_card_values[1];
+        player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
+        player_card_values_nxt[2] = SM_out.player_card_values[2];
+        player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
+        player_card_values_nxt[3] = SM_out.player_card_values[3];
+        player_card_symbols_nxt[3] = SM_out.player_card_symbols[3];
+        player_card_values_nxt[4] = SM_out.player_card_values[4];
+        player_card_symbols_nxt[4] = SM_out.player_card_symbols[4];
+        player_card_values_nxt[5] = SM_out.player_card_values[5];
+        player_card_symbols_nxt[5] = SM_out.player_card_symbols[5];
+        player_card_values_nxt[6] = SM_out.player_card_values[6];
+        player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
+        player_card_values_nxt[7] = SM_out.player_card_values[7];
+        player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
+        player_card_values_nxt[8] = SM_out.player_card_values[8];
+        player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
         case (state)
             IDLE: begin
                 player_card_values_nxt[0] = 0;
@@ -176,11 +204,13 @@ module blackjack_FSM
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
                 state_btn_nxt = 0;
+                lose_nxt = 0;
+                counter_nxt = 0;
             end
             DEAL_CARDS: begin
                 player_card_values_nxt[0] = 5;
                 player_card_symbols_nxt[0] = 3;
-                player_card_values_nxt[1] = 1;
+                player_card_values_nxt[1] = 3;
                 player_card_symbols_nxt[1] = 0;
                 player_card_values_nxt[2] = 0;
                 player_card_symbols_nxt[2] = 0;
@@ -198,61 +228,46 @@ module blackjack_FSM
                 player_card_symbols_nxt[8] = 0;
 
 
-                player_card_count_nxt = 1;
+                player_card_count_nxt = 2;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 1;
                 state_btn_nxt = 1;
+                // lose_nxt = 0;
+                counter_nxt = 0;
             end
             PLAYER_TURN: begin
-                player_card_values_nxt[0] = SM_out.player_card_values[0];
-                player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
-                player_card_values_nxt[1] = SM_out.player_card_values[1];
-                player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
-                player_card_values_nxt[2] = SM_out.player_card_values[2];
-                player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
-                player_card_values_nxt[3] = SM_out.player_card_values[2];
-                player_card_symbols_nxt[3] = SM_out.player_card_symbols[2];
-                player_card_values_nxt[4] = SM_out.player_card_values[3];
-                player_card_symbols_nxt[4] = SM_out.player_card_symbols[3];
-                player_card_values_nxt[5] = SM_out.player_card_values[3];
-                player_card_symbols_nxt[5] = SM_out.player_card_symbols[4];
-                player_card_values_nxt[6] = SM_out.player_card_values[6];
-                player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
-                player_card_values_nxt[7] = SM_out.player_card_values[7];
-                player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
-                player_card_values_nxt[8] = SM_out.player_card_values[8];
-                player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
                 player_card_count_nxt = player_card_count;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
                 state_btn_nxt = 1;
-
+                lose_nxt = 0;
+                if (hit == 0) begin
+                    counter_nxt = 0;
+                end else if (hit == 1) begin
+                    counter_nxt = counter;
+                end
             end
             PLAYER_CARD_CHOOSE : begin
-                player_card_values_nxt[0] = SM_out.player_card_values[0];
-                player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
-                player_card_values_nxt[1] = SM_out.player_card_values[1];
-                player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
-                player_card_values_nxt[2] = SM_out.player_card_values[2];
-                player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
-                player_card_values_nxt[3] = SM_out.player_card_values[2];
-                player_card_symbols_nxt[3] = SM_out.player_card_symbols[2];
-                player_card_values_nxt[4] = SM_out.player_card_values[3];
-                player_card_symbols_nxt[4] = SM_out.player_card_symbols[3];
-                player_card_values_nxt[5] = SM_out.player_card_values[3];
-                player_card_symbols_nxt[5] = SM_out.player_card_symbols[4];
-                player_card_values_nxt[6] = SM_out.player_card_values[6];
-                player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
-                player_card_values_nxt[7] = SM_out.player_card_values[7];
-                player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
-                player_card_values_nxt[8] = SM_out.player_card_values[8];
-                player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
-                player_card_values_nxt[player_card_count] = 12;
-                player_card_symbols_nxt[player_card_count] = 0;
-                player_card_count_nxt = player_card_count + 1;
-                card_chosen_finished_nxt = 1;
+                if (counter == 0) begin
+                    counter_nxt = counter + 1;
+                    player_card_values_nxt[player_card_count] = 3;
+                    player_card_symbols_nxt[player_card_count] = 1;
+                    player_card_count_nxt = player_card_count + 1;
+                end else if (counter >= 1) begin
+                    player_card_count_nxt = player_card_count;
+                end
+                state_btn_nxt = 1;
                 deal_card_finished_nxt = 0;
+                lose_nxt = 0;
+                card_chosen_finished_nxt = 1;
             end
+
+            // PLAYER_SCORE_CHECK: begin
+            //     // if (total_value >= 22) begin
+            //     //     lose_nxt = 1;
+            //     // end else
+            //     lose_nxt = 0;
+            // end
             DEALER_TURN: begin
                 state_btn_nxt = 2;
             end
