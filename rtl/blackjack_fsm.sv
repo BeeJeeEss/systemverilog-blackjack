@@ -13,7 +13,6 @@ module blackjack_FSM
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
         input  wire  left_mouse,
-        input  wire  right_mouse,
 
         input  wire  deal,
         input  wire  hit,
@@ -40,7 +39,8 @@ module blackjack_FSM
         DEALER_TURN = 3'b010,
         CHECK_WINNER = 3'b110,
         PLAYER_CARD_CHOOSE = 3'b100,
-        DEALER_CARD_CHOOSE = 3'b101
+        DEALER_CARD_CHOOSE = 3'b101,
+        NOTHING = 3'b111
     } state, state_nxt;
 
 
@@ -137,9 +137,9 @@ module blackjack_FSM
             IDLE:               state_nxt = deal ? DEAL_CARDS : IDLE; //deal l
             DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
             PLAYER_TURN:        state_nxt = stand ? DEALER_TURN : (hit ? PLAYER_CARD_CHOOSE : PLAYER_TURN); //stand,hit lr
-            PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? PLAYER_TURN : PLAYER_CARD_CHOOSE;
+             PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? NOTHING : PLAYER_CARD_CHOOSE;
             DEALER_TURN:        state_nxt = left_mouse ? IDLE : DEALER_TURN;
-            default:            state_nxt = IDLE;
+            // default:            state_nxt = IDLE;
 
         endcase
 
@@ -203,6 +203,27 @@ module blackjack_FSM
                 deal_card_finished_nxt = 1;
                 state_btn_nxt = 1;
             end
+            NOTHING: begin
+                player_card_values_nxt[0] = SM_out.player_card_values[0];
+                player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
+                player_card_values_nxt[1] = SM_out.player_card_values[1];
+                player_card_symbols_nxt[1] = SM_out.player_card_symbols[1];
+                player_card_values_nxt[2] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[2] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[3] = SM_out.player_card_values[2];
+                player_card_symbols_nxt[3] = SM_out.player_card_symbols[2];
+                player_card_values_nxt[4] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[4] = SM_out.player_card_symbols[3];
+                player_card_values_nxt[5] = SM_out.player_card_values[3];
+                player_card_symbols_nxt[5] = SM_out.player_card_symbols[4];
+                player_card_values_nxt[6] = SM_out.player_card_values[6];
+                player_card_symbols_nxt[6] = SM_out.player_card_symbols[6];
+                player_card_values_nxt[7] = SM_out.player_card_values[7];
+                player_card_symbols_nxt[7] = SM_out.player_card_symbols[7];
+                player_card_values_nxt[8] = SM_out.player_card_values[8];
+                player_card_symbols_nxt[8] = SM_out.player_card_symbols[8];
+                state_btn_nxt = 2;
+            end
             PLAYER_TURN: begin
                 player_card_values_nxt[0] = SM_out.player_card_values[0];
                 player_card_symbols_nxt[0] = SM_out.player_card_symbols[0];
@@ -251,7 +272,9 @@ module blackjack_FSM
                 player_card_symbols_nxt[player_card_count] = 0;
                 player_card_count_nxt = player_card_count + 1;
                 card_chosen_finished_nxt = 1;
+                state_btn_nxt = 1;
                 deal_card_finished_nxt = 0;
+//                state_nxt = NOTHING;
             end
             DEALER_TURN: begin
                 state_btn_nxt = 2;

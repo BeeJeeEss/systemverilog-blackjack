@@ -99,6 +99,8 @@ module top_vga (
     wire left_nxt;
     wire right_nxt;
 
+    wire pulse;
+
     wire deal;
     wire hit;
     wire stand;
@@ -136,7 +138,6 @@ module top_vga (
         .rst,
         .vga_blackjack_in(wire_bg),
         .left_mouse(left_nxt),
-        .right_mouse(right_nxt),
         .SM_out(wire_SM),
         .deal(deal),
         .hit(hit),
