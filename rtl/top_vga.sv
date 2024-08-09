@@ -71,7 +71,7 @@ module top_vga (
     draw_bg u_draw_bg (
         .clk,
         .rst,
-        .total(total_player_value),
+        // .total(total_player_value),
 
         .vga_bg_in(wire_tim),
         .vga_bg_out(wire_bg)

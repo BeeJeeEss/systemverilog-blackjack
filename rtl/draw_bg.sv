@@ -7,20 +7,17 @@
   * Draw background.
   */
 
-
  `timescale 1 ns / 1 ps
 
 module draw_bg (
         input  logic clk,
         input  logic rst,
-        input  logic [5:0] total,
 
         vga_if.out vga_bg_out,
         vga_if.in vga_bg_in
     );
 
     import vga_pkg::*;
-
 
     /**
      * Local variables and signals
@@ -52,29 +49,23 @@ module draw_bg (
         end
     end
 
-
-
     always_comb begin : bg_comb_blk
-        if ( vga_bg_in.vblnk ||  vga_bg_in.hblnk) begin             // Blanking region:
-            rgb_nxt = 12'h0_0_0;                    // - make it it black.
-        end else begin                              // Active region:
-            if ( vga_bg_in.vcount == 0)                     // - top edge:
-                rgb_nxt = 12'hf_f_0;                // - - make a yellow line.
-            else if ( vga_bg_in.vcount == VER_PIXELS - 1)   // - bottom edge:
-                rgb_nxt = 12'hf_0_0;                // - - make a red line.
-            else if ( vga_bg_in.hcount == 0)                // - left edge:
-                rgb_nxt = 12'h0_f_0;                // - - make a green line.
-            else if ( vga_bg_in.hcount == HOR_PIXELS - 1)   // - right edge:
-                rgb_nxt = 12'h0_0_f;                // - - make a blue line.
-            else if ( vga_bg_in.hcount == 550)
-                rgb_nxt = 12'h0_0_f;
-            else if ( vga_bg_in.hcount == 550 + total)
-                rgb_nxt = 12'h0_0_f;
-
-            // Add your code here.
-
-            else                                    // The rest of active display pixels:
-                rgb_nxt = 12'h8_8_8;                // - fill with gray.
+        if (vga_bg_in.vblnk || vga_bg_in.hblnk) begin  // Blanking region:
+            rgb_nxt = 12'h0_0_0;                       // - make it black.
+        end else begin                                 // Active region:
+            // Draw the green table background
+            if ((vga_bg_in.hcount > 100) && (vga_bg_in.hcount < 924) &&
+                    (vga_bg_in.vcount > 100) && (vga_bg_in.vcount < 668)) begin
+                rgb_nxt = 12'h0_a_0;                   // Green table
+            end
+            // Decorate the edges with gold
+            else if (vga_bg_in.vcount < 20 || vga_bg_in.vcount > (VER_PIXELS - 20) ||
+                    vga_bg_in.hcount < 20 || vga_bg_in.hcount > (HOR_PIXELS - 20)) begin
+                rgb_nxt = 12'hf_a_5;                   // Gold border
+            end
+            else begin
+                rgb_nxt = 12'h0_8_0;                   // Darker green for the rest of the table
+            end
         end
     end
 

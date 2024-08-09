@@ -36,8 +36,8 @@ module card (
 
 
     draw_card #(
-        .CARD_XPOS(150),
-        .CARD_YPOS(80),
+        .CARD_XPOS(437),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(0)
     ) u_draw_card0 (
         .clk,
@@ -63,8 +63,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(180),
-        .CARD_YPOS(80),
+        .CARD_XPOS(467),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(1)
     ) u_draw_card1 (
         .clk,
@@ -90,8 +90,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(210),
-        .CARD_YPOS(80),
+        .CARD_XPOS(497),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(2)
     ) u_draw_card2 (
         .clk,
@@ -117,8 +117,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(240),
-        .CARD_YPOS(80),
+        .CARD_XPOS(527),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(3)
     ) u_draw_card3 (
         .clk,
@@ -144,8 +144,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(270),
-        .CARD_YPOS(80),
+        .CARD_XPOS(557),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(4)
     ) u_draw_card4 (
         .clk,
@@ -171,8 +171,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(300),
-        .CARD_YPOS(80),
+        .CARD_XPOS(587),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(5)
     ) u_draw_card5 (
         .clk,
@@ -198,8 +198,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(330),
-        .CARD_YPOS(80),
+        .CARD_XPOS(617),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(6)
     ) u_draw_card6 (
         .clk,
@@ -225,8 +225,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(360),
-        .CARD_YPOS(80),
+        .CARD_XPOS(647),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(7)
     ) u_draw_card7 (
         .clk,
@@ -252,8 +252,8 @@ module card (
     );
 
     draw_card #(
-        .CARD_XPOS(390),
-        .CARD_YPOS(80),
+        .CARD_XPOS(677),
+        .CARD_YPOS(550),
         .MODULE_NUMBER(8)
     ) u_draw_card8 (
         .clk,
