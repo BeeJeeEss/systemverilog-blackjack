@@ -43,7 +43,8 @@ module top_vga (
 
     SM_if wire_SM();
 
-    wire [5:0] total_player_value;
+    wire [4:0] total_player_value;
+    wire [4:0] total_dealer_value;
 // VGA signals from timing
 
 // VGA signals from background
@@ -71,7 +72,6 @@ module top_vga (
     draw_bg u_draw_bg (
         .clk,
         .rst,
-        // .total(total_player_value),
 
         .vga_bg_in(wire_tim),
         .vga_bg_out(wire_bg)
@@ -139,7 +139,8 @@ module top_vga (
         .clk,
         .rst,
         .card_if(wire_SM),
-        .total_players_value(total_player_value)
+        .total_players_value(total_player_value),
+        .total_dealer_value(total_dealer_value)
     );
 
     blackjack_FSM blackjack_FSM (
@@ -152,7 +153,8 @@ module top_vga (
         .deal(deal),
         .hit(hit),
         .stand(stand),
-        .total_value(total_player_value),
+        .total_player_value(total_player_value),
+        .total_dealer_value(total_dealer_value),
         .state_btn(fsm_state)
     );
 
