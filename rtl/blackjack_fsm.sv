@@ -52,9 +52,7 @@ module blackjack_FSM
 
 
     logic [3:0] player_card_values_nxt [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
-    logic [1:0] player_card_symbols_nxt [8:0];
     logic [3:0] dealer_card_values_nxt [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
-    logic [1:0] dealer_card_symbols_nxt [8:0];
     logic [3:0] player_card_count;
     logic [3:0] player_card_count_nxt;
     logic [3:0] dealer_card_count;
@@ -96,11 +94,9 @@ module blackjack_FSM
             if(rst)begin : state_seq_rst_blk
                 for (int i = 0; i <= 8; i++) begin
                     SM_out.player_card_values[i] <= 0;
-                    SM_out.player_card_symbols[i] <= 0;
                 end
                 for (int i = 0; i <= 8; i++) begin
                     SM_out.dealer_card_values[i] <= 0;
-                    SM_out.dealer_card_symbols[i] <= 0;
                 end
                 player_card_count <= 0;
                 card_chosen_finished <= 0;
@@ -117,11 +113,9 @@ module blackjack_FSM
             else begin : state_seq_run_blk
                 for (int i = 0; i <= 8; i++) begin
                     SM_out.player_card_values[i] <= player_card_values_nxt[i];
-                    SM_out.player_card_symbols[i] <= player_card_symbols_nxt[i];
                 end
                 for (int i = 0; i <= 8; i++) begin
                     SM_out.dealer_card_values[i] <= dealer_card_values_nxt[i];
-                    SM_out.dealer_card_symbols[i] <= dealer_card_symbols_nxt[i];
                 end
                 player_card_count <= player_card_count_nxt;
                 card_chosen_finished <= card_chosen_finished_nxt;
@@ -172,11 +166,9 @@ module blackjack_FSM
     always_comb begin
         for (int i = 0; i <= 8; i++) begin
             player_card_values_nxt[i] = SM_out.player_card_values[i];
-            player_card_symbols_nxt[i] = SM_out.player_card_symbols[i];
         end
         for (int i = 0; i <= 8; i++) begin
             dealer_card_values_nxt[i] = SM_out.dealer_card_values[i];
-            dealer_card_symbols_nxt[i] = SM_out.dealer_card_symbols[i];
         end
         check_winner_finshed_nxt = check_winner_finshed;
         player_card_count_nxt = player_card_count;
@@ -193,13 +185,11 @@ module blackjack_FSM
         deal_turn_finished_nxt = deal_turn_finished;
         case (state)
             IDLE: begin
-                for (int i = 0; i <= 8; i++) begin
+                for (int i = 0; i <= 4; i++) begin
                     player_card_values_nxt[i] = 0;
-                    player_card_symbols_nxt[i] = 0;
                 end
-                for (int i = 0; i <= 8; i++) begin
+                for (int i = 0; i <= 4; i++) begin
                     dealer_card_values_nxt[i] = 0;
-                    dealer_card_symbols_nxt[i] = 0;
                 end
 
                 player_card_count_nxt = 0;
@@ -217,11 +207,8 @@ module blackjack_FSM
             end
             DEAL_CARDS: begin
                 player_card_values_nxt[0] = 10;
-                player_card_symbols_nxt[0] = 3;
                 player_card_values_nxt[1] = 9;
-                player_card_symbols_nxt[1] = 0;
                 dealer_card_values_nxt[0] = 10;
-                dealer_card_symbols_nxt[0] = 3;
 
                 player_card_count_nxt = 2;
                 dealer_card_count_nxt = 1;
@@ -242,7 +229,6 @@ module blackjack_FSM
                 if (counter == 0) begin
                     counter_nxt = counter + 1;
                     player_card_values_nxt[player_card_count] = 1;
-                    player_card_symbols_nxt[player_card_count] = 1;
                     player_card_count_nxt = player_card_count + 1;
                 end
                 state_btn_nxt = 1;
@@ -260,7 +246,6 @@ module blackjack_FSM
             end
             DEALER_TURN: begin
                 dealer_card_values_nxt[dealer_card_count] = 5;
-                dealer_card_symbols_nxt[dealer_card_count] = 1;
                 dealer_card_count_nxt = dealer_card_count + 1;
                 deal_turn_finished_nxt = 1;
             end

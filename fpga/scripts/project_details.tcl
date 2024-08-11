@@ -65,8 +65,5 @@ set vhdl_files {
 
 # Specify files for a memory initialization     -- EDIT
 set mem_files {
-   rtl/card/card_data/trefl.dat
-   rtl/card/card_data/serce.dat
-   rtl/card/card_data/pik.dat
-   rtl/card/card_data/romb.dat
+   rtl/card/card_data/KB.dat
 }
