@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-10 10:55:53
+Created: 2024-08-11 11:54:59
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/vga_timing.sv:6]
@@ -216,6 +216,7 @@ WARNING: [Synth 8-7129] Port image_in\.dealer_card_symbols[3][1] in module image
 WARNING: [Synth 8-7129] Port image_in\.dealer_card_symbols[3][0] in module image_rom_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port image_in\.dealer_card_symbols[4][1] in module image_rom_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port image_in\.dealer_card_symbols[4][0] in module image_rom_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 
 ----IMPLEMENTATION----
 CLEAR :)

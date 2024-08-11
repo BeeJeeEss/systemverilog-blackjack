@@ -29,7 +29,6 @@ module image_rom_card
 		SM_if.in image_in
 	);
 
-	logic [1:0] card_symbols [0:8];
 
 
 	(* rom_style = "block" *) // block || distributed
@@ -38,32 +37,17 @@ module image_rom_card
 
 
 
-	case (KIND_OF_CARDS)
-		0: begin
-			assign card_symbols = image_in.player_card_symbols;
-		end
-		1: begin
-			assign card_symbols = image_in.dealer_card_symbols;
-		end
-		default:
-			assign card_symbols = image_in.player_card_symbols;
-	endcase
-
 
 
 	always_ff @(posedge clk) begin : rom_read_blk
-		dout <= rom[card_symbols[MODULE_NUMBER]][addrA];
+		dout <= rom[0][addrA];
 	end
 
 
 
 
 
-	initial begin
-		$readmemh("../../rtl/card/card_data/trefl.dat", rom[0]);
-		$readmemh("../../rtl/card/card_data/pik.dat", rom[1]);
-		$readmemh("../../rtl/card/card_data/serce.dat", rom[2]);
-		$readmemh("../../rtl/card/card_data/romb.dat", rom[3]);
-	end
+	initial
+		$readmemh("../../rtl/card/card_data/KB.dat", rom[0]);
 
 endmodule

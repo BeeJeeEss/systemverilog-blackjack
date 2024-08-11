@@ -5,7 +5,7 @@
  Author:        Konrad Sawina
  */
 //////////////////////////////////////////////////////////////////////////////
-module draw_card
+ module draw_card
     #( parameter
         CARD_XPOS = 20,
         CARD_YPOS = 30,
@@ -30,8 +30,8 @@ module draw_card
     //------------------------------------------------------------------------------
     localparam CARD_HEIGHT = 80;
     localparam CARD_WIDTH = 56;
-    localparam CARD_TYPE_HEIGHT = 40;
-    localparam CARD_TYPE_WIDTH = 40;
+    localparam CARD_TYPE_HEIGHT = 50;
+    localparam CARD_TYPE_WIDTH = 50;
 
     //------------------------------------------------------------------------------
     // local variables
@@ -101,27 +101,17 @@ module draw_card
     //------------------------------------------------------------------------------
     case (KIND_OF_CARDS)
         0: begin
-            assign card_symbols = SM_in.player_card_symbols;
             assign card_values = SM_in.player_card_values;
         end
         1: begin
-            assign card_symbols = SM_in.dealer_card_symbols;
             assign card_values = SM_in.dealer_card_values;
         end
         default: begin
-            assign card_symbols = SM_in.player_card_symbols;
             assign card_values = SM_in.player_card_values;
         end
     endcase
 
     always_comb begin : card_comb_blk2
-        case(card_symbols[MODULE_NUMBER])
-            2'b00: color = 12'h0_0_0;
-            2'b01: color = 12'h0_0_0;
-            2'b10: color = 12'hf_0_0;
-            2'b11: color = 12'hf_0_0;
-            default: color = 12'hF_F_F;
-        endcase
         if (vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount <= CARD_YPOS + CARD_HEIGHT &&
                 vga_card_in.hcount >= CARD_XPOS && vga_card_in.hcount <= CARD_XPOS + CARD_WIDTH) begin
 
@@ -281,9 +271,9 @@ module draw_card
         end else begin
             rgb_nxt = delayed_rgb;
         end
-        if ((vga_card_in.hcount - 1 >= (CARD_XPOS + 7)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 7)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 20) && vga_card_in.vcount + 1 <= (CARD_YPOS + 20)+CARD_TYPE_HEIGHT) && (card_values[MODULE_NUMBER] != 0)) begin
+        if ((vga_card_in.hcount - 1 >= (CARD_XPOS + 2)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 2)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 15) && vga_card_in.vcount + 1 <= (CARD_YPOS + 15)+CARD_TYPE_HEIGHT) && (card_values[MODULE_NUMBER] != 0)) begin
                 rgb_nxt = rgb_pixel;
-                pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 20) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 7);
+                pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 15) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 2);
                 end
                 else begin
                 pixel_addr_nxt = 0;
