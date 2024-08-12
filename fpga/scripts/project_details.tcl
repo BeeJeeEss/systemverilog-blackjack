@@ -48,6 +48,7 @@ set sv_files {
     ../rtl/buttons/buttons_click.sv
     ../rtl/calculate_card.sv
     ../rtl/SM_if.sv 
+    ../rtl/LFSR.sv
     rtl/top_vga_basys3.sv
 }
 

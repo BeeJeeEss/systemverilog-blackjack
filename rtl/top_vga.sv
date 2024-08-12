@@ -106,6 +106,7 @@ module top_vga (
     wire hit;
     wire stand;
 
+    wire [3:0] rnd;
     hold_mouse u_hold_mouse(
         .clk,
         .rst,
@@ -155,7 +156,8 @@ module top_vga (
         .stand(stand),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
-        .state_btn(fsm_state)
+        .state_btn(fsm_state),
+        .rnd(rnd)
     );
 
     card u_card (
@@ -185,4 +187,9 @@ module top_vga (
         .stand(stand)
     );
 
+    LFSR u_LFSR(
+        .clk,
+        .rst,
+        .rnd(rnd)
+    );
 endmodule

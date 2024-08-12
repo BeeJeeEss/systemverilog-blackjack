@@ -24,6 +24,7 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/buttons/draw_buttons.sv \
         ../../rtl/buttons/letters_bitmap.sv \
         ../../rtl/buttons/buttons_click.sv \
+        ../../rtl/LFSR.sv \
         ../../rtl/SM_if.sv \
         ../../rtl/calculate_card.sv \
         ../common/tiff_writer.sv \
