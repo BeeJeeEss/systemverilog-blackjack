@@ -25,6 +25,7 @@ sv work ../../rtl/vga_pkg.sv \
         ../../rtl/buttons/letters_bitmap.sv \
         ../../rtl/buttons/buttons_click.sv \
         ../../rtl/SM_if.sv \
+        ../../rtl/calculate_card.sv \
         ../common/tiff_writer.sv \
         top_vga_tb.sv
 

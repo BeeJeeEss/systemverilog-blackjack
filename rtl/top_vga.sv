@@ -1,18 +1,18 @@
-/**
- * San Jose State University
- * EE178 Lab #4
- * Author: prof. Eric Crabilla
- *
- * Modified by:
- * 2023  AGH University of Science and Technology
- * MTM UEC2
- * Piotr Kaczmarczyk
- *
- * Description:
- * The project top module.
- */
+ /**
+  * San Jose State University
+  * EE178 Lab #4
+  * Author: prof. Eric Crabilla
+  *
+  * Modified by:
+  * 2023  AGH University of Science and Technology
+  * MTM UEC2
+  * Piotr Kaczmarczyk
+  *
+  * Description:
+  * The project top module.
+  */
 
-`timescale 1 ns / 1 ps
+ `timescale 1 ns / 1 ps
 
 module top_vga (
 
@@ -42,9 +42,12 @@ module top_vga (
     vga_if wire_card0();
 
     SM_if wire_SM();
-// VGA signals from timing
 
-// VGA signals from background
+    wire [4:0] total_player_value;
+    wire [4:0] total_dealer_value;
+    // VGA signals from timing
+
+    // VGA signals from background
 
 
     /**
@@ -99,8 +102,6 @@ module top_vga (
     wire left_nxt;
     wire right_nxt;
 
-    wire pulse;
-
     wire deal;
     wire hit;
     wire stand;
@@ -132,16 +133,28 @@ module top_vga (
         .ypos(ypos_nxt)
     );
 
-    logic [2:0] fsm_state;
+    wire [2:0] fsm_state;
+
+    calculate_card u_calculate_card(
+        .clk,
+        .rst,
+        .card_if(wire_SM),
+        .total_players_value(total_player_value),
+        .total_dealer_value(total_dealer_value)
+    );
+
     blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
         .vga_blackjack_in(wire_bg),
         .left_mouse(left_nxt),
+        .right_mouse(right_nxt),
         .SM_out(wire_SM),
         .deal(deal),
         .hit(hit),
         .stand(stand),
+        .total_player_value(total_player_value),
+        .total_dealer_value(total_dealer_value),
         .state_btn(fsm_state)
     );
 

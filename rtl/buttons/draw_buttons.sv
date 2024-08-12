@@ -20,20 +20,19 @@ module draw_buttons (
 
     import vga_pkg::*;
 
-    // Parameters for button positions and sizes
-    parameter int btn1_x = 100;
-    parameter int btn1_y = 400;
+    // Button parameters with specific positions
+    parameter int btn1_x = 342;   // First button position (X-axis)
+    parameter int btn1_y = 668;   // All buttons positioned 50 pixels from the bottom
     parameter int btn1_width = 100;
     parameter int btn1_height = 50;
 
-    parameter int btn2_x = 300;
-    parameter int btn2_y = 400;
+    parameter int btn2_x = 462;   // Second button positioned 120 pixels to the right of the first
+    parameter int btn2_y = 668;
     parameter int btn2_width = 100;
     parameter int btn2_height = 50;
 
-    // Adding third button parameters
-    parameter int btn3_x = 500;
-    parameter int btn3_y = 400;
+    parameter int btn3_x = 582;   // Third button positioned 120 pixels to the right of the second
+    parameter int btn3_y = 668;
     parameter int btn3_width = 100;
     parameter int btn3_height = 50;
 

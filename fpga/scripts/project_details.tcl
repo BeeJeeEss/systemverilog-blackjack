@@ -46,6 +46,7 @@ set sv_files {
     ../rtl/buttons/draw_buttons.sv
     ../rtl/buttons/letters_bitmap.sv
     ../rtl/buttons/buttons_click.sv
+    ../rtl/calculate_card.sv
     ../rtl/SM_if.sv 
     rtl/top_vga_basys3.sv
 }
@@ -64,8 +65,5 @@ set vhdl_files {
 
 # Specify files for a memory initialization     -- EDIT
 set mem_files {
-   rtl/card/card_data/trefl.dat
-   rtl/card/card_data/serce.dat
-   rtl/card/card_data/pik.dat
-   rtl/card/card_data/romb.dat
+   rtl/card/card_data/KB.dat
 }

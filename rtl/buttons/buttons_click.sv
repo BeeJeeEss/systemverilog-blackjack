@@ -1,11 +1,11 @@
-   /**
-    * Author: Borys Strzebonski
-    *
-    * Description:
-    * Draw buttons with texts DEAL, HIT, and STAND. Buttons depend on input 'state'.
-    */
+    /**
+     * Author: Borys Strzebonski
+     *
+     * Description:
+     * Draw buttons with texts DEAL, HIT, and STAND. Buttons depend on input 'state'.
+     */
 
-   `timescale 1 ns / 1 ps
+    `timescale 1 ns / 1 ps
 
 module buttons_click (
         input  wire clk,
@@ -27,7 +27,7 @@ module buttons_click (
 
     logic [11:0] counter;
     assign counter = 0;
-    
+
     always_ff @(posedge clk) begin : bg_ff_blk
         if (rst) begin
             deal <= 0;
@@ -46,13 +46,13 @@ module buttons_click (
         stand_nxt = 0;
         if (left_mouse) begin
 
-            if((mouse_x >= 100)&&(mouse_x<=200)&&(mouse_y>=400)&&(mouse_y<=450))  begin
+            if((mouse_x >= 342)&&(mouse_x<=442)&&(mouse_y>=668)&&(mouse_y<=718))  begin
                 deal_nxt = 1;
             end
-            else if((mouse_x >= 300)&&(mouse_x<=400)&&(mouse_y>=400)&&(mouse_y<=450)) begin
+            else if((mouse_x >= 462)&&(mouse_x<=562)&&(mouse_y>=668)&&(mouse_y<=718)) begin
                 hit_nxt = 1;
             end
-            else if((mouse_x >= 500)&&(mouse_x<=600)&&(mouse_y>=400)&&(mouse_y<=450)) begin
+            else if((mouse_x >= 582)&&(mouse_x<=682)&&(mouse_y>=668)&&(mouse_y<=718)) begin
                 stand_nxt = 1;
             end
         end
