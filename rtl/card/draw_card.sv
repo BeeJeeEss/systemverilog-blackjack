@@ -5,7 +5,7 @@
  Author:        Konrad Sawina
  */
 //////////////////////////////////////////////////////////////////////////////
- module draw_card
+module draw_card
     #( parameter
         CARD_XPOS = 20,
         CARD_YPOS = 30,
@@ -272,13 +272,13 @@
             rgb_nxt = delayed_rgb;
         end
         if ((vga_card_in.hcount - 1 >= (CARD_XPOS + 2)  && vga_card_in.hcount - 1 <= (CARD_XPOS + 2)+CARD_TYPE_WIDTH && vga_card_in.vcount >= (CARD_YPOS + 15) && vga_card_in.vcount + 1 <= (CARD_YPOS + 15)+CARD_TYPE_HEIGHT) && (card_values[MODULE_NUMBER] != 0)) begin
-                rgb_nxt = rgb_pixel;
-                pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 15) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 2);
-                end
-                else begin
-                pixel_addr_nxt = 0;
-                end
-                end
+            rgb_nxt = rgb_pixel;
+            pixel_addr_nxt = (vga_card_in.vcount - (CARD_YPOS + 15) )*CARD_TYPE_WIDTH + vga_card_in.hcount - (CARD_XPOS + 2);
+        end
+        else begin
+            pixel_addr_nxt = 0;
+        end
+    end
 
 
-                endmodule
+endmodule

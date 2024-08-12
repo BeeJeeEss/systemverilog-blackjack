@@ -1,18 +1,18 @@
-/**
- * San Jose State University
- * EE178 Lab #4
- * Author: prof. Eric Crabilla
- *
- * Modified by:
- * 2023  AGH University of Science and Technology
- * MTM UEC2
- * Piotr Kaczmarczyk
- *
- * Description:
- * The project top module.
- */
+ /**
+  * San Jose State University
+  * EE178 Lab #4
+  * Author: prof. Eric Crabilla
+  *
+  * Modified by:
+  * 2023  AGH University of Science and Technology
+  * MTM UEC2
+  * Piotr Kaczmarczyk
+  *
+  * Description:
+  * The project top module.
+  */
 
-`timescale 1 ns / 1 ps
+ `timescale 1 ns / 1 ps
 
 module top_vga (
 
@@ -45,9 +45,9 @@ module top_vga (
 
     wire [4:0] total_player_value;
     wire [4:0] total_dealer_value;
-// VGA signals from timing
+    // VGA signals from timing
 
-// VGA signals from background
+    // VGA signals from background
 
 
     /**
@@ -106,6 +106,7 @@ module top_vga (
     wire hit;
     wire stand;
 
+    wire [3:0] rnd;
     hold_mouse u_hold_mouse(
         .clk,
         .rst,
@@ -155,7 +156,8 @@ module top_vga (
         .stand(stand),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
-        .state_btn(fsm_state)
+        .state_btn(fsm_state),
+        .rnd(rnd)
     );
 
     card u_card (
@@ -185,4 +187,9 @@ module top_vga (
         .stand(stand)
     );
 
+    LFSR u_LFSR(
+        .clk,
+        .rst,
+        .rnd(rnd)
+    );
 endmodule

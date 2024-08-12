@@ -1,11 +1,11 @@
-   /**
-    * Author: Borys Strzebonski
-    *
-    * Description:
-    * Draw buttons with texts DEAL, HIT, and STAND. Buttons depend on input 'state'.
-    */
+    /**
+     * Author: Borys Strzebonski
+     *
+     * Description:
+     * Draw buttons with texts DEAL, HIT, and STAND. Buttons depend on input 'state'.
+     */
 
-   `timescale 1 ns / 1 ps
+    `timescale 1 ns / 1 ps
 
 module buttons_click (
         input  wire clk,

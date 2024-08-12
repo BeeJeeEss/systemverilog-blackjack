@@ -16,6 +16,7 @@ module blackjack_FSM
         input  wire  right_mouse,
         input  wire  [4:0] total_player_value,
         input  wire  [4:0] total_dealer_value,
+        input  wire  [3:0] rnd,
 
         input  wire  deal,
         input  wire  hit,
@@ -77,13 +78,6 @@ module blackjack_FSM
     logic deal_turn_finished_nxt;
     logic check_winner_finshed;
     logic check_winner_finshed_nxt;
-
-
-
-
-
-
-
 
 
     //------------------------------------------------------------------------------
@@ -185,10 +179,10 @@ module blackjack_FSM
         deal_turn_finished_nxt = deal_turn_finished;
         case (state)
             IDLE: begin
-                for (int i = 0; i <= 4; i++) begin
+                for (int i = 0; i <= 8; i++) begin
                     player_card_values_nxt[i] = 0;
                 end
-                for (int i = 0; i <= 4; i++) begin
+                for (int i = 0; i <= 8; i++) begin
                     dealer_card_values_nxt[i] = 0;
                 end
 
@@ -206,9 +200,9 @@ module blackjack_FSM
                 checking_dealer_finshed_nxt = 0;
             end
             DEAL_CARDS: begin
-                player_card_values_nxt[0] = 10;
-                player_card_values_nxt[1] = 9;
-                dealer_card_values_nxt[0] = 10;
+                player_card_values_nxt[0] = rnd;
+                player_card_values_nxt[1] = rnd;
+                dealer_card_values_nxt[0] = rnd;
 
                 player_card_count_nxt = 2;
                 dealer_card_count_nxt = 1;
@@ -228,7 +222,7 @@ module blackjack_FSM
             PLAYER_CARD_CHOOSE : begin
                 if (counter == 0) begin
                     counter_nxt = counter + 1;
-                    player_card_values_nxt[player_card_count] = 1;
+                    player_card_values_nxt[player_card_count] = rnd;
                     player_card_count_nxt = player_card_count + 1;
                 end
                 state_btn_nxt = 1;
@@ -245,7 +239,7 @@ module blackjack_FSM
                 checking_finshed_nxt = 1;
             end
             DEALER_TURN: begin
-                dealer_card_values_nxt[dealer_card_count] = 5;
+                dealer_card_values_nxt[dealer_card_count] = rnd;
                 dealer_card_count_nxt = dealer_card_count + 1;
                 deal_turn_finished_nxt = 1;
             end
