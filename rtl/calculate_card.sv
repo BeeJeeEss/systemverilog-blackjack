@@ -36,17 +36,7 @@ module calculate_card(
         for (int i = 0; i < 9; i++) begin
             if (card_if.player_card_values[i] != 4'b0001) begin
                 temp_player_total += calculate_card_value(card_if.player_card_values[i]);
-            end
-        end
-        for (int i = 0; i < 9; i++) begin
-            if (card_if.dealer_card_values[i] != 4'b0001) begin
-                temp_dealer_total += calculate_card_value(card_if.dealer_card_values[i]);
-            end
-        end
-
-        // Obsługa Asów
-        for (int i = 0; i < 9; i++) begin
-            if (card_if.player_card_values[i] == 4'b0001) begin
+            end else begin
                 if (temp_player_total + 11 <= 21) begin
                     temp_player_total += 11;
                 end else begin
@@ -55,7 +45,9 @@ module calculate_card(
             end
         end
         for (int i = 0; i < 9; i++) begin
-            if (card_if.dealer_card_values[i] == 4'b0001) begin
+            if (card_if.dealer_card_values[i] != 4'b0001) begin
+                temp_dealer_total += calculate_card_value(card_if.dealer_card_values[i]);
+            end else begin
                 if (temp_dealer_total + 11 <= 21) begin
                     temp_dealer_total += 11;
                 end else begin
@@ -63,6 +55,7 @@ module calculate_card(
                 end
             end
         end
+
         total_dealer_nxt = temp_dealer_total;
         total_player_nxt = temp_player_total;
     end
