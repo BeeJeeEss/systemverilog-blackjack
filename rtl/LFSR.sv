@@ -8,11 +8,10 @@ module LFSR #(
 
     wire feedback = random[12] ^ random[3] ^ random[2] ^ random[0];
 
-    reg [12:0] random, random_next;
-    reg [3:0] count, count_next; // Do śledzenia liczby przesunięć
+    logic [12:0] random, random_next;
+    logic [3:0] count, count_next; // Do śledzenia liczby przesunięć
 
-    always @ (posedge clk or posedge rst)
-    begin
+    always_ff @(posedge clk) begin
         if (rst)
         begin
             random <= RANDOM; // Reset na wartość początkową, która nie jest zerowa
@@ -24,18 +23,23 @@ module LFSR #(
             random <= random_next;
             count <= count_next;
 
-            if (random_next[9:6] >= 1 && random_next[9:6] <= 13) // Jeśli wynik jest w zakresie 1-13
+            if (random_next[9:6] >= 1 && random_next[9:6] <= 13) begin// Jeśli wynik jest w zakresie 1-13
                 rnd <= random_next[9:6];
+            end else begin
+                rnd <= rnd;
+            end
         end
     end
 
-    always @ (*)
-    begin
+    always_comb begin
         random_next = {random[11:0], feedback}; // Przesunięcie w lewo z uwzględnieniem sprzężenia zwrotnego
-        count_next = count + 1;
 
-        if (count == 13)
+
+        if (count == 13) begin
             count_next = 0;
+        end else begin
+            count_next = count + 1;
+        end
     end
 
 endmodule
