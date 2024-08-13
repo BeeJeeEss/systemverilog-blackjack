@@ -156,8 +156,7 @@ module top_vga (
         .stand(stand),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
-        .state_btn(fsm_state),
-        .rnd(rnd)
+        .state_btn(fsm_state)
     );
 
     card u_card (
@@ -185,11 +184,5 @@ module top_vga (
         .deal(deal),
         .hit(hit),
         .stand(stand)
-    );
-
-    LFSR u_LFSR(
-        .clk,
-        .rst,
-        .rnd(rnd)
     );
 endmodule

@@ -1,10 +1,12 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-12 14:53:49
+Created: 2024-08-13 16:59:33
 
 ----SYNTHESIS----
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:7]
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:7]
+WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
+WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
+WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
+WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:6]
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:450]
 WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:456]
@@ -21,6 +23,9 @@ WARNING: [Synth 8-7071] port 'setmax_y' of module 'MouseCtl' is unconnected for 
 WARNING: [Synth 8-7023] instance 'u_MouseCtl' of module 'MouseCtl' has 16 connections declared, but only 8 given [rtl/top_vga.sv:85]
 WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
 WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:19]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:19]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:19]
 WARNING: [Synth 8-3848] Net color in module/entity draw_card does not have driver. [rtl/card/draw_card.sv:40]
 WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized0 does not have driver. [rtl/card/draw_card.sv:40]
 WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized1 does not have driver. [rtl/card/draw_card.sv:40]
@@ -39,7 +44,6 @@ WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized13 do
 WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized14 does not have driver. [rtl/card/draw_card.sv:40]
 WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized15 does not have driver. [rtl/card/draw_card.sv:40]
 WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized16 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:18]
 WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][3] in module image_rom_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][2] in module image_rom_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][1] in module image_rom_card__parameterized16 is either unconnected or has no load

@@ -1,48 +1,41 @@
-module LFSR (
+module LFSR #(
+        parameter RANDOM = 13'hF // Parametr początkowy
+    )(
         input clk,
         input rst,
         output reg [3:0] rnd
     );
 
-    wire feedback = random[3] ^ random[2]; // Wybrane bity do sprzężenia zwrotnego
+    wire feedback = random[12] ^ random[3] ^ random[2] ^ random[0];
 
-    reg [3:0] random, random_next;
-    reg [3:0] count, count_next; // Zwiększony rozmiar licznika do 4 bitów, aby śledzić 16 stanów
-    reg valid; // Flaga, aby sprawdzić, czy liczba jest w zakresie 1-13
+    reg [12:0] random, random_next;
+    reg [3:0] count, count_next; // Do śledzenia liczby przesunięć
 
     always @ (posedge clk or posedge rst)
     begin
         if (rst)
         begin
-            random <= 4'b1111; // Ustawienie wartości początkowej na niezerową
+            random <= RANDOM; // Reset na wartość początkową, która nie jest zerowa
             count <= 0;
             rnd <= 1; // Inicjalizacja wyniku na 1
         end
-
         else
         begin
             random <= random_next;
             count <= count_next;
 
-            if (valid) // Jeżeli liczba jest w zakresie 1-13
-                rnd <= random; // Przypisz ją do wyjścia
+            if (random_next[9:6] >= 1 && random_next[9:6] <= 13) // Jeśli wynik jest w zakresie 1-13
+                rnd <= random_next[9:6];
         end
     end
 
     always @ (*)
     begin
-        random_next = random; // Stan domyślny pozostaje bez zmian
-        count_next = count;
-
-        random_next = {random[2:0], feedback}; // Przesunięcie w lewo o jeden bit, wypełnione bitem feedback
+        random_next = {random[11:0], feedback}; // Przesunięcie w lewo z uwzględnieniem sprzężenia zwrotnego
         count_next = count + 1;
 
-        valid = (random_next >= 1 && random_next <= 13); // Sprawdzenie, czy liczba jest w zakresie 1-13
-
-        if (count == 15) // Po 15 przesunięciach (pełny cykl 4-bitowego rejestru)
-        begin
+        if (count == 13)
             count_next = 0;
-        end
     end
 
 endmodule
