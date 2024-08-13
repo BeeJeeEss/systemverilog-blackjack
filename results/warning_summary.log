@@ -1,12 +1,8 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-14 00:07:22
+Created: 2024-08-14 01:39:34
 
 ----SYNTHESIS----
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
-WARNING: [Synth 8-6901] identifier 'random' is used before its declaration [rtl/LFSR.sv:9]
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:6]
 WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:450]
 WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:456]
@@ -147,4 +143,5 @@ WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][0] in module draw_card
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 
 ----IMPLEMENTATION----
-CLEAR :)
+WARNING: [Route 35-328] Router estimated timing not met.
+CRITICAL WARNING: [Timing 38-282] The design failed to meet the timing requirements. Please see the timing summary report for details on the timing violations.

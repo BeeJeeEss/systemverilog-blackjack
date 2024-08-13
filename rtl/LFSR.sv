@@ -6,10 +6,10 @@ module LFSR #(
         output reg [3:0] rnd
     );
 
-    wire feedback = random[12] ^ random[3] ^ random[2] ^ random[0];
-
     logic [12:0] random, random_next;
     logic [3:0] count, count_next; // Do śledzenia liczby przesunięć
+
+    wire feedback = random[12] ^ random[3] ^ random[2] ^ random[0];
 
     always_ff @(posedge clk) begin
         if (rst)
