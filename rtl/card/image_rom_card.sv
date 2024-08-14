@@ -17,37 +17,27 @@
 //////////////////////////////////////////////////////////////////////////////
 module image_rom_card
 	#(parameter
-		ADDR_WIDTH = 11,
-		DATA_WIDTH = 12,
-		MODULE_NUMBER = 0,
-		KIND_OF_CARDS = 0
+		ADDR_WIDTH = 12,
+		DATA_WIDTH = 12
 	)
 	(
 		input wire clk, // posedge active clock
 		input wire [ADDR_WIDTH - 1 : 0 ] addrA,
-		output logic [DATA_WIDTH - 1 : 0 ] dout,
-		SM_if.in image_in
+		output logic [DATA_WIDTH - 1 : 0 ] dout
 	);
 
 
 
 	(* rom_style = "block" *) // block || distributed
 
-	logic [DATA_WIDTH-1:0] rom [3:0] [2**ADDR_WIDTH-1:0];
-
-
-
-
-
-	always_ff @(posedge clk) begin : rom_read_blk
-		dout <= rom[0][addrA];
-	end
-
-
-
+	logic [DATA_WIDTH-1:0] rom [2**ADDR_WIDTH-1:0];
 
 
 	initial
-		$readmemh("../../rtl/card/card_data/KB.dat", rom[0]);
+		$readmemh("../../rtl/card/card_data/KB.dat", rom);
+
+	always_ff @(posedge clk) begin : rom_read_blk
+		dout <= rom[addrA];
+	end
 
 endmodule
