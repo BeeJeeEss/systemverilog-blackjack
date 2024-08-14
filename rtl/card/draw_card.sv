@@ -22,7 +22,7 @@ module draw_card
         vga_if.out vga_card_out,
         vga_if.in vga_card_in,
 
-        output logic [10:0] pixel_addr
+        output logic [11:0] pixel_addr
     );
 
     //------------------------------------------------------------------------------
@@ -38,10 +38,9 @@ module draw_card
     //------------------------------------------------------------------------------
     logic [11:0] rgb_nxt;
     logic [11:0] color;
-    logic [10:0] pixel_addr_nxt;
+    logic [11:0] pixel_addr_nxt;
 
     wire [11:0] delayed_rgb;
-    logic [1:0] card_symbols [0:8];
     logic [3:0] card_values [0:8];
 
     vga_if wire_cd();
@@ -112,6 +111,7 @@ module draw_card
     endcase
 
     always_comb begin : card_comb_blk2
+        color = 12'h0_0_0;
         if (vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount <= CARD_YPOS + CARD_HEIGHT &&
                 vga_card_in.hcount >= CARD_XPOS && vga_card_in.hcount <= CARD_XPOS + CARD_WIDTH) begin
 

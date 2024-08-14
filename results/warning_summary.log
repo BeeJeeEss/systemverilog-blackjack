@@ -1,117 +1,27 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-14 01:39:34
+Created: 2024-08-14 10:40:45
 
 ----SYNTHESIS----
-WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [rtl/vga_timing.sv:6]
-WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:450]
-WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:456]
-WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [rtl/mouse/MouseCtl.vhd:514]
-WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:520]
-WARNING: [Synth 8-7071] port 'zpos' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'middle' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'new_event' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'value' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'setx' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'sety' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'setmax_x' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7071] port 'setmax_y' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [rtl/top_vga.sv:85]
-WARNING: [Synth 8-7023] instance 'u_MouseCtl' of module 'MouseCtl' has 16 connections declared, but only 8 given [rtl/top_vga.sv:85]
-WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
-WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:20]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:18]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:18]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/LFSR.sv:18]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized0 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized1 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized2 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized3 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized4 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized5 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized6 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized7 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized8 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized9 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized10 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized11 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized12 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized13 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized14 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized15 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-3848] Net color in module/entity draw_card__parameterized16 does not have driver. [rtl/card/draw_card.sv:40]
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[0][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[1][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[1][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[1][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[1][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[2][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[2][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[2][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[2][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[3][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[3][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[3][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[3][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[4][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[4][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[4][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[4][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[5][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[5][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[5][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[5][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[6][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[6][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[6][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[6][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[7][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[7][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[7][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[7][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[8][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[8][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[8][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.player_card_values[8][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[0][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[0][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[0][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[0][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[1][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[1][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[1][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[1][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[2][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[2][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[2][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[2][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[3][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[3][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[3][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[3][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[4][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[4][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[4][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[4][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[5][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[5][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[5][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[5][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[6][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[6][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[6][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[6][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[7][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[7][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[7][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[7][0] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[8][3] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[8][2] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[8][1] in module image_rom_card__parameterized16 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port image_in\.dealer_card_values[8][0] in module image_rom_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/vga_timing.sv:6]
+WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:450]
+WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:456]
+WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:514]
+WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:520]
+WARNING: [Synth 8-7071] port 'zpos' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'middle' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'new_event' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'value' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'setx' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'sety' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'setmax_x' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7071] port 'setmax_y' of module 'MouseCtl' is unconnected for instance 'u_MouseCtl' [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-7023] instance 'u_MouseCtl' of module 'MouseCtl' has 16 connections declared, but only 8 given [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/top_vga.sv:85]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:20]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/LFSR.sv:18]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/LFSR.sv:18]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/LFSR.sv:18]
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][3] in module draw_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][2] in module draw_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][1] in module draw_card__parameterized16 is either unconnected or has no load
@@ -140,6 +50,78 @@ WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][3] in module draw_card
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][2] in module draw_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][1] in module draw_card__parameterized16 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[8][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[8][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[8][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[8][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[0][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[0][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[0][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[0][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[1][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[1][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[1][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[1][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[2][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[2][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[2][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[2][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[3][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[3][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[3][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[3][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[4][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[4][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[4][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[4][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[5][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[5][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[5][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[5][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[6][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[6][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[6][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[6][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[7][3] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[7][2] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[7][1] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.dealer_card_values[7][0] in module draw_card__parameterized16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[0][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[1][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[1][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[1][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[1][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[2][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[2][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[2][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[2][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[3][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[3][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[3][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[3][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[4][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[4][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[4][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[4][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[5][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[5][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[5][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[5][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[6][0] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][3] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][2] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][1] in module draw_card__parameterized15 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SM_in\.player_card_values[7][0] in module draw_card__parameterized15 is either unconnected or has no load
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 
 ----IMPLEMENTATION----
