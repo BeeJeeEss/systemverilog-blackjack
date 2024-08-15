@@ -12,14 +12,13 @@ module blackjack_FSM
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
-        input  wire  left_mouse,
-        input  wire  right_mouse,
         input  wire  [4:0] total_player_value,
         input  wire  [4:0] total_dealer_value,
 
         input  wire  deal,
         input  wire  hit,
         input  wire  stand,
+        input  wire  start,
 
         output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
@@ -77,7 +76,8 @@ module blackjack_FSM
         DEALER_CARD_CHOOSE = 4'b0101,
         PLAYER_SCORE_CHECK = 4'b0111,
         DEALER_SCORE_CHECK = 4'b1000,
-        DRAW = 4'b1011
+        DRAW = 4'b1011,
+        START = 4'b1111
     } state, state_nxt;
 
 
@@ -164,16 +164,17 @@ module blackjack_FSM
 
         case(state)
 
-            IDLE:               state_nxt = deal ? DEAL_CARDS : IDLE;
+            IDLE:               state_nxt = start ? START : IDLE;
+            START:              state_nxt = deal ? DEAL_CARDS : START;
             DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
             PLAYER_TURN:        state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? DEALER_TURN : PLAYER_TURN);
             PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? PLAYER_SCORE_CHECK : PLAYER_CARD_CHOOSE;
             PLAYER_SCORE_CHECK: state_nxt = checking_finshed ? (lose_player ? DEALER_WIN : PLAYER_TURN) : PLAYER_SCORE_CHECK;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
             DEALER_SCORE_CHECK: state_nxt = checking_dealer_finshed ? ((dealer_round_finshed ? CHECK_WINNER : (lose_dealer ? PLAYER_WIN : DEALER_TURN ))) : DEALER_SCORE_CHECK;
-            DEALER_WIN :        state_nxt = right_mouse ? IDLE : DEALER_WIN;
-            PLAYER_WIN :        state_nxt = left_mouse ? IDLE : PLAYER_WIN;
-            DRAW :              state_nxt = right_mouse ? IDLE : DEALER_WIN;
+            DEALER_WIN :        state_nxt = start ? START : DEALER_WIN;
+            PLAYER_WIN :        state_nxt = start ? START : PLAYER_WIN;
+            DRAW :              state_nxt = start ? START : DEALER_WIN;
             CHECK_WINNER :      state_nxt = check_winner_finshed ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
             default:            state_nxt = IDLE;
 
@@ -207,7 +208,10 @@ module blackjack_FSM
         counter_nxt = counter;
         deal_turn_finished_nxt = deal_turn_finished;
         case (state)
-            IDLE: begin
+            IDLE : begin
+                state_btn_nxt = 0;
+            end
+            START: begin
                 for (int i = 0; i <= 8; i++) begin
                     player_card_values_nxt[i] = 0;
                 end
@@ -218,7 +222,7 @@ module blackjack_FSM
                 player_card_count_nxt = 0;
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
-                state_btn_nxt = 0;
+                state_btn_nxt = 1;
                 checking_finshed_nxt = 0;
                 lose_dealer = 0;
                 lose_player = 0;
@@ -236,7 +240,7 @@ module blackjack_FSM
                 player_card_count_nxt = 2;
                 dealer_card_count_nxt = 1;
                 deal_card_finished_nxt = 1;
-                state_btn_nxt = 1;
+                state_btn_nxt = 2;
             end
             PLAYER_TURN: begin
                 state_btn_nxt = 1;
@@ -246,7 +250,7 @@ module blackjack_FSM
                     counter_nxt = counter;
                 end
 
-                state_btn_nxt = 1;
+                state_btn_nxt = 2;
             end
             PLAYER_CARD_CHOOSE : begin
                 if (counter == 0) begin
@@ -254,7 +258,7 @@ module blackjack_FSM
                     player_card_count_nxt = player_card_count + 1;
                     player_card_values_nxt[player_card_count] = lfsr_rnd;
                 end
-                state_btn_nxt = 1;
+                state_btn_nxt = 2;
                 card_chosen_finished_nxt = 1;
             end
             PLAYER_SCORE_CHECK: begin
@@ -264,7 +268,7 @@ module blackjack_FSM
                     lose_player = 0;
                 end
 
-                state_btn_nxt = 1;
+                state_btn_nxt = 2;
                 checking_finshed_nxt = 1;
             end
             DEALER_TURN: begin
@@ -272,6 +276,7 @@ module blackjack_FSM
                     dealer_card_values_nxt[dealer_card_count] = lfsr_rnd;
                     dealer_card_count_nxt = dealer_card_count + 1;
                 end
+                state_btn_nxt = 2;
                 deal_turn_finished_nxt = 1;
             end
             DEALER_SCORE_CHECK: begin
@@ -299,13 +304,17 @@ module blackjack_FSM
                     lose_dealer = 0;
                     lose_player = 0;
                 end
+                state_btn_nxt = 2;
                 check_winner_finshed_nxt = 1;
             end
             DEALER_WIN: begin
+                state_btn_nxt = 4;
             end
             PLAYER_WIN: begin
+                state_btn_nxt = 3;
             end
             DRAW: begin
+                state_btn_nxt = 5;
             end
             default: begin
             end

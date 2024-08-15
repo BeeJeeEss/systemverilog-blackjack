@@ -34,26 +34,8 @@ module calculate_card(
 
         // Suma wartości kart bez Asów
         for (int i = 0; i < 9; i++) begin
-            if (card_if.player_card_values[i] != 4'b0001) begin
-                temp_player_total += calculate_card_value(card_if.player_card_values[i]);
-            end else begin
-                if (temp_player_total + 11 <= 21) begin
-                    temp_player_total += 11;
-                end else begin
-                    temp_player_total += 1;
-                end
-            end
-        end
-        for (int i = 0; i < 9; i++) begin
-            if (card_if.dealer_card_values[i] != 4'b0001) begin
-                temp_dealer_total += calculate_card_value(card_if.dealer_card_values[i]);
-            end else begin
-                if (temp_dealer_total + 11 <= 21) begin
-                    temp_dealer_total += 11;
-                end else begin
-                    temp_dealer_total += 1;
-                end
-            end
+            temp_dealer_total += calculate_card_value(card_if.dealer_card_values[i]);
+            temp_player_total += calculate_card_value(card_if.player_card_values[i]);
         end
 
         total_dealer_nxt = temp_dealer_total;
@@ -63,7 +45,7 @@ module calculate_card(
     // Funkcja obliczająca wartość jednej karty
     function automatic [3:0] calculate_card_value(input [3:0] card);
         case (card)
-            4'b0001: calculate_card_value = 0; // As is handled separately
+            4'b0001: calculate_card_value = 11; // As is handled separately
             4'b1011, 4'b1100, 4'b1101: calculate_card_value = 10; // Walet, Dama, Król
             4'b0000: calculate_card_value = 0;
             default: calculate_card_value = card; // Karty od 2 do 10
