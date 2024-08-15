@@ -174,7 +174,7 @@ module blackjack_FSM
             DEALER_SCORE_CHECK: state_nxt = checking_dealer_finshed ? ((dealer_round_finshed ? CHECK_WINNER : (lose_dealer ? PLAYER_WIN : DEALER_TURN ))) : DEALER_SCORE_CHECK;
             DEALER_WIN :        state_nxt = start ? START : DEALER_WIN;
             PLAYER_WIN :        state_nxt = start ? START : PLAYER_WIN;
-            DRAW :              state_nxt = start ? START : DEALER_WIN;
+            DRAW :              state_nxt = start ? START : DRAW;
             CHECK_WINNER :      state_nxt = check_winner_finshed ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
             default:            state_nxt = IDLE;
 
