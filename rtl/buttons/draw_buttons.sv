@@ -76,12 +76,119 @@ module draw_buttons (
         if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn1_width) &&
                 (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)&&(state == 1)) begin
             rgb_nxt = 12'hF_0_0; // Button 1: Red
+            if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 15 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 27 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 25 && vga_btn_in.hcount <= btn1_x + 29 && vga_btn_in.vcount >= btn1_y + 7 && vga_btn_in.vcount <= btn1_y + 43)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 27 && vga_btn_in.vcount >= btn1_y + 41 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.hcount >= btn1_x + 31 && vga_btn_in.hcount <= btn1_x + 35 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 31 && vga_btn_in.hcount <= btn1_x + 49 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 31 && vga_btn_in.hcount <= btn1_x + 49 && vga_btn_in.vcount >= btn1_y + 23 && vga_btn_in.vcount <= btn1_y + 27)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 31 && vga_btn_in.hcount <= btn1_x + 49 && vga_btn_in.vcount >= btn1_y + 41 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= btn1_x + 51 && vga_btn_in.hcount <= btn1_x + 55 && vga_btn_in.vcount >= btn1_y + 7 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 65 && vga_btn_in.hcount <= btn1_x + 69 && vga_btn_in.vcount >= btn1_y + 7 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 53 && vga_btn_in.hcount <= btn1_x + 67 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 51 && vga_btn_in.hcount <= btn1_x + 67 && vga_btn_in.vcount >= btn1_y + 23 && vga_btn_in.vcount <= btn1_y + 27)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.hcount >= btn1_x + 71 && vga_btn_in.hcount <= btn1_x + 75 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 43)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn1_x + 71 && vga_btn_in.hcount <= btn1_x + 89 && vga_btn_in.vcount >= btn1_y + 41 && vga_btn_in.vcount <= btn1_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+
+
+
+
+
+
         end else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
                 (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)&&(state == 2)) begin
             rgb_nxt = 12'h0_0_F; // Button 2: Blue
+            if (vga_btn_in.hcount >= btn2_x + 21 && vga_btn_in.hcount <= btn2_x + 25 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn2_x + 35 && vga_btn_in.hcount <= btn2_x + 39 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn2_x + 21 && vga_btn_in.hcount <= btn2_x + 39 && vga_btn_in.vcount >= btn2_y + 23 && vga_btn_in.vcount <= btn2_y + 27)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.hcount >= btn2_x + 48 && vga_btn_in.hcount <= btn2_x + 52 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= btn2_x + 61 && vga_btn_in.hcount <= btn2_x + 79 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn2_x + 68 && vga_btn_in.hcount <= btn2_x + 72 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+
         end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
                 (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)&&(state == 2)) begin
             rgb_nxt = 12'h0_F_0; // Button 3: Green
+            if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 23 && vga_btn_in.vcount <= btn3_y + 27)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 41 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 10 && vga_btn_in.vcount >= btn3_y + 7 && vga_btn_in.vcount <= btn3_y + 23)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 18 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 27 && vga_btn_in.vcount <= btn3_y + 43)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= btn3_x + 24 && vga_btn_in.hcount <= btn3_x + 40 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 30 && vga_btn_in.hcount <= btn3_x + 34 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= btn3_x + 44 && vga_btn_in.hcount <= btn3_x + 54 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 44 && vga_btn_in.hcount <= btn3_x + 56 && vga_btn_in.vcount >= btn3_y + 23 && vga_btn_in.vcount <= btn3_y + 27)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 42 && vga_btn_in.hcount <= btn3_x + 46 && vga_btn_in.vcount >= btn3_y + 7 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 52 && vga_btn_in.hcount <= btn3_x + 56 && vga_btn_in.vcount >= btn3_y + 7 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= btn3_x + 58 && vga_btn_in.hcount <= btn3_x + 62 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 70 && vga_btn_in.hcount <= btn3_x + 74 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 63 && vga_btn_in.hcount <= btn3_x + 66 && vga_btn_in.vcount >= btn3_y + 13 && vga_btn_in.vcount <= btn3_y + 16)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 67 && vga_btn_in.hcount <= btn3_x + 70 && vga_btn_in.vcount >= btn3_y + 17 && vga_btn_in.vcount <= btn3_y + 20)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 71 && vga_btn_in.hcount <= btn3_x + 74 && vga_btn_in.vcount >= btn3_y + 18 && vga_btn_in.vcount <= btn3_y + 21)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.hcount >= btn3_x + 76 && vga_btn_in.hcount <= btn3_x + 80 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 88 && vga_btn_in.hcount <= btn3_x + 92 && vga_btn_in.vcount >= btn3_y + 7 && vga_btn_in.vcount <= btn3_y + 43)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 76 && vga_btn_in.hcount <= btn3_x + 90 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 9)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= btn3_x + 76 && vga_btn_in.hcount <= btn3_x + 90 && vga_btn_in.vcount >= btn3_y + 41 && vga_btn_in.vcount <= btn3_y + 45)
+                rgb_nxt = 12'h0_0_0;
+
+
+
+
+
         end else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
                 (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)) begin
             rgb_nxt = 12'hF_7_2;
