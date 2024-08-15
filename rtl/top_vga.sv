@@ -40,11 +40,14 @@ module top_vga (
     vga_if wire_delay_rect();
     vga_if wire_btn();
     vga_if wire_card0();
+    vga_if wire_menu();
+    vga_if wire_text();
 
     SM_if wire_SM();
 
     wire [4:0] total_player_value;
     wire [4:0] total_dealer_value;
+    wire [2:0] fsm_state;
     // VGA signals from timing
 
     // VGA signals from background
@@ -93,7 +96,16 @@ module top_vga (
         .ps2_clk(PS2Clk),
 
         .xpos(xpos),
-        .ypos(ypos)
+        .ypos(ypos),
+
+        .zpos(),
+        .middle(),
+        .new_event(),
+        .value('0),
+        .setx('0),
+        .sety('0),
+        .setmax_x('0),
+        .setmax_y('0)
     );
 
     wire [11:0] xpos_nxt;
@@ -105,8 +117,8 @@ module top_vga (
     wire deal;
     wire hit;
     wire stand;
+    wire start;
 
-    wire [3:0] rnd;
     hold_mouse u_hold_mouse(
         .clk,
         .rst,
@@ -134,7 +146,6 @@ module top_vga (
         .ypos(ypos_nxt)
     );
 
-    wire [2:0] fsm_state;
 
     calculate_card u_calculate_card(
         .clk,
@@ -147,13 +158,12 @@ module top_vga (
     blackjack_FSM blackjack_FSM (
         .clk,
         .rst,
-        .vga_blackjack_in(wire_bg),
-        .left_mouse(left_nxt),
-        .right_mouse(right_nxt),
+        .vga_blackjack_in(wire_menu),
         .SM_out(wire_SM),
         .deal(deal),
         .hit(hit),
         .stand(stand),
+        .start(start),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
         .state_btn(fsm_state)
@@ -163,7 +173,7 @@ module top_vga (
         .clk,
         .rst,
         .SM_in(wire_SM),
-        .card_in(wire_bg),
+        .card_in(wire_menu),
         .card_out(wire_test)
     );
 
@@ -175,6 +185,22 @@ module top_vga (
         .state(fsm_state)
     );
 
+    draw_result u_draw_result(
+        .clk,
+        .rst,
+        .state(fsm_state),
+        .vga_result_in(wire_bg),
+        .vga_result_out(wire_text)
+    );
+
+    draw_menu u_draw_menu(
+        .clk,
+        .rst,
+        .vga_menu_in(wire_text),
+        .vga_menu_out(wire_menu),
+        .state(fsm_state)
+    );
+
     buttons_click u_buttons_click(
         .clk,
         .rst,
@@ -183,6 +209,7 @@ module top_vga (
         .left_mouse(left_nxt),
         .deal(deal),
         .hit(hit),
-        .stand(stand)
+        .stand(stand),
+        .start(start)
     );
 endmodule

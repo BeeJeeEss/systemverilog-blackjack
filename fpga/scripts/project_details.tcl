@@ -49,6 +49,8 @@ set sv_files {
     ../rtl/calculate_card.sv
     ../rtl/SM_if.sv 
     ../rtl/LFSR.sv
+    ../rtl/draw_menu.sv 
+    ../rtl/draw_result.sv
     rtl/top_vga_basys3.sv
 }
 
