@@ -31,26 +31,26 @@ set xdc_files {
 
 # Specify SystemVerilog design files location   -- EDIT
 set sv_files {
-    ../rtl/vga_pkg.sv
-    ../rtl/vga_timing.sv
-    ../rtl/draw_bg.sv
+    ../rtl/timing/vga_pkg.sv
+    ../rtl/timing/vga_timing.sv
+    ../rtl/draw/draw_bg.sv
     ../rtl/top_vga.sv
-    ../rtl/vga_if.sv
+    ../rtl/interface/vga_if.sv
     ../rtl/mouse/draw_mouse.sv
     ../rtl/mouse/hold_mouse.sv
-    ../rtl/blackjack_fsm.sv 
+    ../rtl/state_machine/blackjack_fsm.sv 
     ../rtl/card/draw_card.sv
     ../rtl/card/image_rom_card.sv
-    ../rtl/card.sv
+    ../rtl/card/card.sv
     ../rtl/delay/delay.sv
     ../rtl/buttons/draw_buttons.sv
-    ../rtl/buttons/letters_bitmap.sv
     ../rtl/buttons/buttons_click.sv
-    ../rtl/calculate_card.sv
-    ../rtl/SM_if.sv 
-    ../rtl/LFSR.sv
-    ../rtl/draw_menu.sv 
-    ../rtl/draw_result.sv
+    ../rtl/card/calculate_card.sv
+    ../rtl/interface/SM_if.sv 
+    ../rtl/card/LFSR.sv
+    ../rtl/draw/draw_menu.sv 
+    ../rtl/draw/draw_result.sv
+    ../rtl/state_machine/player_selector.sv
     rtl/top_vga_basys3.sv
 }
 

@@ -1,15 +1,9 @@
  /**
-  * San Jose State University
-  * EE178 Lab #4
-  * Author: prof. Eric Crabilla
-  *
-  * Modified by:
-  * 2023  AGH University of Science and Technology
+  * Copyright (C) 2024  AGH University of Science and Technology
   * MTM UEC2
-  * Piotr Kaczmarczyk
-  *
+  * Authors: Konrad Sawina, Borys Strzeboński
   * Description:
-  * The project top module.
+  * Module that is responsible for controlling the direction of the ball.
   */
 
  `timescale 1 ns / 1 ps
@@ -84,6 +78,7 @@ module top_vga (
     wire right;
     wire [11:0] xpos;
     wire [11:0] ypos;
+    wire [1:0] player_state;
 
     MouseCtl u_MouseCtl (
         .clk(clk975Mhz),
@@ -164,6 +159,7 @@ module top_vga (
         .hit(hit),
         .stand(stand),
         .start(start),
+        .selected_player(player_state),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
         .state_btn(fsm_state)
@@ -212,4 +208,13 @@ module top_vga (
         .stand(stand),
         .start(start)
     );
+
+    player_selector u_player_selector(
+        .clk,
+        .rst,
+        .left_mouse(left_nxt),
+        .right_mouse(right_nxt),
+        .selected_player(player_state)
+    );
+
 endmodule
