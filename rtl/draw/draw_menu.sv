@@ -1,10 +1,9 @@
   /**
-   * Copyright (C) 2023  AGH University of Science and Technology
+   * Copyright (C) 2024  AGH University of Science and Technology
    * MTM UEC2
-   * Author: Piotr Kaczmarczyk
-   *
+   * Authors: Konrad Sawina, Borys Strzeboński
    * Description:
-   * Draw background.
+   * Module that is responsible for controlling the direction of the ball.
    */
 
   `timescale 1 ns / 1 ps

@@ -1,4 +1,10 @@
-`timescale 1 ns / 1 ps
+/**
+ * Copyright (C) 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Authors: Konrad Sawina, Borys Strzeboński
+ * Description:
+ * Module that is responsible for controlling the direction of the ball.
+ */
 
 module draw_result (
         input  logic clk,

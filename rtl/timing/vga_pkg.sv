@@ -1,9 +1,9 @@
 /**
- * Copyright (C) 2023  AGH University of Science and Technology
+ * Copyright (C) 2024  AGH University of Science and Technology
  * MTM UEC2
- * Author: Konrad Sawina
+ * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * Package with vga related constants adjusted to 1024X768 resolution.
+ * Module that is responsible for controlling the direction of the ball.
  */
 
 package vga_pkg;
