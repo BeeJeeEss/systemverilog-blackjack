@@ -3,7 +3,7 @@
  * MTM UEC2
  * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * Module that is responsible for controlling the direction of the ball.
+ * SM which chooses a player at the begining.
  */
 
 module player_selector

@@ -3,7 +3,7 @@
  * MTM UEC2
  * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * Module that is responsible for controlling the direction of the ball.
+ * Main SM of the game.
  */
 module blackjack_FSM
     (
@@ -20,9 +20,8 @@ module blackjack_FSM
 
         input wire decoded_deal,
         input wire decoded_dealer_finished,
-        input wire [3:0] first_card,
-        input wire [3:0] second_card,
-        input wire [3:0] third_card,
+
+        UART_if.in decoded_cards,
 
         output logic finished_player_1,
         output logic deal_card_finished,
@@ -178,7 +177,7 @@ module blackjack_FSM
     always_comb begin
         state_nxt = state;
         case(state)
-            IDLE:               state_nxt = start ? START : IDLE;
+            IDLE:  state_nxt = start ? START : IDLE;
             START: begin
                 case (selected_player)
                     2'b01:
@@ -284,7 +283,7 @@ module blackjack_FSM
                     2'b11: begin
                         player_card_values_nxt[0] = lfsr_rnd;
                         player_card_values_nxt[1] = lfsr_rnd_2;
-                        dealer_card_values_nxt[0] = first_card;
+                        dealer_card_values_nxt[0] = decoded_cards.card_values[0];
                     end
                 endcase
 
@@ -375,14 +374,15 @@ module blackjack_FSM
                 check_winner_finshed_nxt = 1;
             end
             WAIT_FOR_DEALER: begin
-                dealer_card_values_nxt[1] = second_card;
-                dealer_card_values_nxt[2] = third_card;
-            // dealer_card_values_nxt[3] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[4] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[5] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[6] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[7] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[8] = tutaj_trzeba_wpisac_wejsciowego_dealera
+                dealer_card_values_nxt[0] = decoded_cards.card_values[0];
+                dealer_card_values_nxt[1] = decoded_cards.card_values[1];
+                dealer_card_values_nxt[2] = decoded_cards.card_values[2];
+                dealer_card_values_nxt[3] = decoded_cards.card_values[3];
+                dealer_card_values_nxt[4] = decoded_cards.card_values[4];
+                dealer_card_values_nxt[5] = decoded_cards.card_values[5];
+                dealer_card_values_nxt[6] = decoded_cards.card_values[6];
+                dealer_card_values_nxt[7] = decoded_cards.card_values[7];
+                dealer_card_values_nxt[8] = decoded_cards.card_values[8];
             end
             DEALER_WIN: begin
                 state_btn_nxt = 4;

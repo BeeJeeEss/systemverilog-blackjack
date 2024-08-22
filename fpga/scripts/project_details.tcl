@@ -47,6 +47,7 @@ set sv_files {
     ../rtl/buttons/buttons_click.sv
     ../rtl/card/calculate_card.sv
     ../rtl/interface/SM_if.sv 
+    ../rtl/interface/UART_if.sv
     ../rtl/card/LFSR.sv
     ../rtl/draw/draw_menu.sv 
     ../rtl/draw/draw_result.sv

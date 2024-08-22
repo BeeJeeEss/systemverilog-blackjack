@@ -3,7 +3,7 @@
   * MTM UEC2
   * Authors: Konrad Sawina, Borys Strzeboński
   * Description:
-  * Module that is responsible for controlling the direction of the ball.
+  * Module responsible for drawing background.
   */
 
  `timescale 1 ns / 1 ps
