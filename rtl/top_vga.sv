@@ -13,6 +13,9 @@ module top_vga (
         input  logic clk,
         input  logic clk975Mhz,
         input  logic rst,
+        input  logic rx,
+
+        output logic tx,
         output logic vs,
         output logic hs,
         output logic [3:0] r,
@@ -42,6 +45,8 @@ module top_vga (
     wire [4:0] total_player_value;
     wire [4:0] total_dealer_value;
     wire [2:0] fsm_state;
+    wire rx_empty, rd_uart, tx_full, wr_uart;
+    wire [7:0] read_data, w_data;
     // VGA signals from timing
 
     // VGA signals from background
@@ -113,6 +118,11 @@ module top_vga (
     wire hit;
     wire stand;
     wire start;
+    wire decoded_deal;
+    wire decoded_dealer_finished;
+    wire [3:0] first_card;
+    wire [3:0] second_card;
+    wire [3:0] third_card;
 
     hold_mouse u_hold_mouse(
         .clk,
@@ -149,6 +159,8 @@ module top_vga (
         .total_players_value(total_player_value),
         .total_dealer_value(total_dealer_value)
     );
+    wire deal_finished;
+    wire dealer_round_finished;
 
     blackjack_FSM blackjack_FSM (
         .clk,
@@ -162,7 +174,15 @@ module top_vga (
         .selected_player(player_state),
         .total_player_value(total_player_value),
         .total_dealer_value(total_dealer_value),
-        .state_btn(fsm_state)
+        .state_btn(fsm_state),
+        .deal_card_finished(deal_finished),
+        .finished_player_1(dealer_round_finished),
+        .decoded_deal,
+        .decoded_dealer_finished,
+        .first_card,
+        .second_card,
+        .third_card
+
     );
 
     card u_card (
@@ -217,4 +237,41 @@ module top_vga (
         .selected_player(player_state)
     );
 
+    uart u_uart(
+        .clk,
+        .rst,
+        .rx,
+        .tx,
+        .r_data(read_data),
+        .rd_uart,
+        .rx_empty,
+        .tx_full,
+        .w_data,
+        .wr_uart
+    );
+
+    uart_encoder u_uart_encoder(
+        .clk,
+        .rst,
+        .tx_full,
+        .deal(deal_finished),
+        .dealer_finished(dealer_round_finished),
+        .cards(wire_SM),
+        .wr_uart,
+        .w_data
+
+    );
+
+    uart_decoder u_uart_decoder(
+        .clk,
+        .rst,
+        .read_data,
+        .rx_empty,
+        .rd_uart,
+        .decoded_deal,
+        .decoded_dealer_finished,
+        .first_card,
+        .second_card,
+        .third_card
+    );
 endmodule

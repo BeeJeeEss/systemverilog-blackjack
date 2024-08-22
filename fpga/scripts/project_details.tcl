@@ -51,6 +51,13 @@ set sv_files {
     ../rtl/draw/draw_menu.sv 
     ../rtl/draw/draw_result.sv
     ../rtl/state_machine/player_selector.sv
+    ../rtl/uart/uart.sv
+    ../rtl/uart/uart_tx.sv
+    ../rtl/uart/uart_rx.sv
+    ../rtl/uart/fifo.sv
+    ../rtl/uart/mod_m_counter.sv
+    ../rtl/uart_encoder.sv
+    ../rtl/uart_decoder.sv
     rtl/top_vga_basys3.sv
 }
 

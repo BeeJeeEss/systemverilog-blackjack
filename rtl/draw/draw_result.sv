@@ -54,7 +54,7 @@ module draw_result (
     always_comb begin
         rgb_nxt = vga_result_in.rgb;
         case (state)
-            3: begin
+            3'b011: begin
 
                 if (vga_result_in.vcount >= 100 + ypos &&  vga_result_in.vcount <= 185 + ypos && vga_result_in.hcount >= 100 + xpos && vga_result_in.hcount <= 115 + xpos)
                     rgb_nxt = 12'hf_a_5;
@@ -83,7 +83,7 @@ module draw_result (
                 else if (vga_result_in.vcount >= 150 + ypos &&  vga_result_in.vcount <= 165 + ypos && vga_result_in.hcount >= 265 + xpos && vga_result_in.hcount <= 280 + xpos)
                     rgb_nxt = 12'hf_a_5;
             end
-            4: begin
+            3'b100: begin
                 if (vga_result_in.vcount >= 100 + ypos &&  vga_result_in.vcount <= 200 + ypos && vga_result_in.hcount >= 100 + xpos && vga_result_in.hcount <= 115 + xpos)
                     rgb_nxt = 12'hf_a_5;
                 else if (vga_result_in.vcount >= 185 + ypos &&  vga_result_in.vcount <= 200 + ypos && vga_result_in.hcount >= 100 + xpos && vga_result_in.hcount <= 160 + xpos)
@@ -118,7 +118,7 @@ module draw_result (
                 else if (vga_result_in.vcount >= 185 + ypos &&  vga_result_in.vcount <= 200 + ypos && vga_result_in.hcount >= 295 + xpos && vga_result_in.hcount <= 355 + xpos)
                     rgb_nxt = 12'hf_a_5;
             end
-            5: begin
+            3'b101: begin
                 if (vga_result_in.vcount >= 100 + ypos &&  vga_result_in.vcount <= 200 + ypos && vga_result_in.hcount >= 100 + xpos && vga_result_in.hcount <= 115 + xpos)
                     rgb_nxt = 12'hf_a_5;
                 else if (vga_result_in.vcount >= 100 + ypos &&  vga_result_in.vcount <= 115 + ypos && vga_result_in.hcount >= 100 + xpos && vga_result_in.hcount <= 155 + xpos)

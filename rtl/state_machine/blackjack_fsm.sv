@@ -18,6 +18,16 @@ module blackjack_FSM
         input  wire  start,
         input  wire  [1:0] selected_player,
 
+        input wire decoded_deal,
+        input wire decoded_dealer_finished,
+        input wire [3:0] first_card,
+        input wire [3:0] second_card,
+        input wire [3:0] third_card,
+
+        output logic finished_player_1,
+        output logic deal_card_finished,
+
+
         output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
         SM_if.out SM_out
@@ -91,22 +101,22 @@ module blackjack_FSM
 
     logic card_chosen_finished;
     logic card_chosen_finished_nxt;
-    logic deal_card_finished;
     logic deal_card_finished_nxt;
     logic lose_player;
     logic lose_dealer;
     logic counter;
     logic counter_nxt;
-    logic checking_finshed;
-    logic checking_finshed_nxt;
-    logic checking_dealer_finshed;
-    logic checking_dealer_finshed_nxt;
-    logic dealer_round_finshed;
+    logic checking_finished;
+    logic checking_finished_nxt;
+    logic checking_dealer_finished;
+    logic checking_dealer_finished_nxt;
     logic deal_turn_finished;
     logic deal_turn_finished_nxt;
-    logic check_winner_finshed;
+    logic check_winner_finished;
     logic check_winner_finshed_nxt;
     logic lose_player_nxt;
+    logic finished_player_1_nxt;
+    logic dealer_round_finished;
 
 
     //------------------------------------------------------------------------------
@@ -126,13 +136,14 @@ module blackjack_FSM
                 dealer_card_count <= 0;
                 deal_card_finished <= 0;
                 counter <= 0 ;
-                checking_finshed <= 0;
-                checking_dealer_finshed <= 0;
+                checking_finished <= 0;
+                checking_dealer_finished <= 0;
                 deal_turn_finished <= 0;
                 state_btn <= 0;
                 state <= IDLE;
-                check_winner_finshed <= 0;
+                check_winner_finished <= 0;
                 lose_player_nxt <= 0;
+                finished_player_1 <= 0;
             end
             else begin : state_seq_run_blk
                 for (int i = 0; i <= 8; i++) begin
@@ -145,14 +156,15 @@ module blackjack_FSM
                 card_chosen_finished <= card_chosen_finished_nxt;
                 dealer_card_count <= dealer_card_count_nxt;
                 deal_card_finished <= deal_card_finished_nxt;
-                checking_finshed <= checking_finshed_nxt;
-                checking_dealer_finshed <= checking_dealer_finshed_nxt;
+                checking_finished <= checking_finished_nxt;
+                checking_dealer_finished <= checking_dealer_finished_nxt;
                 counter <= counter_nxt;
                 deal_turn_finished <= deal_turn_finished_nxt;
-                check_winner_finshed <= check_winner_finshed_nxt;
+                check_winner_finished <= check_winner_finshed_nxt;
                 state_btn <= state_btn_nxt;
                 lose_player_nxt <= lose_player;
                 state <= state_nxt;
+                finished_player_1 <= finished_player_1_nxt;
 
             end
         end
@@ -164,7 +176,7 @@ module blackjack_FSM
 
 
     always_comb begin
-
+        state_nxt = state;
         case(state)
             IDLE:               state_nxt = start ? START : IDLE;
             START: begin
@@ -172,8 +184,9 @@ module blackjack_FSM
                     2'b01:
                         state_nxt = deal ? DEAL_CARDS : START;
                     2'b11:
-                        // state_nxt = deal_card_finished ? DEAL_CARDS : START; tu musi byc wejscie z UART do drugiego playera ze juz zedealowła i on se teraz dostanie karty
-                        ;
+                        state_nxt = decoded_deal ? DEAL_CARDS : START;
+                    default:
+                        state_nxt = state;
                 endcase
             end
             DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
@@ -182,19 +195,29 @@ module blackjack_FSM
                     2'b01:
                         state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? DEALER_TURN : PLAYER_TURN);
                     2'b11:
-                        state_nxt = hit ? WAIT_FOR_DEALER : (stand ? DEALER_TURN : PLAYER_TURN);
+                        state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? WAIT_FOR_DEALER : PLAYER_TURN);
+                    default:
+                        state_nxt = state;
                 endcase
             end
             PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? PLAYER_SCORE_CHECK : PLAYER_CARD_CHOOSE;
-            PLAYER_SCORE_CHECK: state_nxt = checking_finshed ? (lose_player ? DEALER_TURN : PLAYER_TURN) : PLAYER_SCORE_CHECK;
-            WAIT_FOR_DEALER :  // state_nxt = przełane dealer_round_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
-                ;
+            PLAYER_SCORE_CHECK: begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = checking_finished ? (lose_player ? DEALER_TURN : PLAYER_TURN) : PLAYER_SCORE_CHECK;
+                    2'b11:
+                        state_nxt = checking_finished ? (lose_player ? WAIT_FOR_DEALER : PLAYER_TURN) : PLAYER_SCORE_CHECK;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
+            WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
-            DEALER_SCORE_CHECK: state_nxt = checking_dealer_finshed ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finshed ? CHECK_WINNER : DEALER_TURN ))) : DEALER_SCORE_CHECK;
+            DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_TURN ))) : DEALER_SCORE_CHECK;
             DEALER_WIN :        state_nxt = start ? START : DEALER_WIN;
             PLAYER_WIN :        state_nxt = start ? START : PLAYER_WIN;
             DRAW :              state_nxt = start ? START : DRAW;
-            CHECK_WINNER :      state_nxt = check_winner_finshed ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
+            CHECK_WINNER :      state_nxt = check_winner_finished ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
             default:            state_nxt = IDLE;
 
         endcase
@@ -206,22 +229,23 @@ module blackjack_FSM
 
 
     always_comb begin
+        finished_player_1_nxt = 0;
         for (int i = 0; i <= 8; i++) begin
             player_card_values_nxt[i] = SM_out.player_card_values[i];
         end
         for (int i = 0; i <= 8; i++) begin
             dealer_card_values_nxt[i] = SM_out.dealer_card_values[i];
         end
-        check_winner_finshed_nxt = check_winner_finshed;
+        check_winner_finshed_nxt = check_winner_finished;
         player_card_count_nxt = player_card_count;
         card_chosen_finished_nxt = card_chosen_finished;
         deal_card_finished_nxt = deal_card_finished;
-        checking_dealer_finshed_nxt = checking_dealer_finshed;
-        checking_finshed_nxt = checking_finshed;
+        checking_dealer_finished_nxt = checking_dealer_finished;
+        checking_finished_nxt = checking_finished;
         dealer_card_count_nxt = dealer_card_count;
         state_btn_nxt = state_btn;
         lose_dealer = 0;
-        dealer_round_finshed = 0;
+        dealer_round_finished = 0;
         counter_nxt = counter;
         deal_turn_finished_nxt = deal_turn_finished;
         lose_player = lose_player_nxt;
@@ -241,14 +265,14 @@ module blackjack_FSM
                 card_chosen_finished_nxt = 0;
                 deal_card_finished_nxt = 0;
                 state_btn_nxt = 1;
-                checking_finshed_nxt = 0;
+                checking_finished_nxt = 0;
                 lose_dealer = 0;
                 lose_player = 0;
                 counter_nxt = 0;
-                dealer_round_finshed = 0;
+                dealer_round_finished = 0;
                 deal_turn_finished_nxt = 0;
                 check_winner_finshed_nxt = 0;
-                checking_dealer_finshed_nxt = 0;
+                checking_dealer_finished_nxt = 0;
             end
             DEAL_CARDS: begin
                 case(selected_player)
@@ -260,7 +284,7 @@ module blackjack_FSM
                     2'b11: begin
                         player_card_values_nxt[0] = lfsr_rnd;
                         player_card_values_nxt[1] = lfsr_rnd_2;
-                    // dealer_card_values_nxt[0] = dealer_wejsciowy_z_innej_plytki;
+                        dealer_card_values_nxt[0] = first_card;
                     end
                 endcase
 
@@ -296,7 +320,7 @@ module blackjack_FSM
                 end
 
                 state_btn_nxt = 2;
-                checking_finshed_nxt = 1;
+                checking_finished_nxt = 1;
             end
             DEALER_TURN: begin
                 if (total_dealer_value <= 16) begin
@@ -309,20 +333,20 @@ module blackjack_FSM
             DEALER_SCORE_CHECK: begin
                 if (total_dealer_value >= 22 && lose_player_nxt == 1) begin
                     lose_dealer = 0;
-                    dealer_round_finshed = 1;
+                    dealer_round_finished = 1;
                 end else if (total_dealer_value >= 22 && lose_player_nxt == 0) begin
                     lose_dealer = 1;
-                    dealer_round_finshed = 1;
+                    dealer_round_finished = 1;
                 end
                 else if (total_dealer_value >= 17 && total_dealer_value <= 21) begin
                     lose_dealer = 0;
-                    dealer_round_finshed = 1;
+                    dealer_round_finished = 1;
                 end else if (total_dealer_value <= 16) begin
                     lose_dealer = 0;
-                    dealer_round_finshed = 0;
+                    dealer_round_finished = 0;
                 end
                 state_btn_nxt = 2;
-                checking_dealer_finshed_nxt = 1;
+                checking_dealer_finished_nxt = 1;
             end
             CHECK_WINNER : begin
                 case (lose_player_nxt)
@@ -351,9 +375,9 @@ module blackjack_FSM
                 check_winner_finshed_nxt = 1;
             end
             WAIT_FOR_DEALER: begin
-            //dealer_card_values_nxt[1] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[2] = tutaj_trzeba_wpisac_wejsciowego_dealera
-            //dealer_card_values_nxt[3] = tutaj_trzeba_wpisac_wejsciowego_dealera
+                dealer_card_values_nxt[1] = second_card;
+                dealer_card_values_nxt[2] = third_card;
+            // dealer_card_values_nxt[3] = tutaj_trzeba_wpisac_wejsciowego_dealera
             //dealer_card_values_nxt[4] = tutaj_trzeba_wpisac_wejsciowego_dealera
             //dealer_card_values_nxt[5] = tutaj_trzeba_wpisac_wejsciowego_dealera
             //dealer_card_values_nxt[6] = tutaj_trzeba_wpisac_wejsciowego_dealera
@@ -362,12 +386,15 @@ module blackjack_FSM
             end
             DEALER_WIN: begin
                 state_btn_nxt = 4;
+                finished_player_1_nxt = 1;
             end
             PLAYER_WIN: begin
                 state_btn_nxt = 3;
+                finished_player_1_nxt = 1;
             end
             DRAW: begin
                 state_btn_nxt = 5;
+                finished_player_1_nxt = 1;
             end
             default: begin
             end
