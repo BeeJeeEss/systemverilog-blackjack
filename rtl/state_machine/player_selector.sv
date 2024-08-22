@@ -3,7 +3,7 @@
  * MTM UEC2
  * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * SM which chooses a player at the begining.
+ * SM which chooses a role (master/slave) at the begining.
  */
 
 module player_selector

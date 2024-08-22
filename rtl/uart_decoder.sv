@@ -16,6 +16,7 @@ module uart_decoder(
         output logic rd_uart,
         output logic decoded_deal,
         output logic decoded_dealer_finished,
+        output logic decoded_start,
         UART_if.out decoder_cards
 
     );
@@ -24,6 +25,7 @@ module uart_decoder(
     logic rd_uart_nxt;
     logic decoded_deal_nxt;
     logic decoded_dealer_finished_nxt;
+    logic decoded_start_nxt;
     logic [3:0] card_values_nxt [0:8];
 
 
@@ -34,6 +36,7 @@ module uart_decoder(
             rd_uart <= '0;
             decoded_deal <= '0;
             decoded_dealer_finished <= '0;
+            decoded_start <= '0;
             for (int i = 0; i <= 8; i++) begin
                 decoder_cards.card_values[i] <= '0;
             end
@@ -43,6 +46,7 @@ module uart_decoder(
             rd_uart <= rd_uart_nxt;
             decoded_deal <= decoded_deal_nxt;
             decoded_dealer_finished <= decoded_dealer_finished_nxt;
+            decoded_start <= decoded_start_nxt;
             for (int i = 0; i <= 8; i++) begin
                 decoder_cards.card_values[i] <= card_values_nxt[i];
             end
@@ -53,6 +57,7 @@ module uart_decoder(
         rd_uart_nxt = rd_uart;
         decoded_deal_nxt = decoded_deal;
         decoded_dealer_finished_nxt = decoded_dealer_finished;
+        decoded_start_nxt = decoded_start;
         for (int i = 0; i <= 8; i++) begin
             card_values_nxt[i] = decoder_cards.card_values[i];
         end
@@ -61,6 +66,7 @@ module uart_decoder(
                 4'b0000: begin
                     decoded_dealer_finished_nxt = read_data[4];
                     decoded_deal_nxt = read_data[5];
+                    decoded_start_nxt = read_data[6];
                 end
                 4'b0001: begin
                     card_values_nxt[0] = read_data[7:4];

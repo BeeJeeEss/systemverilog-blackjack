@@ -13,6 +13,7 @@ module uart_encoder(
         input wire tx_full,
         input wire deal,
         input wire dealer_finished,
+        input wire start,
 
         SM_if.in cards,
 
@@ -48,7 +49,7 @@ module uart_encoder(
         if(tx_full == 1'b0) begin
             case(module_counter)
                 4'b0000: begin
-                    w_data_nxt = {1'b0,1'b0,deal,dealer_finished,4'b0000};
+                    w_data_nxt = {1'b0,start,deal,dealer_finished,4'b0000};
                 end
                 4'b0001: begin
                     w_data_nxt = {cards.dealer_card_values[0],4'b0001};

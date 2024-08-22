@@ -13,6 +13,7 @@ module draw_buttons (
         input  logic rst,
         input  logic [2:0] state,
         input  logic deal_wait_btn,
+        input  wire [1:0] selected_player,
 
         vga_if.out vga_btn_out,
         vga_if.in vga_btn_in
@@ -71,11 +72,11 @@ module draw_buttons (
         end
     end
 
-    always_comb begin : bg_comb_blk
-        // Draw the buttons
+    always_comb begin
         if ((vga_btn_in.hcount >= btn1_x) && (vga_btn_in.hcount < btn1_x + btn1_width) &&
-                (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)&&(state == 1)) begin
+                (vga_btn_in.vcount >= btn1_y) && (vga_btn_in.vcount < btn1_y + btn1_height)&&(state == 1)&&selected_player == 2'b01) begin
             rgb_nxt = 12'hF_0_0; // Button 1: Red
+
             if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 15 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 45)
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 27 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 9)
@@ -84,7 +85,6 @@ module draw_buttons (
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn1_x + 11 && vga_btn_in.hcount <= btn1_x + 27 && vga_btn_in.vcount >= btn1_y + 41 && vga_btn_in.vcount <= btn1_y + 45)
                 rgb_nxt = 12'h0_0_0;
-
 
             else if (vga_btn_in.hcount >= btn1_x + 31 && vga_btn_in.hcount <= btn1_x + 35 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 45)
                 rgb_nxt = 12'h0_0_0;
@@ -104,21 +104,16 @@ module draw_buttons (
             else if (vga_btn_in.hcount >= btn1_x + 51 && vga_btn_in.hcount <= btn1_x + 67 && vga_btn_in.vcount >= btn1_y + 23 && vga_btn_in.vcount <= btn1_y + 27)
                 rgb_nxt = 12'h0_0_0;
 
-
             else if (vga_btn_in.hcount >= btn1_x + 71 && vga_btn_in.hcount <= btn1_x + 75 && vga_btn_in.vcount >= btn1_y + 5 && vga_btn_in.vcount <= btn1_y + 43)
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn1_x + 71 && vga_btn_in.hcount <= btn1_x + 89 && vga_btn_in.vcount >= btn1_y + 41 && vga_btn_in.vcount <= btn1_y + 45)
                 rgb_nxt = 12'h0_0_0;
+        end
 
-
-
-
-
-
-
-        end else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
+        else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
                 (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)&&(state == 2)) begin
             rgb_nxt = 12'h0_0_F; // Button 2: Blue
+
             if (vga_btn_in.hcount >= btn2_x + 21 && vga_btn_in.hcount <= btn2_x + 25 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn2_x + 35 && vga_btn_in.hcount <= btn2_x + 39 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
@@ -134,9 +129,9 @@ module draw_buttons (
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn2_x + 68 && vga_btn_in.hcount <= btn2_x + 72 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
                 rgb_nxt = 12'h0_0_0;
+        end
 
-
-        end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
+        else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
                 (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)&&(state == 2)) begin
             if(deal_wait_btn) begin
                 rgb_nxt = 12'hA_A_A;
@@ -188,13 +183,10 @@ module draw_buttons (
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn3_x + 76 && vga_btn_in.hcount <= btn3_x + 90 && vga_btn_in.vcount >= btn3_y + 41 && vga_btn_in.vcount <= btn3_y + 45)
                 rgb_nxt = 12'h0_0_0;
+        end
 
-
-
-
-
-        end else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
-                (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)) begin
+        else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
+                (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)&&selected_player == 2'b01 ) begin
             rgb_nxt = 12'hF_7_2;
             if (vga_btn_in.hcount >= central_btn_x + 12 && vga_btn_in.hcount <= central_btn_x + 29 && vga_btn_in.vcount >= central_btn_y + 10 && vga_btn_in.vcount <= central_btn_y + 14)
                 rgb_nxt = 12'h0_0_0;
@@ -240,8 +232,8 @@ module draw_buttons (
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= central_btn_x + 98 && vga_btn_in.hcount <= central_btn_x + 102 && vga_btn_in.vcount >= central_btn_y + 10 && vga_btn_in.vcount <= central_btn_y + 50)
                 rgb_nxt = 12'h0_0_0;
-        end else begin                              // The rest of active display pixels:
-            rgb_nxt = vga_btn_in.rgb;                 // - fill with gray.
+        end else begin
+            rgb_nxt = vga_btn_in.rgb;
         end
     end
 
