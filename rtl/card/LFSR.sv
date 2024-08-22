@@ -1,9 +1,10 @@
 /**
  * Copyright (C) 2024  AGH University of Science and Technology
  * MTM UEC2
- * Authors: Konrad Sawina, Borys Strzeboński
+ * Source: https://simplefpga.blogspot.com/2013/02/random-number-generator-in-verilog-fpga.html
+ * Modified by: Konrad Sawina, Borys Strzeboński
  * Description:
- * Module that is responsible for controlling the direction of the ball.
+ * Module responsible for randomizing numbers.
  */
 
 module LFSR #(

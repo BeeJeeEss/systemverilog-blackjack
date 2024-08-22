@@ -3,7 +3,7 @@
   * MTM UEC2
   * Authors: Konrad Sawina, Borys Strzeboński
   * Description:
-  * Module that is responsible for controlling the direction of the ball.
+  * Top project module.
   */
 
  `timescale 1 ns / 1 ps
@@ -41,6 +41,8 @@ module top_vga (
     vga_if wire_text();
 
     SM_if wire_SM();
+
+    UART_if wire_UART();
 
     wire [4:0] total_player_value;
     wire [4:0] total_dealer_value;
@@ -120,9 +122,6 @@ module top_vga (
     wire start;
     wire decoded_deal;
     wire decoded_dealer_finished;
-    wire [3:0] first_card;
-    wire [3:0] second_card;
-    wire [3:0] third_card;
 
     hold_mouse u_hold_mouse(
         .clk,
@@ -179,9 +178,7 @@ module top_vga (
         .finished_player_1(dealer_round_finished),
         .decoded_deal,
         .decoded_dealer_finished,
-        .first_card,
-        .second_card,
-        .third_card
+        .decoded_cards(wire_UART)
 
     );
 
@@ -270,8 +267,6 @@ module top_vga (
         .rd_uart,
         .decoded_deal,
         .decoded_dealer_finished,
-        .first_card,
-        .second_card,
-        .third_card
+        .decoder_cards(wire_UART)
     );
 endmodule
