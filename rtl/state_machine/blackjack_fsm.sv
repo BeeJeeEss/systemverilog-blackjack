@@ -20,6 +20,7 @@ module blackjack_FSM
 
         input wire decoded_deal,
         input wire decoded_dealer_finished,
+        input wire decoded_start,
 
         UART_if.in decoded_cards,
 
@@ -144,6 +145,7 @@ module blackjack_FSM
                 lose_player_nxt <= 0;
                 finished_player_1 <= 0;
                 deal_wait_btn <= 0;
+
             end
             else begin : state_seq_run_blk
                 for (int i = 0; i <= 8; i++) begin
@@ -178,7 +180,7 @@ module blackjack_FSM
     always_comb begin
         state_nxt = state;
         case(state)
-            IDLE:  state_nxt = start ? START : IDLE;
+            IDLE:  state_nxt = (start || decoded_start) ? START : IDLE;
             START: begin
                 case (selected_player)
                     2'b01:
@@ -214,9 +216,9 @@ module blackjack_FSM
             WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
             DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_TURN ))) : DEALER_SCORE_CHECK;
-            DEALER_WIN :        state_nxt = start ? START : DEALER_WIN;
-            PLAYER_WIN :        state_nxt = start ? START : PLAYER_WIN;
-            DRAW :              state_nxt = start ? START : DRAW;
+            DEALER_WIN :        state_nxt = (start || decoded_start)  ? START : DEALER_WIN;
+            PLAYER_WIN :        state_nxt = (start || decoded_start)  ? START : PLAYER_WIN;
+            DRAW :              state_nxt = (start || decoded_start)  ? START : DRAW;
             CHECK_WINNER :      state_nxt = check_winner_finished ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
             default:            state_nxt = IDLE;
 

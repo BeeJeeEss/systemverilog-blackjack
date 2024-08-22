@@ -49,21 +49,19 @@ module draw_bg (
     end
 
     always_comb begin : bg_comb_blk
-        if (vga_bg_in.vblnk || vga_bg_in.hblnk) begin  // Blanking region:
-            rgb_nxt = 12'h0_0_0;                       // - make it black.
-        end else begin                                 // Active region:
-            // Draw the green table background
+        if (vga_bg_in.vblnk || vga_bg_in.hblnk) begin
+            rgb_nxt = 12'h0_0_0;
+        end else begin
             if ((vga_bg_in.hcount > 100) && (vga_bg_in.hcount < 924) &&
                     (vga_bg_in.vcount > 100) && (vga_bg_in.vcount < 668)) begin
-                rgb_nxt = 12'h0_a_0;                   // Green table
+                rgb_nxt = 12'h0_a_0;
             end
-            // Decorate the edges with gold
             else if (vga_bg_in.vcount < 20 || vga_bg_in.vcount > (VER_PIXELS - 20) ||
                     vga_bg_in.hcount < 20 || vga_bg_in.hcount > (HOR_PIXELS - 20)) begin
-                rgb_nxt = 12'hf_a_5;                   // Gold border
+                rgb_nxt = 12'hf_a_5;
             end
             else begin
-                rgb_nxt = 12'h0_8_0;                   // Darker green for the rest of the table
+                rgb_nxt = 12'h0_8_0;
             end
         end
     end
