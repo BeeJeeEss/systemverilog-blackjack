@@ -1,17 +1,18 @@
- /**
-  * Copyright (C) 2024  AGH University of Science and Technology
-  * MTM UEC2
-  * Authors: Konrad Sawina, Borys Strzeboński
-  * Description:
-  * Module responsible for drawing buttons.
-  */
+  /**
+   * Copyright (C) 2024  AGH University of Science and Technology
+   * MTM UEC2
+   * Authors: Konrad Sawina, Borys Strzeboński
+   * Description:
+   * Module responsible for drawing buttons.
+   */
 
- `timescale 1 ns / 1 ps
+  `timescale 1 ns / 1 ps
 
 module draw_buttons (
         input  logic clk,
         input  logic rst,
         input  logic [2:0] state,
+        input  logic deal_wait_btn,
 
         vga_if.out vga_btn_out,
         vga_if.in vga_btn_in
@@ -137,7 +138,11 @@ module draw_buttons (
 
         end else if ((vga_btn_in.hcount >= btn3_x) && (vga_btn_in.hcount < btn3_x + btn3_width) &&
                 (vga_btn_in.vcount >= btn3_y) && (vga_btn_in.vcount < btn3_y + btn3_height)&&(state == 2)) begin
-            rgb_nxt = 12'h0_F_0; // Button 3: Green
+            if(deal_wait_btn) begin
+                rgb_nxt = 12'hA_A_A;
+            end else begin
+                rgb_nxt = 12'h0_F_0; // Button 3: Green
+            end
             if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 5 && vga_btn_in.vcount <= btn3_y + 9)
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= btn3_x + 6 && vga_btn_in.hcount <= btn3_x + 22 && vga_btn_in.vcount >= btn3_y + 23 && vga_btn_in.vcount <= btn3_y + 27)

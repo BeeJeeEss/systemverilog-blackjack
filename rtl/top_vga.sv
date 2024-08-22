@@ -1,12 +1,12 @@
- /**
-  * Copyright (C) 2024  AGH University of Science and Technology
-  * MTM UEC2
-  * Authors: Konrad Sawina, Borys Strzeboński
-  * Description:
-  * Top project module.
-  */
+  /**
+   * Copyright (C) 2024  AGH University of Science and Technology
+   * MTM UEC2
+   * Authors: Konrad Sawina, Borys Strzeboński
+   * Description:
+   * Top project module.
+   */
 
- `timescale 1 ns / 1 ps
+  `timescale 1 ns / 1 ps
 
 module top_vga (
 
@@ -160,6 +160,7 @@ module top_vga (
     );
     wire deal_finished;
     wire dealer_round_finished;
+    wire deal_wait_btn;
 
     blackjack_FSM blackjack_FSM (
         .clk,
@@ -178,7 +179,8 @@ module top_vga (
         .finished_player_1(dealer_round_finished),
         .decoded_deal,
         .decoded_dealer_finished,
-        .decoded_cards(wire_UART)
+        .decoded_cards(wire_UART),
+        .deal_wait_btn(deal_wait_btn)
 
     );
 
@@ -195,7 +197,8 @@ module top_vga (
         .rst,
         .vga_btn_in(wire_test),
         .vga_btn_out(wire_btn),
-        .state(fsm_state)
+        .state(fsm_state),
+        .deal_wait_btn(deal_wait_btn)
     );
 
     draw_result u_draw_result(

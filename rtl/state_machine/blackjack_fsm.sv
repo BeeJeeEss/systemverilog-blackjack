@@ -25,7 +25,7 @@ module blackjack_FSM
 
         output logic finished_player_1,
         output logic deal_card_finished,
-
+        output logic deal_wait_btn,
 
         output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
@@ -116,7 +116,7 @@ module blackjack_FSM
     logic lose_player_nxt;
     logic finished_player_1_nxt;
     logic dealer_round_finished;
-
+    logic deal_wait_btn_nxt;
 
     //------------------------------------------------------------------------------
     // state sequential with synchronous reset
@@ -143,6 +143,7 @@ module blackjack_FSM
                 check_winner_finished <= 0;
                 lose_player_nxt <= 0;
                 finished_player_1 <= 0;
+                deal_wait_btn <= 0;
             end
             else begin : state_seq_run_blk
                 for (int i = 0; i <= 8; i++) begin
@@ -164,7 +165,7 @@ module blackjack_FSM
                 lose_player_nxt <= lose_player;
                 state <= state_nxt;
                 finished_player_1 <= finished_player_1_nxt;
-
+                deal_wait_btn <= deal_wait_btn_nxt;
             end
         end
     end
@@ -248,6 +249,7 @@ module blackjack_FSM
         counter_nxt = counter;
         deal_turn_finished_nxt = deal_turn_finished;
         lose_player = lose_player_nxt;
+        deal_wait_btn_nxt = 0;
         case (state)
             IDLE : begin
                 state_btn_nxt = 0;
@@ -350,7 +352,7 @@ module blackjack_FSM
             CHECK_WINNER : begin
                 case (lose_player_nxt)
                     1'b0: begin
-                        if (total_dealer_value > total_player_value) begin
+                        if (total_dealer_value > total_player_value && total_dealer_value <= 21) begin
                             lose_dealer = 0;
                             lose_player = 1;
                         end else if (total_player_value > total_dealer_value && total_player_value >= 22) begin
@@ -361,6 +363,9 @@ module blackjack_FSM
                             lose_player = 0;
                         end else if (total_dealer_value == total_player_value) begin
                             lose_dealer = 0;
+                            lose_player = 0;
+                        end else if (total_dealer_value > total_player_value && total_dealer_value > 21) begin
+                            lose_dealer = 1;
                             lose_player = 0;
                         end
                     end
@@ -374,15 +379,11 @@ module blackjack_FSM
                 check_winner_finshed_nxt = 1;
             end
             WAIT_FOR_DEALER: begin
-                dealer_card_values_nxt[0] = decoded_cards.card_values[0];
-                dealer_card_values_nxt[1] = decoded_cards.card_values[1];
-                dealer_card_values_nxt[2] = decoded_cards.card_values[2];
-                dealer_card_values_nxt[3] = decoded_cards.card_values[3];
-                dealer_card_values_nxt[4] = decoded_cards.card_values[4];
-                dealer_card_values_nxt[5] = decoded_cards.card_values[5];
-                dealer_card_values_nxt[6] = decoded_cards.card_values[6];
-                dealer_card_values_nxt[7] = decoded_cards.card_values[7];
-                dealer_card_values_nxt[8] = decoded_cards.card_values[8];
+                for (int i = 0; i <= 8; i++) begin
+                    dealer_card_values_nxt[i] = decoded_cards.card_values[i];
+                end
+                deal_wait_btn_nxt = 1;
+
             end
             DEALER_WIN: begin
                 state_btn_nxt = 4;

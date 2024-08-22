@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-22 14:00:51
+Created: 2024-08-22 17:11:23
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [rtl/timing/vga_timing.sv:12]
@@ -10,9 +10,9 @@ WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [r
 WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [rtl/mouse/MouseCtl.vhd:520]
 WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:19]
 WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [rtl/mouse/draw_mouse.sv:19]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:26]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:26]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:26]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:27]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:27]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [rtl/card/LFSR.sv:27]
 WARNING: [Synth 8-7129] Port cards\.player_card_values[0][3] in module uart_encoder is either unconnected or has no load
 WARNING: [Synth 8-7129] Port cards\.player_card_values[0][2] in module uart_encoder is either unconnected or has no load
 WARNING: [Synth 8-7129] Port cards\.player_card_values[0][1] in module uart_encoder is either unconnected or has no load
