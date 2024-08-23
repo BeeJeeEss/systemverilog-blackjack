@@ -19,23 +19,9 @@ module card (
         vga_if.out card_out
     );
 
-
-    /**
-     * Local variables and signals
-     */
-
     vga_if wire_card [0:17]();
     wire [11:0] rgb_wire [0:17];
     wire [11:0] address_wire [0:17];
-
-
-
-
-    /**
-     * Submodules instances
-     */
-
-
 
     draw_card #(
         .CARD_XPOS(437),
@@ -478,11 +464,5 @@ module card (
         .dout(rgb_wire[17])
 
     );
-
-
-
-
-
-
 
 endmodule
