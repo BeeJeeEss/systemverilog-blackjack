@@ -204,7 +204,8 @@ module top_vga (
         .vga_btn_out(wire_btn),
         .state(fsm_state),
         .deal_wait_btn(deal_wait_btn),
-        .selected_player(player_state)
+        .selected_player(player_state),
+        .dealer_finished(decoded_dealer_finished)
     );
 
     draw_result u_draw_result(

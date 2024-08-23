@@ -1,7 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////
 /*
- Module name:   template_rom
+ Module name:   image_rom_card
  Author:        Robert Szczygiel
+ Modified by: Konrad Sawina, Borys Strzeboński
  Version:       1.0
  Last modified: 2017-04-03
  Coding style: Xilinx recommended + ANSI ports

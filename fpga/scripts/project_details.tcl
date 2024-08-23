@@ -57,8 +57,8 @@ set sv_files {
     ../rtl/uart/uart_rx.sv
     ../rtl/uart/fifo.sv
     ../rtl/uart/mod_m_counter.sv
-    ../rtl/uart_encoder.sv
-    ../rtl/uart_decoder.sv
+    ../rtl/uart/uart_encoder.sv
+    ../rtl/uart/uart_decoder.sv
     rtl/top_vga_basys3.sv
 }
 

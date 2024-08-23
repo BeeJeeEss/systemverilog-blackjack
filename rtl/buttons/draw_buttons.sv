@@ -14,6 +14,7 @@ module draw_buttons (
         input  logic [2:0] state,
         input  logic deal_wait_btn,
         input  wire [1:0] selected_player,
+        input  wire dealer_finished,
 
         vga_if.out vga_btn_out,
         vga_if.in vga_btn_in
@@ -190,7 +191,10 @@ module draw_buttons (
 
         else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
                 (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)&&selected_player == 2'b01 ) begin
-            rgb_nxt = 12'hF_7_2;
+            if (!dealer_finished && state != 0) begin
+                rgb_nxt = 12'hA_A_A;
+            end else
+                rgb_nxt = 12'hF_7_2;
             if (vga_btn_in.hcount >= central_btn_x + 12 && vga_btn_in.hcount <= central_btn_x + 29 && vga_btn_in.vcount >= central_btn_y + 10 && vga_btn_in.vcount <= central_btn_y + 14)
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= central_btn_x + 10 && vga_btn_in.hcount <= central_btn_x + 14 && vga_btn_in.vcount >= central_btn_y + 12 && vga_btn_in.vcount <= central_btn_y + 29)

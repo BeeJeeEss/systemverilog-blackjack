@@ -229,7 +229,7 @@ module blackjack_FSM
             DEALER_WIN : begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = start  ? START : DEALER_WIN;
+                        state_nxt = (start && decoded_dealer_finished) ? START : DEALER_WIN;
                     2'b11:
                         state_nxt = decoded_start ? START : DEALER_WIN;
                     default:
@@ -239,7 +239,7 @@ module blackjack_FSM
             PLAYER_WIN : begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = start  ? START : PLAYER_WIN;
+                        state_nxt = (start && decoded_dealer_finished) ? START : PLAYER_WIN;
                     2'b11:
                         state_nxt = decoded_start ? START : PLAYER_WIN;
                     default:
@@ -249,7 +249,7 @@ module blackjack_FSM
             DRAW : begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = start  ? START : DRAW;
+                        state_nxt = (start && decoded_dealer_finished) ? START : DRAW;
                     2'b11:
                         state_nxt = decoded_start ? START : DRAW;
                     default:
