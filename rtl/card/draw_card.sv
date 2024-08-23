@@ -13,8 +13,8 @@ module draw_card
         KIND_OF_CARDS = 0
     )
     (
-        input  wire  clk,  // posedge active clock
-        input  wire  rst,  // high-level active synchronous reset
+        input  wire  clk,
+        input  wire  rst,
         input  wire  [11:0] rgb_pixel,
 
         SM_if.in SM_in,
@@ -25,17 +25,11 @@ module draw_card
         output logic [11:0] pixel_addr
     );
 
-    //------------------------------------------------------------------------------
-    // local parameters
-    //------------------------------------------------------------------------------
     localparam CARD_HEIGHT = 80;
     localparam CARD_WIDTH = 56;
     localparam CARD_TYPE_HEIGHT = 50;
     localparam CARD_TYPE_WIDTH = 50;
 
-    //------------------------------------------------------------------------------
-    // local variables
-    //------------------------------------------------------------------------------
     logic [11:0] rgb_nxt;
     logic [11:0] color;
     logic [11:0] pixel_addr_nxt;
@@ -68,11 +62,6 @@ module draw_card
         .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hsync, wire_cd.vsync, wire_cd.hblnk, wire_cd.vblnk})
     );
 
-
-
-    //------------------------------------------------------------------------------
-    // output register with sync reset
-    //------------------------------------------------------------------------------
     always_ff @(posedge clk) begin : out_reg_blk
         if(rst) begin : out_reg_rst_blk
             vga_card_out.vcount <= '0;
@@ -95,9 +84,7 @@ module draw_card
             pixel_addr          <= pixel_addr_nxt;
         end
     end
-    //------------------------------------------------------------------------------
-    // logic
-    //------------------------------------------------------------------------------
+
     case (KIND_OF_CARDS)
         0: begin
             assign card_values = SM_in.player_card_values;
@@ -115,12 +102,10 @@ module draw_card
         if (vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount <= CARD_YPOS + CARD_HEIGHT &&
                 vga_card_in.hcount >= CARD_XPOS && vga_card_in.hcount <= CARD_XPOS + CARD_WIDTH) begin
 
-            rgb_nxt = 12'hF_F_F; // Domyślnie kolor biały wewnątrz prostokąta
+            rgb_nxt = 12'hF_F_F;
 
-            // Warunek na czarną obwódkę
             if ((vga_card_in.vcount == CARD_YPOS || vga_card_in.vcount == CARD_YPOS + CARD_HEIGHT ||
                         vga_card_in.hcount == CARD_XPOS || vga_card_in.hcount == CARD_XPOS + CARD_WIDTH)) begin
-                // Kolor czarny
                 rgb_nxt = 12'h0_0_0;
             end case (card_values[MODULE_NUMBER])
                 4'b0000: begin
@@ -279,6 +264,4 @@ module draw_card
             pixel_addr_nxt = 0;
         end
     end
-
-
 endmodule
