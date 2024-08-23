@@ -27,6 +27,7 @@ module blackjack_FSM
         output logic finished_player_1,
         output logic deal_card_finished,
         output logic deal_wait_btn,
+        output logic start_pressed,
 
         output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
@@ -180,7 +181,16 @@ module blackjack_FSM
     always_comb begin
         state_nxt = state;
         case(state)
-            IDLE:  state_nxt = (start || decoded_start) ? START : IDLE;
+            IDLE : begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = start ? START : IDLE;
+                    2'b11:
+                        state_nxt = decoded_start ? DEAL_CARDS : START;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
             START: begin
                 case (selected_player)
                     2'b01:
@@ -216,9 +226,36 @@ module blackjack_FSM
             WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
             DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_TURN ))) : DEALER_SCORE_CHECK;
-            DEALER_WIN :        state_nxt = (start || decoded_start)  ? START : DEALER_WIN;
-            PLAYER_WIN :        state_nxt = (start || decoded_start)  ? START : PLAYER_WIN;
-            DRAW :              state_nxt = (start || decoded_start)  ? START : DRAW;
+            DEALER_WIN : begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = start  ? START : DEALER_WIN;
+                    2'b11:
+                        state_nxt = decoded_start ? START : DEALER_WIN;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
+            PLAYER_WIN : begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = start  ? START : PLAYER_WIN;
+                    2'b11:
+                        state_nxt = decoded_start ? START : PLAYER_WIN;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
+            DRAW : begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = start  ? START : DRAW;
+                    2'b11:
+                        state_nxt = decoded_start ? START : DRAW;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
             CHECK_WINNER :      state_nxt = check_winner_finished ? (lose_dealer ? PLAYER_WIN : (lose_player ? DEALER_WIN : DRAW) ) : CHECK_WINNER;
             default:            state_nxt = IDLE;
 
@@ -252,6 +289,7 @@ module blackjack_FSM
         deal_turn_finished_nxt = deal_turn_finished;
         lose_player = lose_player_nxt;
         deal_wait_btn_nxt = 0;
+        start_pressed = 0;
         case (state)
             IDLE : begin
                 state_btn_nxt = 0;
@@ -276,6 +314,7 @@ module blackjack_FSM
                 deal_turn_finished_nxt = 0;
                 check_winner_finshed_nxt = 0;
                 checking_dealer_finished_nxt = 0;
+                start_pressed = 1;
             end
             DEAL_CARDS: begin
                 case(selected_player)
