@@ -27,12 +27,9 @@ module image_rom_card
 		output logic [DATA_WIDTH - 1 : 0 ] dout
 	);
 
-
-
-	(* rom_style = "block" *) // block || distributed
+	(* rom_style = "block" *)
 
 	logic [DATA_WIDTH-1:0] rom [2**ADDR_WIDTH-1:0];
-
 
 	initial
 		$readmemh("../../rtl/card/card_data/KB.dat", rom);
