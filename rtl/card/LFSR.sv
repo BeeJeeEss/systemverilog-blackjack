@@ -32,7 +32,7 @@ module LFSR #(
             random <= random_next;
             count <= count_next;
 
-            if (random_next[9:6] >= 1 && random_next[9:6] <= 13) begin// Jeśli wynik jest w zakresie 1-13
+            if (random_next[9:6] >= 1 && random_next[9:6] <= 13) begin
                 rnd <= random_next[9:6];
             end else begin
                 rnd <= rnd;
@@ -42,13 +42,10 @@ module LFSR #(
 
     always_comb begin
         random_next = {random[11:0], feedback}; // Przesunięcie w lewo z uwzględnieniem sprzężenia zwrotnego
-
-
         if (count == 13) begin
             count_next = 0;
         end else begin
             count_next = count + 1;
         end
     end
-
 endmodule
