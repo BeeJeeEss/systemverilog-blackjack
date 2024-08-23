@@ -112,7 +112,10 @@ module draw_buttons (
 
         else if ((vga_btn_in.hcount >= btn2_x) && (vga_btn_in.hcount < btn2_x + btn2_width) &&
                 (vga_btn_in.vcount >= btn2_y) && (vga_btn_in.vcount < btn2_y + btn2_height)&&(state == 2)) begin
-            rgb_nxt = 12'h0_0_F; // Button 2: Blue
+            if(deal_wait_btn) begin
+                rgb_nxt = 12'hA_A_A;
+            end else
+                rgb_nxt = 12'h0_0_F; // Button 2: Blue
 
             if (vga_btn_in.hcount >= btn2_x + 21 && vga_btn_in.hcount <= btn2_x + 25 && vga_btn_in.vcount >= btn2_y + 5 && vga_btn_in.vcount <= btn2_y + 45)
                 rgb_nxt = 12'h0_0_0;

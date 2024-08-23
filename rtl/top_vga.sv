@@ -162,6 +162,7 @@ module top_vga (
     wire dealer_round_finished;
     wire deal_wait_btn;
     wire decoded_start;
+    wire start_pressed;
 
 
     blackjack_FSM blackjack_FSM (
@@ -183,7 +184,8 @@ module top_vga (
         .decoded_dealer_finished,
         .decoded_cards(wire_UART),
         .deal_wait_btn(deal_wait_btn),
-        .decoded_start
+        .decoded_start,
+        .start_pressed(start_pressed)
 
     );
 
@@ -263,7 +265,7 @@ module top_vga (
         .cards(wire_SM),
         .wr_uart,
         .w_data,
-        .start(start)
+        .start(start_pressed)
 
     );
 
