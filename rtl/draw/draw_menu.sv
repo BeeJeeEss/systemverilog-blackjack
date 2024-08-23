@@ -48,7 +48,7 @@ module draw_menu (
             vga_menu_out.hcount <=  vga_menu_in.hcount;
             vga_menu_out.hsync  <=  vga_menu_in.hsync;
             vga_menu_out.hblnk  <=  vga_menu_in.hblnk;
-            if (state == 0)
+            if (state == 0 || state == 6)
                 vga_menu_out.rgb    <=  rgb_nxt;
             else
                 vga_menu_out.rgb    <=  vga_menu_in.rgb ;

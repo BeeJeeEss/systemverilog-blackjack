@@ -43,6 +43,15 @@ module draw_buttons (
     localparam central_btn_x = 422; // Position X for the central button (centered)
     localparam central_btn_y = 370; // Position Y for the central button (centered)
 
+    localparam player1_btn_width = 160;
+    localparam player1_btn_height = 60;
+    localparam player1_btn_x = 150; // Position X for the central button (centered)
+    localparam player1_btn_y = 370; // Position Y for the central button (centered)
+
+    localparam player2_btn_width = 160;
+    localparam player2_btn_height = 60;
+    localparam player2_btn_y = 370; // Position X for the central button (centered)
+    localparam player2_btn_x = 714; // Position Y for the central button (centered)
     /**
      * Local variables and signals
      */
@@ -190,10 +199,12 @@ module draw_buttons (
         end
 
         else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
-                (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)&&selected_player == 2'b01 ) begin
+                (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)) begin
             if (!dealer_finished && state != 0) begin
                 rgb_nxt = 12'hA_A_A;
-            end else
+            end else if (selected_player == 3)
+                rgb_nxt = 12'hA_A_A;
+            else
                 rgb_nxt = 12'hF_7_2;
             if (vga_btn_in.hcount >= central_btn_x + 12 && vga_btn_in.hcount <= central_btn_x + 29 && vga_btn_in.vcount >= central_btn_y + 10 && vga_btn_in.vcount <= central_btn_y + 14)
                 rgb_nxt = 12'h0_0_0;
@@ -239,6 +250,151 @@ module draw_buttons (
                 rgb_nxt = 12'h0_0_0;
             else if (vga_btn_in.hcount >= central_btn_x + 98 && vga_btn_in.hcount <= central_btn_x + 102 && vga_btn_in.vcount >= central_btn_y + 10 && vga_btn_in.vcount <= central_btn_y + 50)
                 rgb_nxt = 12'h0_0_0;
+        end
+        else if ((vga_btn_in.hcount >= player1_btn_x) && (vga_btn_in.hcount < player1_btn_x + player1_btn_width) &&
+                (vga_btn_in.vcount >= player1_btn_y) && (vga_btn_in.vcount < player1_btn_y  + player1_btn_height) && state == 6) begin
+            rgb_nxt = 12'h4_3_F;
+            if (vga_btn_in.vcount >= player1_btn_y + 10  &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 11 && vga_btn_in.hcount <= 15 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y  + 10 &&  vga_btn_in.vcount <= player1_btn_y + 14 && vga_btn_in.hcount >= player1_btn_x + 11 && vga_btn_in.hcount <= 27 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y  + 26 &&  vga_btn_in.vcount <= player1_btn_y + 30 && vga_btn_in.hcount >= player1_btn_x + 11 && vga_btn_in.hcount <= 27 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y  + 12 &&  vga_btn_in.vcount  <= player1_btn_y + 28 && vga_btn_in.hcount >= player1_btn_x + 25 && vga_btn_in.hcount <= 29 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 31 && vga_btn_in.hcount <= 35 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 46 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 31 && vga_btn_in.hcount <= 49 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.vcount >= player1_btn_y + 12 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 51 && vga_btn_in.hcount <= 55 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 12 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 65 && vga_btn_in.hcount <= 69 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 14 && vga_btn_in.hcount >= player1_btn_x + 53 && vga_btn_in.hcount <= 67 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 26  &&  vga_btn_in.vcount  <= player1_btn_y + 30 && vga_btn_in.hcount >= player1_btn_x + 53 && vga_btn_in.hcount <= 67 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.vcount >= player1_btn_y + 30  &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 78 && vga_btn_in.hcount <= 82 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 25  &&  vga_btn_in.vcount  <= player1_btn_y + 29 && vga_btn_in.hcount >= player1_btn_x + 76 && vga_btn_in.hcount <= 80 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 25 && vga_btn_in.hcount >= player1_btn_x + 71 && vga_btn_in.hcount <= 75 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 25 && vga_btn_in.hcount >= player1_btn_x + 85 && vga_btn_in.hcount <= 89 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 25  &&  vga_btn_in.vcount  <= player1_btn_y + 29 && vga_btn_in.hcount >= player1_btn_x + 80 && vga_btn_in.hcount <= 84 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 91 && vga_btn_in.hcount <= 95 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 10 &&  vga_btn_in.vcount  <= player1_btn_y + 14 && vga_btn_in.hcount >= player1_btn_x + 91 && vga_btn_in.hcount <= 109 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 28 &&  vga_btn_in.vcount  <= player1_btn_y + 32 && vga_btn_in.hcount >= player1_btn_x + 91 && vga_btn_in.hcount <= 109 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player1_btn_y + 46 &&  vga_btn_in.vcount  <= player1_btn_y + 50 && vga_btn_in.hcount >= player1_btn_x + 91 && vga_btn_in.hcount <= 109 + player1_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= player1_btn_x + 111 && vga_btn_in.hcount <= player1_btn_x + 115 && vga_btn_in.vcount >= player1_btn_y + 10 && vga_btn_in.vcount <= player1_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 111 && vga_btn_in.hcount <= player1_btn_x + 127 && vga_btn_in.vcount >= player1_btn_y + 10 && vga_btn_in.vcount <= player1_btn_y + 14)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 111 && vga_btn_in.hcount <= player1_btn_x + 127 && vga_btn_in.vcount >= player1_btn_y + 26 && vga_btn_in.vcount <= player1_btn_y + 30)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 125 && vga_btn_in.hcount <= player1_btn_x + 129 && vga_btn_in.vcount >= player1_btn_y + 12 && vga_btn_in.vcount <= player1_btn_y + 28)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 115 && vga_btn_in.hcount <= player1_btn_x + 120 && vga_btn_in.vcount >= player1_btn_y + 30 && vga_btn_in.vcount <= player1_btn_y + 35)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 120 && vga_btn_in.hcount <= player1_btn_x + 125 && vga_btn_in.vcount >= player1_btn_y + 35 && vga_btn_in.vcount <= player1_btn_y + 40)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 125 && vga_btn_in.hcount <= player1_btn_x + 129 && vga_btn_in.vcount >= player1_btn_y + 40 && vga_btn_in.vcount <= player1_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= player1_btn_x + 145 && vga_btn_in.hcount <= player1_btn_x + 149 && vga_btn_in.vcount >= player1_btn_y + 10 && vga_btn_in.vcount <= player1_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 140 && vga_btn_in.hcount <= player1_btn_x + 144 && vga_btn_in.vcount >= player1_btn_y + 15 && vga_btn_in.vcount <= player1_btn_y + 19)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player1_btn_x + 135 && vga_btn_in.hcount <= player1_btn_x + 139 && vga_btn_in.vcount >= player1_btn_y + 20 && vga_btn_in.vcount <= player1_btn_y + 24)
+                rgb_nxt = 12'h0_0_0;
+
+        end  else if ((vga_btn_in.hcount >= player2_btn_x) && (vga_btn_in.hcount < player2_btn_x + player2_btn_width) &&
+                (vga_btn_in.vcount >= player2_btn_y) && (vga_btn_in.vcount < player2_btn_y + player2_btn_height) && state == 6) begin
+            rgb_nxt = 12'h4_3_F;
+            if (vga_btn_in.vcount >= player2_btn_y + 10  &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 11 && vga_btn_in.hcount <= 15 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y  + 10 &&  vga_btn_in.vcount <= player2_btn_y + 14 && vga_btn_in.hcount >= player2_btn_x + 11 && vga_btn_in.hcount <= 27 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y  + 26 &&  vga_btn_in.vcount <= player2_btn_y + 30 && vga_btn_in.hcount >= player2_btn_x + 11 && vga_btn_in.hcount <= 27 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y  + 12 &&  vga_btn_in.vcount  <= player2_btn_y + 28 && vga_btn_in.hcount >= player2_btn_x + 25 && vga_btn_in.hcount <= 29 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 31 && vga_btn_in.hcount <= 35 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 46 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 31 && vga_btn_in.hcount <= 49 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.vcount >= player2_btn_y + 12 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 51 && vga_btn_in.hcount <= 55 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 12 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 65 && vga_btn_in.hcount <= 69 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 14 && vga_btn_in.hcount >= player2_btn_x + 53 && vga_btn_in.hcount <= 67 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 26  &&  vga_btn_in.vcount  <= player2_btn_y + 30 && vga_btn_in.hcount >= player2_btn_x + 53 && vga_btn_in.hcount <= 67 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.vcount >= player2_btn_y + 30  &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 78 && vga_btn_in.hcount <= 82 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 25  &&  vga_btn_in.vcount  <= player2_btn_y + 29 && vga_btn_in.hcount >= player2_btn_x + 76 && vga_btn_in.hcount <= 80 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 25 && vga_btn_in.hcount >= player2_btn_x + 71 && vga_btn_in.hcount <= 75 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 25 && vga_btn_in.hcount >= player2_btn_x + 85 && vga_btn_in.hcount <= 89 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 25  &&  vga_btn_in.vcount  <= player2_btn_y + 29 && vga_btn_in.hcount >= player2_btn_x + 80 && vga_btn_in.hcount <= 84 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 91 && vga_btn_in.hcount <= 95 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 10 &&  vga_btn_in.vcount  <= player2_btn_y + 14 && vga_btn_in.hcount >= player2_btn_x + 91 && vga_btn_in.hcount <= 109 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 28 &&  vga_btn_in.vcount  <= player2_btn_y + 32 && vga_btn_in.hcount >= player2_btn_x + 91 && vga_btn_in.hcount <= 109 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.vcount >= player2_btn_y + 46 &&  vga_btn_in.vcount  <= player2_btn_y + 50 && vga_btn_in.hcount >= player2_btn_x + 91 && vga_btn_in.hcount <= 109 + player2_btn_x)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= player2_btn_x + 111 && vga_btn_in.hcount <= player2_btn_x + 115 && vga_btn_in.vcount >= player2_btn_y + 10 && vga_btn_in.vcount <= player2_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 111 && vga_btn_in.hcount <= player2_btn_x + 127 && vga_btn_in.vcount >= player2_btn_y + 10 && vga_btn_in.vcount <= player2_btn_y + 14)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 111 && vga_btn_in.hcount <= player2_btn_x + 127 && vga_btn_in.vcount >= player2_btn_y + 26 && vga_btn_in.vcount <= player2_btn_y + 30)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 125 && vga_btn_in.hcount <= player2_btn_x + 129 && vga_btn_in.vcount >= player2_btn_y + 12 && vga_btn_in.vcount <= player2_btn_y + 28)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 115 && vga_btn_in.hcount <= player2_btn_x + 120 && vga_btn_in.vcount >= player2_btn_y + 30 && vga_btn_in.vcount <= player2_btn_y + 35)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 120 && vga_btn_in.hcount <= player2_btn_x + 125 && vga_btn_in.vcount >= player2_btn_y + 35 && vga_btn_in.vcount <= player2_btn_y + 40)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 125 && vga_btn_in.hcount <= player2_btn_x + 129 && vga_btn_in.vcount >= player2_btn_y + 40 && vga_btn_in.vcount <= player2_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+
+            else if (vga_btn_in.hcount >= player2_btn_x + 131 && vga_btn_in.hcount <= player2_btn_x + 147 && vga_btn_in.vcount >= player2_btn_y + 10 && vga_btn_in.vcount <= player2_btn_y + 14)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 133 && vga_btn_in.hcount <= player2_btn_x + 147 && vga_btn_in.vcount >= player2_btn_y + 28 && vga_btn_in.vcount <= player2_btn_y + 32)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 133 && vga_btn_in.hcount <= player2_btn_x + 149 && vga_btn_in.vcount >= player2_btn_y + 46 && vga_btn_in.vcount <= player2_btn_y + 50)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 131 && vga_btn_in.hcount <= player2_btn_x + 135 && vga_btn_in.vcount >= player2_btn_y + 30 && vga_btn_in.vcount <= player2_btn_y + 48)
+                rgb_nxt = 12'h0_0_0;
+            else if (vga_btn_in.hcount >= player2_btn_x + 145 && vga_btn_in.hcount <= player2_btn_x + 149 && vga_btn_in.vcount >= player2_btn_y + 12 && vga_btn_in.vcount  <= player2_btn_y + 30)
+                rgb_nxt = 12'h0_0_0;
+
         end else begin
             rgb_nxt = vga_btn_in.rgb;
         end

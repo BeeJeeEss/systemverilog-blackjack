@@ -10,8 +10,8 @@ module player_selector
     (
         input  wire  clk,  // posedge active clock
         input  wire  rst,  // high-level active synchronous reset
-        input  wire  left_mouse,
-        input  wire  right_mouse,
+        input  wire  player_1,
+        input  wire  player_2,
         output logic [1:0] selected_player
     );
 
@@ -47,7 +47,7 @@ module player_selector
     //------------------------------------------------------------------------------
     always_comb begin : state_comb_blk
         case(state)
-            IDLE: state_nxt    = left_mouse ? MAIN_PLAYER : (right_mouse ? SIDE_PLAYER : IDLE);
+            IDLE: state_nxt    = player_1 ? MAIN_PLAYER : (player_2 ? SIDE_PLAYER : IDLE);
             MAIN_PLAYER: state_nxt    = MAIN_PLAYER;
             SIDE_PLAYER: state_nxt    = SIDE_PLAYER;
             default: state_nxt = IDLE;

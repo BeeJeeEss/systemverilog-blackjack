@@ -49,6 +49,8 @@ module top_vga (
     wire [2:0] fsm_state;
     wire rx_empty, rd_uart, tx_full, wr_uart;
     wire [7:0] read_data, w_data;
+    wire player1;
+    wire player2;
     // VGA signals from timing
 
     // VGA signals from background
@@ -185,7 +187,9 @@ module top_vga (
         .decoded_cards(wire_UART),
         .deal_wait_btn(deal_wait_btn),
         .decoded_start,
-        .start_pressed(start_pressed)
+        .start_pressed(start_pressed),
+        .player1(player1),
+        .player2(player2)
 
     );
 
@@ -233,14 +237,16 @@ module top_vga (
         .deal(deal),
         .hit(hit),
         .stand(stand),
-        .start(start)
+        .start(start),
+        .player1(player1),
+        .player2(player2)
     );
 
     player_selector u_player_selector(
         .clk,
         .rst,
-        .left_mouse(left_nxt),
-        .right_mouse(right_nxt),
+        .player_1(player1),
+        .player_2(player2),
         .selected_player(player_state)
     );
 

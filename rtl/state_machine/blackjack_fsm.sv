@@ -17,6 +17,8 @@ module blackjack_FSM
         input  wire  stand,
         input  wire  start,
         input  wire  [1:0] selected_player,
+        input  wire player1,
+        input  wire player2,
 
         input wire decoded_deal,
         input wire decoded_dealer_finished,
@@ -87,7 +89,8 @@ module blackjack_FSM
         DEALER_SCORE_CHECK = 4'b1000,
         DRAW = 4'b1011,
         START = 4'b1111,
-        WAIT_FOR_DEALER = 4'b1100
+        WAIT_FOR_DEALER = 4'b1100,
+        SELECT_SIDE = 4'b1110
     } state, state_nxt;
 
 
@@ -141,7 +144,7 @@ module blackjack_FSM
                 checking_dealer_finished <= 0;
                 deal_turn_finished <= 0;
                 state_btn <= 0;
-                state <= IDLE;
+                state <= SELECT_SIDE;
                 check_winner_finished <= 0;
                 lose_player_nxt <= 0;
                 finished_player_1 <= 0;
@@ -181,12 +184,13 @@ module blackjack_FSM
     always_comb begin
         state_nxt = state;
         case(state)
+            SELECT_SIDE : state_nxt = (player1 || player2) ? IDLE : SELECT_SIDE;
             IDLE : begin
                 case (selected_player)
                     2'b01:
                         state_nxt = start ? START : IDLE;
                     2'b11:
-                        state_nxt = decoded_start ? DEAL_CARDS : START;
+                        state_nxt = decoded_start ? START : IDLE;
                     default:
                         state_nxt = state;
                 endcase
@@ -291,6 +295,8 @@ module blackjack_FSM
         deal_wait_btn_nxt = 0;
         start_pressed = 0;
         case (state)
+            SELECT_SIDE :
+                state_btn_nxt = 6;
             IDLE : begin
                 state_btn_nxt = 0;
             end
