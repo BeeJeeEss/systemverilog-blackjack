@@ -18,13 +18,17 @@ module buttons_click (
         output logic deal,
         output logic hit,
         output logic stand,
-        output logic start
+        output logic start,
+        output logic player1,
+        output logic player2
     );
 
     logic deal_nxt;
     logic hit_nxt;
     logic stand_nxt;
     logic start_nxt;
+    logic player1_nxt;
+    logic player2_nxt;
 
 
     always_ff @(posedge clk) begin : bg_ff_blk
@@ -33,11 +37,15 @@ module buttons_click (
             hit <= 0;
             stand <= 0;
             start <= 0;
+            player1 <= 0;
+            player2 <= 0;
         end else begin
             deal <= deal_nxt;
             hit <= hit_nxt;
             stand <= stand_nxt;
             start <= start_nxt;
+            player1 <= player1_nxt;
+            player2 <= player2_nxt;
         end
     end
 
@@ -46,6 +54,8 @@ module buttons_click (
         hit_nxt = 0;
         stand_nxt = 0;
         start_nxt = 0;
+        player1_nxt = 0;
+        player2_nxt = 0;
         if (left_mouse) begin
 
             if((mouse_x >= 342)&&(mouse_x<=442)&&(mouse_y>=668)&&(mouse_y<=718))  begin
@@ -59,6 +69,12 @@ module buttons_click (
             end
             else if((mouse_x >= 422)&&(mouse_x<=542)&&(mouse_y>=370)&&(mouse_y<=430)) begin
                 start_nxt = 1;
+            end
+            else if((mouse_x >= 150)&&(mouse_x<=310)&&(mouse_y>=370)&&(mouse_y<=430)) begin
+                player1_nxt = 1;
+            end
+            else if((mouse_x >= 714)&&(mouse_x<=874)&&(mouse_y>=370)&&(mouse_y<=430)) begin
+                player2_nxt = 1;
             end
         end
     end
