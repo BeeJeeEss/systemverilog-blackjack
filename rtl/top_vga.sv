@@ -39,6 +39,7 @@ module top_vga (
     vga_if wire_card0();
     vga_if wire_menu();
     vga_if wire_text();
+    vga_if wire_deck();
 
     SM_if wire_SM();
 
@@ -51,6 +52,7 @@ module top_vga (
     wire [7:0] read_data, w_data;
     wire player1;
     wire player2;
+
     // VGA signals from timing
 
     // VGA signals from background
@@ -204,7 +206,7 @@ module top_vga (
     draw_buttons u_draw_buttons(
         .clk,
         .rst,
-        .vga_btn_in(wire_test),
+        .vga_btn_in(wire_deck),
         .vga_btn_out(wire_btn),
         .state(fsm_state),
         .deal_wait_btn(deal_wait_btn),
@@ -248,6 +250,27 @@ module top_vga (
         .player_1(player1),
         .player_2(player2),
         .selected_player(player_state)
+    );
+
+    wire [11:0] rgb_wire;
+    wire [12:0] address_wire;
+
+    draw_deck u_draw_deck (
+        .clk,
+        .rst,
+
+        .vga_deck_in(wire_test),
+        .vga_deck_out(wire_deck),
+        .pixel_addr (address_wire),
+        .rgb_pixel(rgb_wire),
+        .state(fsm_state)
+
+    );
+
+    image_rom_deck u_image_rom_deck(
+        .clk,
+        .addrA(address_wire),
+        .dout(rgb_wire)
     );
 
     uart u_uart(

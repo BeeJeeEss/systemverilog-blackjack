@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-23 19:23:58
+Created: 2024-08-24 10:46:44
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/timing/vga_timing.sv:12]
