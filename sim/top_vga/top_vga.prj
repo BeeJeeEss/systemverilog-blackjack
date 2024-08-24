@@ -36,6 +36,8 @@ sv work ../../rtl/uart/uart_encoder.sv
 sv work ../../rtl/uart/uart_rx.sv
 sv work ../../rtl/uart/uart_tx.sv
 sv work ../../rtl/uart/uart.sv
+sv work ../../rtl/draw/draw_deck.sv
+sv work ../../rtl/draw/image_rom_deck.sv
 
 sv work ../common/tiff_writer.sv
 sv work top_vga_tb.sv

@@ -59,6 +59,8 @@ set sv_files {
     ../rtl/uart/mod_m_counter.sv
     ../rtl/uart/uart_encoder.sv
     ../rtl/uart/uart_decoder.sv
+    ../rtl/draw/draw_deck.sv
+    ../rtl/draw/image_rom_deck.sv
     rtl/top_vga_basys3.sv
 }
 
@@ -77,4 +79,5 @@ set vhdl_files {
 # Specify files for a memory initialization     -- EDIT
 set mem_files {
    rtl/card/card_data/KB.dat
+   rtl/card/card_data/deck.dat
 }
