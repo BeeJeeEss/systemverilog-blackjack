@@ -19,6 +19,8 @@ module blackjack_FSM
         input  wire  [1:0] selected_player,
         input  wire player1,
         input  wire player2,
+        input  wire animation_end,
+
 
         input wire decoded_deal,
         input wire decoded_dealer_finished,
@@ -30,6 +32,7 @@ module blackjack_FSM
         output logic deal_card_finished,
         output logic deal_wait_btn,
         output logic start_pressed,
+        output logic [2:0] animation,
 
         output logic [2:0] state_btn,
         vga_if.in vga_blackjack_in,
@@ -69,28 +72,32 @@ module blackjack_FSM
     //------------------------------------------------------------------------------
     // local parameters
     //------------------------------------------------------------------------------
-    localparam STATE_BITS = 4; // number of bits used for state register
+    localparam STATE_BITS = 5; // number of bits used for state register
 
     //------------------------------------------------------------------------------
     // local variables
     //------------------------------------------------------------------------------
 
     enum logic [STATE_BITS-1 :0] {
-        IDLE = 4'b0000, // idle state
-        DEAL_CARDS = 4'b001,
-        PLAYER_TURN = 4'b0011,
-        DEALER_TURN = 4'b0010,
-        CHECK_WINNER = 4'b0110,
-        DEALER_WIN = 4'b1001,
-        PLAYER_WIN = 4'b1010,
-        PLAYER_CARD_CHOOSE = 4'b0100,
-        DEALER_CARD_CHOOSE = 4'b0101,
-        PLAYER_SCORE_CHECK = 4'b0111,
-        DEALER_SCORE_CHECK = 4'b1000,
-        DRAW = 4'b1011,
-        START = 4'b1111,
-        WAIT_FOR_DEALER = 4'b1100,
-        SELECT_SIDE = 4'b1110
+        IDLE = 5'b00000, // idle state
+        DEAL_CARDS = 5'b00001,
+        PLAYER_TURN = 5'b00011,
+        DEALER_TURN = 5'b00010,
+        CHECK_WINNER = 5'b00110,
+        DEALER_WIN = 5'b01001,
+        PLAYER_WIN = 5'b01010,
+        PLAYER_CARD_CHOOSE = 5'b00100,
+        DEALER_CARD_CHOOSE = 5'b00101,
+        PLAYER_SCORE_CHECK = 5'b00111,
+        DEALER_SCORE_CHECK = 5'b01000,
+        DRAW = 5'b01011,
+        START = 5'b01111,
+        WAIT_FOR_DEALER = 5'b01100,
+        SELECT_SIDE = 5'b01110,
+        PLAYER_ANIMATION = 5'b10000,
+        DEALER_ANIMATION = 5'b10001,
+        DEAL_ANIMATION = 5'b10010
+
     } state, state_nxt;
 
 
@@ -122,6 +129,7 @@ module blackjack_FSM
     logic finished_player_1_nxt;
     logic dealer_round_finished;
     logic deal_wait_btn_nxt;
+    logic [2:0] animation_nxt;
 
     //------------------------------------------------------------------------------
     // state sequential with synchronous reset
@@ -149,6 +157,7 @@ module blackjack_FSM
                 lose_player_nxt <= 0;
                 finished_player_1 <= 0;
                 deal_wait_btn <= 0;
+                animation <= 0;
 
             end
             else begin : state_seq_run_blk
@@ -172,6 +181,7 @@ module blackjack_FSM
                 state <= state_nxt;
                 finished_player_1 <= finished_player_1_nxt;
                 deal_wait_btn <= deal_wait_btn_nxt;
+                animation <= animation_nxt;
             end
         end
     end
@@ -198,38 +208,41 @@ module blackjack_FSM
             START: begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = deal ? DEAL_CARDS : START;
+                        state_nxt = deal ? DEAL_ANIMATION : START;
                     2'b11:
-                        state_nxt = decoded_deal ? DEAL_CARDS : START;
+                        state_nxt = decoded_deal ? DEAL_ANIMATION : START;
                     default:
                         state_nxt = state;
                 endcase
             end
+            DEAL_ANIMATION :           state_nxt = animation_end ? DEAL_CARDS : DEAL_ANIMATION;
             DEAL_CARDS:         state_nxt = deal_card_finished ? PLAYER_TURN : DEAL_CARDS;
             PLAYER_TURN:  begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? DEALER_TURN : PLAYER_TURN);
+                        state_nxt = hit ? PLAYER_ANIMATION : (stand ? DEALER_ANIMATION : PLAYER_TURN);
                     2'b11:
-                        state_nxt = hit ? PLAYER_CARD_CHOOSE : (stand ? WAIT_FOR_DEALER : PLAYER_TURN);
+                        state_nxt = hit ? PLAYER_ANIMATION : (stand ? WAIT_FOR_DEALER : PLAYER_TURN);
                     default:
                         state_nxt = state;
                 endcase
             end
+            PLAYER_ANIMATION: state_nxt = animation_end ? PLAYER_CARD_CHOOSE : PLAYER_ANIMATION;
             PLAYER_CARD_CHOOSE: state_nxt = card_chosen_finished ? PLAYER_SCORE_CHECK : PLAYER_CARD_CHOOSE;
             PLAYER_SCORE_CHECK: begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = checking_finished ? (lose_player ? DEALER_TURN : PLAYER_TURN) : PLAYER_SCORE_CHECK;
+                        state_nxt = checking_finished ? (lose_player ? DEALER_ANIMATION : PLAYER_TURN) : PLAYER_SCORE_CHECK;
                     2'b11:
                         state_nxt = checking_finished ? (lose_player ? WAIT_FOR_DEALER : PLAYER_TURN) : PLAYER_SCORE_CHECK;
                     default:
                         state_nxt = state;
                 endcase
             end
+            DEALER_ANIMATION:   state_nxt = animation_end ? DEALER_TURN : DEALER_ANIMATION;
             WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
-            DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_TURN ))) : DEALER_SCORE_CHECK;
+            DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_ANIMATION ))) : DEALER_SCORE_CHECK;
             DEALER_WIN : begin
                 case (selected_player)
                     2'b01:
@@ -294,6 +307,7 @@ module blackjack_FSM
         lose_player = lose_player_nxt;
         deal_wait_btn_nxt = 0;
         start_pressed = 0;
+        animation_nxt = 0;
         case (state)
             SELECT_SIDE :
                 state_btn_nxt = 6;
@@ -321,6 +335,7 @@ module blackjack_FSM
                 check_winner_finshed_nxt = 0;
                 checking_dealer_finished_nxt = 0;
                 start_pressed = 1;
+                animation_nxt = 0;
             end
             DEAL_CARDS: begin
                 case(selected_player)
@@ -351,6 +366,9 @@ module blackjack_FSM
 
                 state_btn_nxt = 2;
             end
+            DEAL_ANIMATION : begin
+                animation_nxt = 3;
+            end
             PLAYER_CARD_CHOOSE : begin
                 if (counter == 0) begin
                     counter_nxt = counter + 1;
@@ -370,10 +388,16 @@ module blackjack_FSM
                 state_btn_nxt = 2;
                 checking_finished_nxt = 1;
             end
+            PLAYER_ANIMATION: begin
+                animation_nxt = 1;
+            end
+            DEALER_ANIMATION: begin
+                animation_nxt = 2;
+            end
             DEALER_TURN: begin
                 if (total_dealer_value <= 16) begin
-                    dealer_card_values_nxt[dealer_card_count] = lfsr_rnd;
                     dealer_card_count_nxt = dealer_card_count + 1;
+                    dealer_card_values_nxt[dealer_card_count] = lfsr_rnd;
                 end
                 state_btn_nxt = 2;
                 deal_turn_finished_nxt = 1;

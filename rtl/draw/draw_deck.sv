@@ -3,7 +3,7 @@
  * MTM UEC2
  * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * Module responsible for drawing cards.
+ * Module responsible for drawing deck.
  */
 module draw_deck (
         input  wire  clk,
@@ -17,7 +17,7 @@ module draw_deck (
         output logic [12:0] pixel_addr
     );
 
-    localparam CARD_DECK_XPOS = 350;
+    localparam CARD_DECK_XPOS = 252;
     localparam CARD_DECK_YPOS = 365;
     localparam CARD_TYPE_HEIGHT = 80;
     localparam CARD_TYPE_WIDTH = 56;

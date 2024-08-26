@@ -40,6 +40,7 @@ module top_vga (
     vga_if wire_menu();
     vga_if wire_text();
     vga_if wire_deck();
+    vga_if wire_animation();
 
     SM_if wire_SM();
 
@@ -167,6 +168,8 @@ module top_vga (
     wire deal_wait_btn;
     wire decoded_start;
     wire start_pressed;
+    wire [2:0] animation;
+    wire animation_end;
 
 
     blackjack_FSM blackjack_FSM (
@@ -191,7 +194,9 @@ module top_vga (
         .decoded_start,
         .start_pressed(start_pressed),
         .player1(player1),
-        .player2(player2)
+        .player2(player2),
+        .animation(animation),
+        .animation_end(animation_end)
 
     );
 
@@ -259,7 +264,7 @@ module top_vga (
         .clk,
         .rst,
 
-        .vga_deck_in(wire_test),
+        .vga_deck_in(wire_animation),
         .vga_deck_out(wire_deck),
         .pixel_addr (address_wire),
         .rgb_pixel(rgb_wire),
@@ -310,4 +315,44 @@ module top_vga (
         .decoder_cards(wire_UART),
         .decoded_start
     );
+
+    wire [11:0] rgb_wire1;
+    wire [12:0] address_wire1;
+
+    wire [11:0] xpos_card;
+    wire [11:0] ypos_card;
+    wire [1:0] angle;
+
+    image_rom_deck u_image_rom_deck1(
+        .clk,
+        .addrA(address_wire1),
+        .dout(rgb_wire1)
+    );
+
+    card_animation u_card_animation(
+        .clk,
+        .rst,
+        .xpos(xpos_card),
+        .ypos(ypos_card),
+        .vga_in(wire_test),
+        .angle(angle),
+        .animation(animation),
+        .animation_end(animation_end)
+
+    );
+
+    draw_animation_card u_draw_animation_card(
+        .clk,
+        .rst,
+        .pixel_addr(address_wire1),
+        .rgb_pixel(rgb_wire1),
+        .xpos(xpos_card),
+        .ypos(ypos_card),
+        .vga_deck_in(wire_test),
+        .vga_deck_out(wire_animation),
+        .angle(angle),
+        .animation(animation)
+
+    );
+
 endmodule
