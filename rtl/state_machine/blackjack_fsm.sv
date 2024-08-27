@@ -20,6 +20,9 @@ module blackjack_FSM
         input  wire player1,
         input  wire player2,
         input  wire animation_end,
+        input wire [3:0] lfsr_rnd,
+        input wire [3:0] lfsr_rnd_2,
+        input wire [3:0] lfsr_rnd_3,
 
 
         input wire decoded_deal,
@@ -39,33 +42,7 @@ module blackjack_FSM
         SM_if.out SM_out
     );
 
-    wire [3:0] lfsr_rnd;
-    wire [3:0] lfsr_rnd_2;
-    wire [3:0] lfsr_rnd_3;
 
-    LFSR #(
-        .RANDOM(13'ha)
-    )u_LFSR(
-        .clk,
-        .rst,
-        .rnd(lfsr_rnd)
-    );
-
-    LFSR #(
-        .RANDOM(13'hfd)
-    )u_LFSR_2(
-        .clk,
-        .rst,
-        .rnd(lfsr_rnd_2)
-    );
-
-    LFSR #(
-        .RANDOM(13'h6a)
-    )u_LFSR_3(
-        .clk,
-        .rst,
-        .rnd(lfsr_rnd_3)
-    );
 
     localparam STATE_BITS = 5;
 
@@ -87,7 +64,8 @@ module blackjack_FSM
         SELECT_SIDE = 5'b01110,
         PLAYER_ANIMATION = 5'b10000,
         DEALER_ANIMATION = 5'b10001,
-        DEAL_ANIMATION = 5'b10010
+        DEAL_ANIMATION = 5'b10010,
+        PLAYER_2_DEALER = 5'b10011
 
     } state, state_nxt;
 
@@ -182,7 +160,7 @@ module blackjack_FSM
             IDLE : begin
                 case (selected_player)
                     2'b01:
-                        state_nxt = start ? START : IDLE;
+                        state_nxt = start && decoded_dealer_finished ? START : IDLE;
                     2'b11:
                         state_nxt = decoded_start ? START : IDLE;
                     default:
@@ -223,8 +201,18 @@ module blackjack_FSM
                         state_nxt = state;
                 endcase
             end
-            DEALER_ANIMATION:   state_nxt = animation_end ? DEALER_TURN : DEALER_ANIMATION;
-            WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? CHECK_WINNER : WAIT_FOR_DEALER;
+            DEALER_ANIMATION:  begin
+                case (selected_player)
+                    2'b01:
+                        state_nxt = animation_end ? DEALER_TURN : DEALER_ANIMATION;
+                    2'b11:
+                        state_nxt = animation_end ? PLAYER_2_DEALER : DEALER_ANIMATION;
+                    default:
+                        state_nxt = state;
+                endcase
+            end
+            PLAYER_2_DEALER :   state_nxt = CHECK_WINNER;
+            WAIT_FOR_DEALER :   state_nxt = decoded_dealer_finished ? DEALER_ANIMATION : WAIT_FOR_DEALER;
             DEALER_TURN:        state_nxt = deal_turn_finished ? DEALER_SCORE_CHECK : DEALER_TURN;
             DEALER_SCORE_CHECK: state_nxt = checking_dealer_finished ? ((lose_dealer ? PLAYER_WIN : (dealer_round_finished ? CHECK_WINNER : DEALER_ANIMATION ))) : DEALER_SCORE_CHECK;
             DEALER_WIN : begin
@@ -293,6 +281,7 @@ module blackjack_FSM
                 state_btn_nxt = 6;
             IDLE : begin
                 state_btn_nxt = 0;
+                finished_player_1_nxt = 1;
             end
             START: begin
                 for (int i = 0; i <= 8; i++) begin
@@ -430,11 +419,13 @@ module blackjack_FSM
                 check_winner_finshed_nxt = 1;
             end
             WAIT_FOR_DEALER: begin
+                deal_wait_btn_nxt = 1;
+            end
+            PLAYER_2_DEALER : begin
                 for (int i = 0; i <= 8; i++) begin
                     dealer_card_values_nxt[i] = decoded_cards.card_values[i];
                 end
                 deal_wait_btn_nxt = 1;
-
             end
             DEALER_WIN: begin
                 state_btn_nxt = 4;

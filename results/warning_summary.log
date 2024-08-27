@@ -1,6 +1,6 @@
 Warnings, critical warnings and errors from synthesis and implementation
 
-Created: 2024-08-27 00:53:07
+Created: 2024-08-27 17:47:41
 
 ----SYNTHESIS----
 WARNING: [Synth 8-3848] Net vga_tim\.rgb in module/entity vga_timing does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/timing/vga_timing.sv:12]
@@ -8,8 +8,8 @@ WARNING: [Synth 8-6014] Unused sequential element set_x.inc_reg was removed.  [/
 WARNING: [Synth 8-6014] Unused sequential element set_x.x_inter_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:456]
 WARNING: [Synth 8-6014] Unused sequential element set_y.inc_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:514]
 WARNING: [Synth 8-6014] Unused sequential element set_y.y_inter_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/MouseCtl.vhd:520]
-WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:19]
-WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:19]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.hblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:18]
+WARNING: [Synth 8-3848] Net vga_mouse_out\.vblnk in module/entity draw_mouse does not have driver. [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/mouse/draw_mouse.sv:18]
 WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/card/LFSR.sv:27]
 WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/card/LFSR.sv:27]
 WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/student/ksawina/Desktop/cyfrowka-projekt/systemverilog-blackjack/rtl/card/LFSR.sv:27]

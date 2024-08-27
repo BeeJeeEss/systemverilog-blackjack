@@ -77,6 +77,9 @@ module top_vga (
     wire [11:0] xpos_card;
     wire [11:0] ypos_card;
     wire [1:0] angle;
+    wire [3:0] lfsr_rnd;
+    wire [3:0] lfsr_rnd_2;
+    wire [3:0] lfsr_rnd_3;
 
     assign vs = wire_mouse.vsync;
     assign hs = wire_mouse.hsync;
@@ -178,7 +181,10 @@ module top_vga (
         .player1(player1),
         .player2(player2),
         .animation(animation),
-        .animation_end(animation_end)
+        .animation_end(animation_end),
+        .lfsr_rnd,
+        .lfsr_rnd_2,
+        .lfsr_rnd_3
     );
 
     card u_card (
@@ -321,5 +327,31 @@ module top_vga (
         .angle(angle),
         .animation(animation)
     );
+
+
+    LFSR #(
+        .RANDOM(13'ha)
+    )u_LFSR(
+        .clk,
+        .rst,
+        .rnd(lfsr_rnd)
+    );
+
+    LFSR #(
+        .RANDOM(13'hfd)
+    )u_LFSR_2(
+        .clk,
+        .rst,
+        .rnd(lfsr_rnd_2)
+    );
+
+    LFSR #(
+        .RANDOM(13'h6a)
+    )u_LFSR_3(
+        .clk,
+        .rst,
+        .rnd(lfsr_rnd_3)
+    );
+
 
 endmodule
