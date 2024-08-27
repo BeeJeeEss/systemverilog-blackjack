@@ -79,6 +79,4 @@ module buttons_click (
         end
     end
 
-
-
 endmodule

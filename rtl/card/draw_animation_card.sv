@@ -3,9 +3,11 @@
  * MTM UEC2
  * Authors: Konrad Sawina, Borys Strzeboński
  * Description:
- * Module responsible for drawing deck.
+ * Module responsible for animate a card.
  */
+
 module draw_animation_card (
+
         input  wire  clk,
         input  wire  rst,
         input  wire  [11:0] rgb_pixel,
@@ -13,7 +15,6 @@ module draw_animation_card (
         input  wire  [11:0] ypos,
         input  wire  [1:0] angle,
         input  wire  [2:0] animation,
-
 
         vga_if.out vga_deck_out,
         vga_if.in vga_deck_in,
@@ -23,13 +24,14 @@ module draw_animation_card (
 
     localparam CARD_TYPE_HEIGHT = 80;
     localparam CARD_TYPE_WIDTH = 56;
+
     logic [11:0] ypos_minus;
     logic [11:0] xpos_minus;
     logic [7:0] imag_y;
     logic [7:0] imag_x;
-
     logic [11:0] rgb_nxt;
     logic [12:0] pixel_addr_nxt;
+
     wire  [11:0] delayed_rgb;
 
     vga_if wire_cd();
@@ -57,7 +59,7 @@ module draw_animation_card (
         .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hsync, wire_cd.vsync, wire_cd.hblnk, wire_cd.vblnk})
     );
 
-    always_ff @(posedge clk) begin : out_reg_blk
+    always_ff @(posedge clk) begin
         if(rst) begin : out_reg_rst_blk
             vga_deck_out.vcount <= '0;
             vga_deck_out.vsync  <= '0;
@@ -148,4 +150,5 @@ module draw_animation_card (
             end
         endcase
     end
+
 endmodule

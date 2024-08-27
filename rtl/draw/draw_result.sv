@@ -17,15 +17,10 @@ module draw_result (
 
     import vga_pkg::*;
 
-    /**
-     * Local variables and signals
-     */
+    localparam xpos = 500;
+    localparam ypos = 234;
 
     logic [11:0] rgb_nxt;
-
-    /**
-     * Internal logic
-     */
 
     always_ff @(posedge clk) begin : bg_ff_blk
         if (rst) begin
@@ -46,10 +41,6 @@ module draw_result (
             vga_result_out.rgb    <=  rgb_nxt;
         end
     end
-
-
-    localparam xpos = 500;
-    localparam ypos = 234;
 
     always_comb begin
         rgb_nxt = vga_result_in.rgb;
@@ -168,11 +159,5 @@ module draw_result (
                 rgb_nxt = vga_result_in.rgb;
         endcase
     end
-
-
-
-
-
-
 
 endmodule

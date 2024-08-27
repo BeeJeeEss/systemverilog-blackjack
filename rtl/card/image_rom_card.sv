@@ -2,7 +2,7 @@
 /*
  Module name:   image_rom_card
  Author:        Robert Szczygiel
- Modified by: Konrad Sawina, Borys Strzeboński
+ Modified by:   Konrad Sawina, Borys Strzeboński
  Version:       1.0
  Last modified: 2017-04-03
  Coding style: Xilinx recommended + ANSI ports
@@ -16,13 +16,14 @@
  **
  */
 //////////////////////////////////////////////////////////////////////////////
+
 module image_rom_card
 	#(parameter
 		ADDR_WIDTH = 12,
 		DATA_WIDTH = 12
 	)
 	(
-		input wire clk, // posedge active clock
+		input wire clk,
 		input wire [ADDR_WIDTH - 1 : 0 ] addrA,
 		output logic [DATA_WIDTH - 1 : 0 ] dout
 	);

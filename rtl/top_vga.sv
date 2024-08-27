@@ -25,11 +25,6 @@ module top_vga (
         inout  logic PS2Data
     );
 
-
-    /**
-     * Local variables and signals
-     */
-
     vga_if wire_tim();
     vga_if wire_bg();
     vga_if wire_mouse();
@@ -53,24 +48,40 @@ module top_vga (
     wire [7:0] read_data, w_data;
     wire player1;
     wire player2;
-
-    // VGA signals from timing
-
-    // VGA signals from background
-
-
-    /**
-     * Signals assignments
-     */
+    wire left;
+    wire right;
+    wire [11:0] xpos;
+    wire [11:0] ypos;
+    wire [1:0] player_state;
+    wire [11:0] xpos_nxt;
+    wire [11:0] ypos_nxt;
+    wire left_nxt;
+    wire right_nxt;
+    wire deal;
+    wire hit;
+    wire stand;
+    wire start;
+    wire decoded_deal;
+    wire decoded_dealer_finished;
+    wire deal_finished;
+    wire dealer_round_finished;
+    wire deal_wait_btn;
+    wire decoded_start;
+    wire start_pressed;
+    wire [2:0] animation;
+    wire animation_end;
+    wire [11:0] rgb_wire;
+    wire [12:0] address_wire;
+    wire [11:0] rgb_wire1;
+    wire [12:0] address_wire1;
+    wire [11:0] xpos_card;
+    wire [11:0] ypos_card;
+    wire [1:0] angle;
 
     assign vs = wire_mouse.vsync;
     assign hs = wire_mouse.hsync;
     assign {r,g,b} = wire_mouse.rgb;
 
-
-    /**
-     * Submodules instances
-     */
 
     vga_timing u_vga_timing (
         .clk,
@@ -85,12 +96,6 @@ module top_vga (
         .vga_bg_in(wire_tim),
         .vga_bg_out(wire_bg)
     );
-
-    wire left;
-    wire right;
-    wire [11:0] xpos;
-    wire [11:0] ypos;
-    wire [1:0] player_state;
 
     MouseCtl u_MouseCtl (
         .clk(clk975Mhz),
@@ -115,19 +120,6 @@ module top_vga (
         .setmax_y('0)
     );
 
-    wire [11:0] xpos_nxt;
-    wire [11:0] ypos_nxt;
-
-    wire left_nxt;
-    wire right_nxt;
-
-    wire deal;
-    wire hit;
-    wire stand;
-    wire start;
-    wire decoded_deal;
-    wire decoded_dealer_finished;
-
     hold_mouse u_hold_mouse(
         .clk,
         .rst,
@@ -141,7 +133,6 @@ module top_vga (
         .right_out(right_nxt),
         .xposout(xpos_nxt),
         .yposout(ypos_nxt)
-
     );
 
     draw_mouse u_draw_mouse (
@@ -155,7 +146,6 @@ module top_vga (
         .ypos(ypos_nxt)
     );
 
-
     calculate_card u_calculate_card(
         .clk,
         .rst,
@@ -163,14 +153,6 @@ module top_vga (
         .total_players_value(total_player_value),
         .total_dealer_value(total_dealer_value)
     );
-    wire deal_finished;
-    wire dealer_round_finished;
-    wire deal_wait_btn;
-    wire decoded_start;
-    wire start_pressed;
-    wire [2:0] animation;
-    wire animation_end;
-
 
     blackjack_FSM blackjack_FSM (
         .clk,
@@ -197,7 +179,6 @@ module top_vga (
         .player2(player2),
         .animation(animation),
         .animation_end(animation_end)
-
     );
 
     card u_card (
@@ -257,9 +238,6 @@ module top_vga (
         .selected_player(player_state)
     );
 
-    wire [11:0] rgb_wire;
-    wire [12:0] address_wire;
-
     draw_deck u_draw_deck (
         .clk,
         .rst,
@@ -269,7 +247,6 @@ module top_vga (
         .pixel_addr (address_wire),
         .rgb_pixel(rgb_wire),
         .state(fsm_state)
-
     );
 
     image_rom_deck u_image_rom_deck(
@@ -301,7 +278,6 @@ module top_vga (
         .wr_uart,
         .w_data,
         .start(start_pressed)
-
     );
 
     uart_decoder u_uart_decoder(
@@ -315,13 +291,6 @@ module top_vga (
         .decoder_cards(wire_UART),
         .decoded_start
     );
-
-    wire [11:0] rgb_wire1;
-    wire [12:0] address_wire1;
-
-    wire [11:0] xpos_card;
-    wire [11:0] ypos_card;
-    wire [1:0] angle;
 
     image_rom_deck u_image_rom_deck1(
         .clk,
@@ -338,7 +307,6 @@ module top_vga (
         .angle(angle),
         .animation(animation),
         .animation_end(animation_end)
-
     );
 
     draw_animation_card u_draw_animation_card(
@@ -352,7 +320,6 @@ module top_vga (
         .vga_deck_out(wire_animation),
         .angle(angle),
         .animation(animation)
-
     );
 
 endmodule

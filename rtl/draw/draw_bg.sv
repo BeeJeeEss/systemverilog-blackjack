@@ -18,17 +18,9 @@ module draw_bg (
 
     import vga_pkg::*;
 
-    /**
-     * Local variables and signals
-     */
-
     logic [11:0] rgb_nxt;
 
-    /**
-     * Internal logic
-     */
-
-    always_ff @(posedge clk) begin : bg_ff_blk
+    always_ff @(posedge clk) begin
         if (rst) begin
             vga_bg_out.vcount   <= '0;
             vga_bg_out.vsync    <= '0;

@@ -15,10 +15,8 @@ module draw_mouse (
         input  logic [11:0] xpos,
         input  logic [11:0] ypos,
 
-
         vga_if.out vga_mouse_out,
         vga_if.in vga_mouse_in
-
     );
 
     MouseDisplay inst(
@@ -34,7 +32,7 @@ module draw_mouse (
     );
 
 
-    always_ff @(posedge clk) begin : bg_ff_blk
+    always_ff @(posedge clk) begin
         if (rst) begin
             vga_mouse_out.vsync  <= '0;
             vga_mouse_out.hsync  <= '0;

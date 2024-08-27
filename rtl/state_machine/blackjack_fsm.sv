@@ -39,8 +39,7 @@ module blackjack_FSM
         SM_if.out SM_out
     );
 
-    // Instancjonowanie LFSR
-    wire [3:0] lfsr_rnd; // Przewód dla sygnału wyjściowego z LFSR
+    wire [3:0] lfsr_rnd;
     wire [3:0] lfsr_rnd_2;
     wire [3:0] lfsr_rnd_3;
 
@@ -68,18 +67,10 @@ module blackjack_FSM
         .rnd(lfsr_rnd_3)
     );
 
-
-    //------------------------------------------------------------------------------
-    // local parameters
-    //------------------------------------------------------------------------------
-    localparam STATE_BITS = 5; // number of bits used for state register
-
-    //------------------------------------------------------------------------------
-    // local variables
-    //------------------------------------------------------------------------------
+    localparam STATE_BITS = 5;
 
     enum logic [STATE_BITS-1 :0] {
-        IDLE = 5'b00000, // idle state
+        IDLE = 5'b00000,
         DEAL_CARDS = 5'b00001,
         PLAYER_TURN = 5'b00011,
         DEALER_TURN = 5'b00010,
@@ -101,8 +92,8 @@ module blackjack_FSM
     } state, state_nxt;
 
 
-    logic [3:0] player_card_values_nxt [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
-    logic [3:0] dealer_card_values_nxt [8:0]; // Zakładamy, że gracz może mieć maksymalnie 9 kart
+    logic [3:0] player_card_values_nxt [8:0];
+    logic [3:0] dealer_card_values_nxt [8:0];
     logic [3:0] player_card_count;
     logic [3:0] player_card_count_nxt;
     logic [3:0] dealer_card_count;
@@ -131,9 +122,7 @@ module blackjack_FSM
     logic deal_wait_btn_nxt;
     logic [2:0] animation_nxt;
 
-    //------------------------------------------------------------------------------
-    // state sequential with synchronous reset
-    //------------------------------------------------------------------------------
+
     always_ff @(posedge clk) begin : state_seq_blk
         if(vga_blackjack_in.hcount == 0 & vga_blackjack_in.vcount == 0) begin
             if(rst)begin : state_seq_rst_blk
@@ -185,11 +174,6 @@ module blackjack_FSM
             end
         end
     end
-
-    //------------------------------------------------------------------------------
-    // next state logic
-    //------------------------------------------------------------------------------
-
 
     always_comb begin
         state_nxt = state;
@@ -278,10 +262,6 @@ module blackjack_FSM
 
         endcase
     end
-
-//------------------------------------------------------------------------------
-// output register
-//----------------------------------------------------------------------------
 
 
     always_comb begin
@@ -472,7 +452,5 @@ module blackjack_FSM
             end
         endcase
     end
-
-
 
 endmodule
