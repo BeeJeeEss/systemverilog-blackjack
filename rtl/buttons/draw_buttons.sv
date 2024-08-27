@@ -203,7 +203,7 @@ module draw_buttons (
 
         else if ((vga_btn_in.hcount >= central_btn_x) && (vga_btn_in.hcount < central_btn_x + central_btn_width) &&
                 (vga_btn_in.vcount >= central_btn_y) && (vga_btn_in.vcount < central_btn_y + central_btn_height) && (state == 0 || state == 3 || state == 4 || state == 5)) begin
-            if (!dealer_finished && state != 0) begin
+            if (!dealer_finished) begin
                 rgb_nxt = 12'hA_A_A;
             end else if (selected_player == 3)
                 rgb_nxt = 12'hA_A_A;
