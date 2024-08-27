@@ -38,7 +38,6 @@ module card (
         .rgb_pixel(rgb_wire[0]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card0(
@@ -62,7 +61,6 @@ module card (
         .rgb_pixel(rgb_wire[1]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card1(
@@ -86,14 +84,12 @@ module card (
         .rgb_pixel(rgb_wire[2]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card2(
         .clk,
         .addrA(address_wire[2]),
         .dout(rgb_wire[2])
-
     );
 
     draw_card #(
@@ -111,7 +107,6 @@ module card (
         .rgb_pixel(rgb_wire[3]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card3(
@@ -135,7 +130,6 @@ module card (
         .rgb_pixel(rgb_wire[4]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card4(
@@ -159,7 +153,6 @@ module card (
         .rgb_pixel(rgb_wire[5]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card  u_image_rom_card5(
@@ -183,14 +176,12 @@ module card (
         .rgb_pixel(rgb_wire[6]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card  u_image_rom_card6(
         .clk,
         .addrA(address_wire[6]),
         .dout(rgb_wire[6])
-
     );
 
     draw_card #(
@@ -208,7 +199,6 @@ module card (
         .rgb_pixel(rgb_wire[7]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card7(
@@ -233,14 +223,12 @@ module card (
         .rgb_pixel(rgb_wire[8]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card  u_image_rom_card8(
         .clk,
         .addrA(address_wire[8]),
         .dout(rgb_wire[8])
-
     );
 
     draw_card #(
@@ -258,14 +246,12 @@ module card (
         .rgb_pixel(rgb_wire[9]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card9(
         .clk,
         .addrA(address_wire[9]),
         .dout(rgb_wire[9])
-
     );
 
     draw_card #(
@@ -283,7 +269,6 @@ module card (
         .rgb_pixel(rgb_wire[10]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card10(
@@ -307,7 +292,6 @@ module card (
         .rgb_pixel(rgb_wire[11]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card11(
@@ -315,7 +299,6 @@ module card (
         .addrA(address_wire[11]),
         .dout(rgb_wire[11])
     );
-
 
     draw_card #(
         .CARD_XPOS(527),
@@ -332,7 +315,6 @@ module card (
         .rgb_pixel(rgb_wire[12]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card12(
@@ -356,7 +338,6 @@ module card (
         .rgb_pixel(rgb_wire[13]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card  u_image_rom_card13(
@@ -380,14 +361,12 @@ module card (
         .rgb_pixel(rgb_wire[14]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card14(
         .clk,
         .addrA(address_wire[14]),
         .dout(rgb_wire[14])
-
     );
 
     draw_card #(
@@ -405,14 +384,12 @@ module card (
         .rgb_pixel(rgb_wire[15]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card15(
         .clk,
         .addrA(address_wire[15]),
         .dout(rgb_wire[15])
-
     );
 
     draw_card #(
@@ -430,14 +407,12 @@ module card (
         .rgb_pixel(rgb_wire[16]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card16(
         .clk,
         .addrA(address_wire[16]),
         .dout(rgb_wire[16])
-
     );
 
     draw_card #(
@@ -455,14 +430,12 @@ module card (
         .rgb_pixel(rgb_wire[17]),
 
         .SM_in(SM_in)
-
     );
 
     image_rom_card u_image_rom_card17(
         .clk,
         .addrA(address_wire[17]),
         .dout(rgb_wire[17])
-
     );
 
 endmodule

@@ -19,20 +19,12 @@ module draw_menu (
 
     import vga_pkg::*;
 
-    /**
-     * Local variables and signals
-     */
-
     logic [11:0] rgb_nxt;
 
     localparam xpos = 122;
     localparam ypos = 0;
 
-    /**
-     * Internal logic
-     */
-
-    always_ff @(posedge clk) begin : bg_ff_blk
+    always_ff @(posedge clk) begin
         if (rst) begin
             vga_menu_out.vcount   <= '0;
             vga_menu_out.vsync    <= '0;
@@ -68,8 +60,6 @@ module draw_menu (
             rgb_nxt = 12'hf_a_5;
         else if (vga_menu_in.vcount >= 140 + ypos &&  vga_menu_in.vcount <= 155 + ypos && vga_menu_in.hcount >= 100 + xpos && vga_menu_in.hcount <= 155 + xpos)
             rgb_nxt = 12'hf_a_5;
-
-
 
         else if (vga_menu_in.vcount >= 100 + ypos &&  vga_menu_in.vcount <= 200 + ypos && vga_menu_in.hcount >= 165 + xpos && vga_menu_in.hcount <= 180 + xpos)
             rgb_nxt = 12'hf_a_5;
@@ -132,7 +122,6 @@ module draw_menu (
         else if (vga_menu_in.vcount >= 185 + ypos &&  vga_menu_in.vcount <= 200 + ypos && vga_menu_in.hcount >= 555 + xpos && vga_menu_in.hcount <= 615 + xpos)
             rgb_nxt = 12'hf_a_5;
 
-
         else if (vga_menu_in.vcount >= 100 + ypos &&  vga_menu_in.vcount <= 200 + ypos && vga_menu_in.hcount >= 620 + xpos && vga_menu_in.hcount <= 635 + xpos)
             rgb_nxt = 12'hf_a_5;
         else if (vga_menu_in.vcount >= 150 + ypos &&  vga_menu_in.vcount <= 165 + ypos && vga_menu_in.hcount >= 635 + xpos && vga_menu_in.hcount <= 650 + xpos)
@@ -150,6 +139,5 @@ module draw_menu (
         else
             rgb_nxt = vga_menu_in.rgb;
     end
-
 
 endmodule

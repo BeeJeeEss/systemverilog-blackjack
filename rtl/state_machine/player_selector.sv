@@ -8,33 +8,24 @@
 
 module player_selector
     (
-        input  wire  clk,  // posedge active clock
-        input  wire  rst,  // high-level active synchronous reset
+        input  wire  clk,
+        input  wire  rst,
         input  wire  player_1,
         input  wire  player_2,
         output logic [1:0] selected_player
     );
 
-    //------------------------------------------------------------------------------
-    // local parameters
-    //------------------------------------------------------------------------------
-    localparam STATE_BITS = 2; // number of bits used for state register
+    localparam STATE_BITS = 2;
 
-    //------------------------------------------------------------------------------
-    // local variables
-    //------------------------------------------------------------------------------
     logic [1:0] myout_nxt;
 
     enum logic [STATE_BITS-1 :0] {
-        IDLE = 2'b00, // idle state
+        IDLE = 2'b00,
         MAIN_PLAYER = 2'b01,
         SIDE_PLAYER = 2'b11
     } state, state_nxt;
 
-    //------------------------------------------------------------------------------
-    // state sequential with synchronous reset
-    //------------------------------------------------------------------------------
-    always_ff @(posedge clk) begin : state_seq_blk
+    always_ff @(posedge clk) begin
         if(rst)begin : state_seq_rst_blk
             state <= IDLE;
         end
@@ -42,10 +33,8 @@ module player_selector
             state <= state_nxt;
         end
     end
-    //------------------------------------------------------------------------------
-    // next state logic
-    //------------------------------------------------------------------------------
-    always_comb begin : state_comb_blk
+
+    always_comb begin
         case(state)
             IDLE: state_nxt    = player_1 ? MAIN_PLAYER : (player_2 ? SIDE_PLAYER : IDLE);
             MAIN_PLAYER: state_nxt    = MAIN_PLAYER;
@@ -53,9 +42,7 @@ module player_selector
             default: state_nxt = IDLE;
         endcase
     end
-    //------------------------------------------------------------------------------
-    // output register
-    //------------------------------------------------------------------------------
+
     always_ff @(posedge clk) begin : out_reg_blk
         if(rst) begin : out_reg_rst_blk
             selected_player <= 2'b00;
@@ -64,9 +51,7 @@ module player_selector
             selected_player <= myout_nxt;
         end
     end
-    //------------------------------------------------------------------------------
-    // output logic
-    //------------------------------------------------------------------------------
+
     always_comb begin : out_comb_blk
         case(state_nxt)
             IDLE : myout_nxt = 2'b00;

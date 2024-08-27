@@ -1,3 +1,11 @@
+/**
+ * Copyright (C) 2024  AGH University of Science and Technology
+ * MTM UEC2
+ * Authors: Konrad Sawina, Borys Strzeboński
+ * Description:
+ * SM for the card animation.
+ */
+
 `timescale 1ns/1ps
 
 module card_animation
@@ -14,9 +22,11 @@ module card_animation
         vga_if.in vga_in
     );
 
+    localparam XPOS_END = 437;
+
     logic [11:0]    xpos_nxt;
     logic [11:0]    ypos_nxt;
-    logic [8:0]     V; // V - velocity (predkosc)
+    logic [8:0]     V; //velocity
     logic [8:0]     V_nxt;
     logic [1:0]     angle_nxt;
     logic [2:0]     counter;
@@ -24,14 +34,13 @@ module card_animation
     logic           animation_end_nxt;
 
     enum logic [2:0] {
-        IDLE = 3'b000, // idle state
+        IDLE = 3'b000,
         DOWN = 3'b001,
         UP   = 3'b100,
         STOP = 3'b010,
         RESET = 3'b011,
         STRAIGHT = 3'b101
     } state, state_nxt;
-
 
     always_ff @(posedge clk) begin : xypos_blk
         if(vga_in.hcount == 0 & vga_in.vcount == 0) begin
@@ -63,11 +72,6 @@ module card_animation
 
     end
 
-    localparam XPOS_END = 437;
-
-
-
-
     always_comb begin
 
         case(state)
@@ -81,9 +85,7 @@ module card_animation
             default:    state_nxt = IDLE;
 
         endcase
-
     end
-
 
     always_comb begin
 
@@ -153,14 +155,11 @@ module card_animation
                 angle_nxt = 0;
                 animation_end_nxt = 0;
             end
-
         endcase
-
     end
 
     always_comb begin
         counter_nxt = counter + 1;
     end
-
 
 endmodule

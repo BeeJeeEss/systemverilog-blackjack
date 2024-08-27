@@ -403,6 +403,4 @@ module draw_buttons (
         end
     end
 
-
-
 endmodule

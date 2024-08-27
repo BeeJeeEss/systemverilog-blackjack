@@ -61,8 +61,8 @@ set sv_files {
     ../rtl/uart/uart_decoder.sv
     ../rtl/draw/draw_deck.sv
     ../rtl/draw/image_rom_deck.sv
-    ../rtl/card_animation.sv
-    ../rtl/draw_animation_card.sv
+    ../rtl/card/card_animation.sv
+    ../rtl/card/draw_animation_card.sv
     rtl/top_vga_basys3.sv
 }
 

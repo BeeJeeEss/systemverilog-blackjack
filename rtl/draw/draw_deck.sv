@@ -39,7 +39,6 @@ module draw_deck (
         .dout(delayed_rgb)
     );
 
-
     delay #(
         .WIDTH(26),
         .CLK_DEL(2)
@@ -51,7 +50,7 @@ module draw_deck (
         .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hsync, wire_cd.vsync, wire_cd.hblnk, wire_cd.vblnk})
     );
 
-    always_ff @(posedge clk) begin : out_reg_blk
+    always_ff @(posedge clk) begin
         if(rst) begin : out_reg_rst_blk
             vga_deck_out.vcount <= '0;
             vga_deck_out.vsync  <= '0;
@@ -95,4 +94,5 @@ module draw_deck (
             pixel_addr_nxt = 0;
         end
     end
+
 endmodule

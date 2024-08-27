@@ -1,8 +1,7 @@
 /**
  * Copyright (C) 2024  AGH University of Science and Technology
  * MTM UEC2
- * Authors: Andrzej Kozdrowski, Aron Lampart
- * Modified by: Borys Strzeboński, Konrad Sawina
+ * Authors: Borys Strzeboński, Konrad Sawina
  * Description:
  * Decoder for UART
  */
@@ -21,17 +20,13 @@ module uart_decoder(
 
     );
 
-// Local variables
     logic rd_uart_nxt;
     logic decoded_deal_nxt;
     logic decoded_dealer_finished_nxt;
     logic decoded_start_nxt;
     logic [3:0] card_values_nxt [0:8];
 
-
-//Logic
-
-    always_ff @(posedge clk) begin : data_passed_through
+    always_ff @(posedge clk) begin
         if(rst) begin
             rd_uart <= '0;
             decoded_deal <= '0;
@@ -53,7 +48,7 @@ module uart_decoder(
         end
     end
 
-    always_comb begin : uart_decoding_module
+    always_comb begin
         rd_uart_nxt = rd_uart;
         decoded_deal_nxt = decoded_deal;
         decoded_dealer_finished_nxt = decoded_dealer_finished;
@@ -110,7 +105,6 @@ module uart_decoder(
 
             rd_uart_nxt = 1'b0;
         end
-
     end
 
 endmodule

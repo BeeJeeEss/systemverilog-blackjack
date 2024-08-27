@@ -17,18 +17,14 @@ module uart_encoder(
 
         SM_if.in cards,
 
-
         output logic wr_uart,
         output logic [7:0] w_data
     );
 
-    //local variables
     logic [7:0] w_data_nxt;
     logic [3:0] module_counter, module_counter_nxt;
     logic wr_uart_nxt;
     logic tx_tick, tx_tick_nxt;
-
-    //logic
 
     always_ff @(posedge clk) begin
         if(rst) begin
@@ -111,4 +107,5 @@ module uart_encoder(
         end
 
     end
+
 endmodule

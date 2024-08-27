@@ -14,12 +14,6 @@ module vga_timing (
 
     import vga_pkg::*;
 
-
-    /**
-     * Local variables and signals
-     */
-
-// Add your signals and variables here.
     logic [10:0] hcount_nxt;
     logic [10:0] vcount_nxt;
     logic hblnk_nxt;
@@ -27,11 +21,6 @@ module vga_timing (
     logic hsync_nxt;
     logic vsync_nxt;
 
-
-
-    /**
-     * Internal logic
-     */
     always_ff@(posedge clk) begin
         if (rst) begin
             vga_tim.hcount <= 11'b0;

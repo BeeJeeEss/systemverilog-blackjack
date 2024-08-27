@@ -62,7 +62,7 @@ module draw_card
         .dout({wire_cd.hcount, wire_cd.vcount, wire_cd.hsync, wire_cd.vsync, wire_cd.hblnk, wire_cd.vblnk})
     );
 
-    always_ff @(posedge clk) begin : out_reg_blk
+    always_ff @(posedge clk) begin
         if(rst) begin : out_reg_rst_blk
             vga_card_out.vcount <= '0;
             vga_card_out.vsync  <= '0;
@@ -97,7 +97,7 @@ module draw_card
         end
     endcase
 
-    always_comb begin : card_comb_blk2
+    always_comb begin
         color = 12'h0_0_0;
         if (vga_card_in.vcount >= CARD_YPOS && vga_card_in.vcount <= CARD_YPOS + CARD_HEIGHT &&
                 vga_card_in.hcount >= CARD_XPOS && vga_card_in.hcount <= CARD_XPOS + CARD_WIDTH) begin
@@ -264,4 +264,5 @@ module draw_card
             pixel_addr_nxt = 0;
         end
     end
+
 endmodule
