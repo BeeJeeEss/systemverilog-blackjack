@@ -1,17 +1,10 @@
  /**
-  * San Jose State University
-  * EE178 Lab #4
-  * Author: prof. Eric Crabilla
-  *
-  * Modified by:
-  * 2023  AGH University of Science and Technology
+  * Copyright (C) 2024  AGH University of Science and Technology
   * MTM UEC2
-  * Piotr Kaczmarczyk
-  *
+  * Authors: Konrad Sawina, Borys Strzeboński
   * Description:
-  * Top level synthesizable module including the project top and all the FPGA-referred modules.
+  * Module responsible for sending signals to the SM.
   */
-
  `timescale 1 ns / 1 ps
 
 module top_vga_basys3 (

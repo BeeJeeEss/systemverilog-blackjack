@@ -35,3 +35,8 @@ dvt_build.log
 
 xcelium.d
 xrun.log
+
+results/top_vga_basys3.bit
+results/frame000.tif
+results/frame001.tif
+results/warning_summary.log
